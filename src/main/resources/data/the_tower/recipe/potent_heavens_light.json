@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "potent_heavens_light",
+  "ingredients": [
+    "minecraft:blaze_powder",
+    "minecraft:blaze_powder",
+    "the_tower:heavens_earth"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:potent_heavens_light"
+  }
+}

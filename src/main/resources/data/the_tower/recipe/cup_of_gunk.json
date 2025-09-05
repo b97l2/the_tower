@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cup_of_gunk",
+  "ingredients": [
+    "minecraft:bucket",
+    "the_tower:darkness"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:cup_of_gunk"
+  }
+}

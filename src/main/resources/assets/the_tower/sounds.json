@@ -1,0 +1,15 @@
+{
+  "screaming_block_break": {
+    "subtitle": "sounds.the_tower.screaming_block_break",
+    "sounds": [
+      "the_tower:scream1",
+      "the_tower:scream2",
+      "the_tower:scream3",
+      "the_tower:scream4",
+      "the_tower:scream5",
+      "the_tower:scream6",
+      "the_tower:scream7",
+      "the_tower:scream8"
+    ]
+  }
+}

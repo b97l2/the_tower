@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "facing=down,half=lower": { "model": "the_tower:block/rod_of_luminescence_lower", "x": 180 },
+    "facing=down,half=upper": { "model": "the_tower:block/rod_of_luminescence_upper", "x": 180 },
+
+    "facing=up,half=lower": { "model": "the_tower:block/rod_of_luminescence_lower" },
+    "facing=up,half=upper": { "model": "the_tower:block/rod_of_luminescence_upper" },
+
+    "facing=north,half=lower": { "model": "the_tower:block/rod_of_luminescence_lower", "x": 90},
+    "facing=north,half=upper": { "model": "the_tower:block/rod_of_luminescence_upper", "x": 90},
+
+    "facing=south,half=lower": { "model": "the_tower:block/rod_of_luminescence_lower", "x": 270},
+    "facing=south,half=upper": { "model": "the_tower:block/rod_of_luminescence_upper", "x": 270},
+
+    "facing=west,half=lower": { "model": "the_tower:block/rod_of_luminescence_lower", "y": 270, "x": 90},
+    "facing=west,half=upper": { "model": "the_tower:block/rod_of_luminescence_upper", "y": 270, "x": 90},
+
+    "facing=east,half=lower": { "model": "the_tower:block/rod_of_luminescence_lower", "y": 90, "x": 90},
+    "facing=east,half=upper": { "model": "the_tower:block/rod_of_luminescence_upper", "y": 90, "x": 90}
+  }
+}

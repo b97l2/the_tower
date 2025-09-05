@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "shadow",
+  "ingredients": [
+    "the_tower:darkness",
+    "the_tower:heavens_earth"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:shadow"
+  }
+}

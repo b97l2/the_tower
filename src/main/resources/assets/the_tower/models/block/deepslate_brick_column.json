@@ -1,0 +1,22 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "end": "minecraft:block/deepslate_bricks",
+    "side": "minecraft:block/deepslate_bricks",
+    "particle": "minecraft:block/deepslate_bricks"
+  },
+  "elements": [
+    {
+      "from": [4, 0, 4],
+      "to": [12, 16, 12],
+      "faces": {
+        "north": { "texture": "#side" },
+        "south": { "texture": "#side" },
+        "west":  { "texture": "#side" },
+        "east":  { "texture": "#side" },
+        "up":    { "texture": "#end" },
+        "down":  { "texture": "#end" }
+      }
+    }
+  ]
+}

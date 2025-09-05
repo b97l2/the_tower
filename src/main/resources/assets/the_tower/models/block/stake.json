@@ -1,0 +1,6 @@
+{
+  "parent": "block/thin_column",
+  "textures": {
+    "column": "the_tower:block/stake"
+  }
+}

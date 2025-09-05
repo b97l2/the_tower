@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "the_tower:block/polished_blackstone_brick_column",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "the_tower:block/polished_blackstone_brick_column"
+    },
+    "axis=z": {
+      "model": "the_tower:block/polished_blackstone_brick_column",
+      "x": 90
+    }
+  }
+}

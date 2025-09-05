@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "heavens_earth",
+  "ingredients": [
+    "minecraft:amethyst_shard"
+  ],
+  "result": {
+    "count": 4,
+    "id": "the_tower:heavens_earth"
+  }
+}

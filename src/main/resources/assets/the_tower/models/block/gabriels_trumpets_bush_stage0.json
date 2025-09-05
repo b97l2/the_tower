@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "the_tower:block/gabriels_trumpets_bush_stage0"
+  }
+}

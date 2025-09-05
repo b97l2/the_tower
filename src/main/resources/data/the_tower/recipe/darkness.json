@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 2500,
+  "experience": 0,
+  "ingredient": "the_tower:gluh",
+  "result": {
+    "id": "the_tower:darkness"
+  }
+}

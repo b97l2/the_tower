@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "!": "minecraft:obsidian",
+    "B": "minecraft:redstone"
+  },
+  "pattern": [
+    "! !",
+    " B ",
+    "! !"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:stave"
+  },
+  "show_notification": true
+}

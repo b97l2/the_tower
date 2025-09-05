@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "chalice_of_blood",
+  "ingredients": [
+    "minecraft:bucket",
+    "the_tower:cube_of_flesh"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:chalice_of_blood"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      { "model": "the_tower:block/blood" },
+      { "model": "the_tower:block/blood", "y": 0 },
+      { "model": "the_tower:block/blood", "y": 0 },
+      { "model": "the_tower:block/blood", "y": 0 },
+      { "model": "the_tower:block/blood2" },
+      { "model": "the_tower:block/blood2", "y": 0 },
+      { "model": "the_tower:block/blood2", "y": 0 },
+      { "model": "the_tower:block/blood2", "y": 0 }
+
+    ]
+  }
+}

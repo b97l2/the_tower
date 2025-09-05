@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "up": "the_tower:block/skin",
+    "down": "the_tower:block/cube_of_flesh",
+    "north": "the_tower:block/skin_side",
+    "south": "the_tower:block/skin_side",
+    "east": "the_tower:block/skin_side",
+    "west": "the_tower:block/skin_side",
+    "particle": "the_tower:block/skin_side"
+  }
+}

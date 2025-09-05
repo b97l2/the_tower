@@ -1,0 +1,58 @@
+{
+  "multipart": [
+    {
+      "apply": [
+        {
+          "model": "the_tower:block/stake1_age0"
+        },
+        {
+          "model": "the_tower:block/stake2_age0"
+        },
+        {
+          "model": "the_tower:block/stake3_age0"
+        },
+        {
+          "model": "the_tower:block/stake4_age0"
+        }
+      ],
+      "when": {
+        "age": "0"
+      }
+    },
+    {
+      "apply": [
+        {
+          "model": "the_tower:block/stake1_age1"
+        },
+        {
+          "model": "the_tower:block/stake2_age1"
+        },
+        {
+          "model": "the_tower:block/stake3_age1"
+        },
+        {
+          "model": "the_tower:block/stake4_age1"
+        }
+      ],
+      "when": {
+        "age": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "the_tower:block/heavens_earth"
+      },
+      "when": {
+        "leaves": "small"
+      }
+    },
+    {
+      "apply": {
+        "model": "the_tower:block/heavens_earth"
+      },
+      "when": {
+        "leaves": "large"
+      }
+    }
+  ]
+}

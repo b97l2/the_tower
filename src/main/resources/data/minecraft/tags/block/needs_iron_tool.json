@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "the_tower:gold_stairs",
+    "the_tower:gold_slab",
+    "the_tower:gold_wall",
+    "the_tower:gold_column"
+  ]
+}

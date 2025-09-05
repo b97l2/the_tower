@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "the_tower:block/gluh_vine_stage4"
+  }
+}

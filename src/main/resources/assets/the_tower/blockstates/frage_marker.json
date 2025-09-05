@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "the_tower:block/heavens_earth"
+    },
+    "half=upper": {
+      "model": "the_tower:block/frage_marker"
+    }
+  }
+}

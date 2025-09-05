@@ -1,0 +1,36 @@
+{
+  "type": "the_tower:the_frage_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "the_tower:the_frage",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "the_tower:shadowlands",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": -2,
+            "weirdness": 2,
+            "depth": 0,
+            "offset": 0
+            }
+          },
+        {
+          "biome": "the_tower:the_pit",
+          "parameters": {
+            "temperature": 0.3,
+            "humidity": 0.3,
+            "continentalness": 0.1,
+            "erosion": -2,
+            "weirdness": -2,
+            "depth": 0,
+            "offset": 0
+          }
+        }
+      ]
+    }
+  }
+}

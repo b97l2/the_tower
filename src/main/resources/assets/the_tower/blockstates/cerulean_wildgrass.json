@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "the_tower:block/cerulean_wildgrass_bottom"
+    },
+    "half=upper": {
+      "model": "the_tower:block/cerulean_wildgrass_top"
+    }
+  }
+}

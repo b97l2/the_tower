@@ -1,0 +1,31 @@
+{
+  "format_version": "1.9.0",
+  "credit": "Made with Blockbench",
+  "texture_size": [32, 32],
+  "textures": {
+    "0": "the_tower:block/dragons_leap_side",
+    "1": "the_tower:block/dragons_leap_portal",
+    "particle": "the_tower:block/dragons_leap_portal"
+  },
+  "elements": [
+    {
+      "from": [16, 0, 0],
+      "to": [16, 15, 16],
+      "rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
+      "faces": {
+        "north": {"uv": [4, 0, 8, 3.75], "texture": "#0"},
+        "east": {"uv": [4, 3.75, 8, 7.5], "texture": "#0"},
+        "south": {"uv": [4, 7.5, 8, 11.25], "texture": "#0"},
+        "west": {"uv": [0, 8, 4, 11.75], "texture": "#0"},
+        "up": {"uv": [4, 4, 0, 0], "texture": "#0"},
+        "down": {"uv": [4, 4, 0, 8], "texture": "#0"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [87, 0, 0],
+      "translation": [0, 14.25, 0]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      { "model": "the_tower:block/infested_rock" },
+      { "model": "the_tower:block/infested_rock", "y": 0 },
+      { "model": "the_tower:block/infested_rock", "y": 0 },
+      { "model": "the_tower:block/infested_rock", "y": 0 },
+      { "model": "the_tower:block/infested_rock2" },
+      { "model": "the_tower:block/infested_rock2", "y": 0 },
+      { "model": "the_tower:block/infested_rock2", "y": 0 },
+      { "model": "the_tower:block/infested_rock2", "y": 0 }
+
+    ]
+  }
+}

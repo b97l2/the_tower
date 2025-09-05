@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      { "model": "the_tower:block/blue_hostas" },
+      { "model": "the_tower:block/blue_hostas", "y": 0 },
+      { "model": "the_tower:block/blue_hostas", "y": 0 },
+      { "model": "the_tower:block/blue_hostas", "y": 0 },
+      { "model": "the_tower:block/blue_hostas2" },
+      { "model": "the_tower:block/blue_hostas2", "y": 0 },
+      { "model": "the_tower:block/blue_hostas2", "y": 0 },
+      { "model": "the_tower:block/blue_hostas2", "y": 0 }
+
+    ]
+  }
+}

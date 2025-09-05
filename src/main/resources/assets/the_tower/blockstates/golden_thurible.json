@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "the_tower:block/golden_thurible"
+    },
+    "hanging=true": {
+      "model": "the_tower:block/golden_thurible_hanging"
+    }
+  }
+}

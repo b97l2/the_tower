@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pile_of_salt",
+  "ingredients": [
+    "minecraft:sand",
+    "minecraft:gravel"
+  ],
+  "result": {
+    "count": 3,
+    "id": "the_tower:pile_of_salt"
+  }
+}

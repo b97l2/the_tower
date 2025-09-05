@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [
+      { "model": "the_tower:block/cerulean_shortgrass" },
+      { "model": "the_tower:block/cerulean_shortgrass_2" }
+    ]
+  }
+}

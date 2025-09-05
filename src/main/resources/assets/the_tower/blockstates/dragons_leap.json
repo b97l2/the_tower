@@ -1,0 +1,23 @@
+{
+  "multipart": [
+    {
+      "apply": { "model": "the_tower:block/dragons_leap" }
+    },
+    {
+      "when": { "north": false },
+      "apply": { "model": "the_tower:block/dragons_leap_connect_north" }
+    },
+    {
+      "when": { "east": false },
+      "apply": { "model": "the_tower:block/dragons_leap_connect_east" }
+    },
+    {
+      "when": { "south": false },
+      "apply": { "model": "the_tower:block/dragons_leap_connect_south" }
+    },
+    {
+      "when": { "west": false },
+      "apply": { "model": "the_tower:block/dragons_leap_connect_west" }
+    }
+  ]
+}

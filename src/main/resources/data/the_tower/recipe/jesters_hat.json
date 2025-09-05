@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": "minecraft:purple_wool",
+    "#": "minecraft:green_wool",
+    "!": "minecraft:gold_nugget",
+    "B": "the_tower:klaen"
+  },
+  "pattern": [
+    "#!#",
+    "XBX",
+    "! !"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:jesters_hat"
+  },
+  "show_notification": true
+}

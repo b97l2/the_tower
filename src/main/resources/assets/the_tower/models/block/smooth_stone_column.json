@@ -1,0 +1,21 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "end": "minecraft:block/smooth_stone",
+    "side": "minecraft:block/smooth_stone"
+  },
+  "elements": [
+    {
+      "from": [4, 0, 4],
+      "to": [12, 16, 12],
+      "faces": {
+        "north": { "texture": "#side" },
+        "south": { "texture": "#side" },
+        "west":  { "texture": "#side" },
+        "east":  { "texture": "#side" },
+        "up":    { "texture": "#end" },
+        "down":  { "texture": "#end" }
+      }
+    }
+  ]
+}

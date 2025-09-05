@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "the_tower:flowing_blood",
+    "the_tower:blood",
+    "the_tower:flowing_gunk",
+    "the_tower:gunk"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures":{
+    "all": "the_tower:block/cube_of_perceiving"
+  }
+}

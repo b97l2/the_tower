@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "third=lower": {
+      "model": "the_tower:block/blue_foxglove_bottom"
+    },
+    "third=middle": {
+      "model": "the_tower:block/blue_foxglove_middle"
+    },
+    "third=upper": {
+      "model": "the_tower:block/blue_foxglove_top"
+    }
+  }
+}

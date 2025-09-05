@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": "minecraft:emerald",
+    "!": "minecraft:iron_nugget",
+    "B": "the_tower:gluh"
+  },
+  "pattern": [
+    "!X!",
+    "XBX",
+    "!X!"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:dragons_leap"
+  },
+  "show_notification": true
+}
