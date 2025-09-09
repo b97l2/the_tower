@@ -16,7 +16,10 @@
     "the_tower:gold_stairs",
     "the_tower:gold_slab",
     "the_tower:gold_wall",
-    "the_tower:gold_column"
+    "the_tower:gold_column",
+    "the_tower:afhd",
+    "the_tower:itore"
+
   ]
 }
 

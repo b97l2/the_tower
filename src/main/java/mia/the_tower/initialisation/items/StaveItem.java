@@ -79,8 +79,8 @@ public class StaveItem extends Item {
         if (!world.isClient && world instanceof ServerWorld sw) {
             CircleSpawn((ServerWorld) user.getWorld(), user, 2.5, 100, random); // 24 points, radius 1.5
             FlowerSpawn((ServerWorld) user.getWorld(), user, 0.45, 100, random);
-            CrossSpawn((ServerWorld) user.getWorld(), user, 0.45, 100, random);
-            SphereSpawn((ServerWorld) user.getWorld(), user, 3.5, 100, random);
+            CrossSpawn((ServerWorld) user.getWorld(), user, 0.45, 50, random);
+            SphereSpawn((ServerWorld) user.getWorld(), user, 5.5, 100, random);
             sw.spawnParticles(
                     ParticleTypes.ASH,
                     user.getX(),
@@ -151,7 +151,7 @@ public class StaveItem extends Item {
         }
 
         // -8 HP (4 hearts)
-        player.damage(currentWorld, player.getDamageSources().magic(), 8.0f);
+        player.damage(currentWorld, player.getDamageSources().magic(), 10.0f);
 
         return stack;
     }
@@ -233,9 +233,8 @@ public class StaveItem extends Item {
             double x = user.getX() + radius * 1/Math.cos(angle); //* random.nextTriangular(1, 1.3f);
             double z = user.getZ() + radius * 1/Math.sin(angle); //* random.nextTriangular(1, 1.3f);
 
-            // count=1, no spread, no speed => exact placement
             sw.spawnParticles(
-                    CustomParticles.EMBERS_OF_THE_FRAGE, // your particle type
+                    CustomParticles.EMBERS_OF_THE_FRAGE, // my particle type
                     x, y, z,
                     1,          // count
                     0.0, 0.0, 0.0, // position spread (x,y,z)
@@ -254,9 +253,9 @@ public class StaveItem extends Item {
             double x = user.getX() + radius * Math.cos(angle); //* random.nextTriangular(1, 1.3f);
             double z = user.getZ() + radius * Math.sin(angle); //* random.nextTriangular(1, 1.3f);
             radius = radius + random.nextTriangular(0, 1.2f); //random.nextFloat()/10;
-            // count=1, no spread, no speed => exact placement
+
             sw.spawnParticles(
-                    CustomParticles.EMBERS_OF_THE_FRAGE, // your particle type
+                    CustomParticles.EMBERS_OF_THE_FRAGE, // my particle type
                     x, y, z,
                     1,          // count
                     0.0, 0.0, 0.0, // position spread (x,y,z)
@@ -272,13 +271,43 @@ public class StaveItem extends Item {
 
         for (int i = 0; i < points; i++) {
             double angle = ((2.0 + random.nextFloat()*2) * Math.PI * i ) + 0.001 / points;
-            double y = user.getY() + radius * Math.cos(angle); //* random.nextTriangular(1, 1.3f);
-            double x = user.getX() + radius * Math.cos(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
-            double z = user.getZ() + radius * Math.sin(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
+            double y = user.getY() + radius * Math.tan(angle) + 3; //* random.nextTriangular(1, 1.3f);
+            double x = user.getX() - radius * Math.cos(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
+            double z = user.getZ() - radius * Math.sin(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
 
             // count=1, no spread, no speed => exact placement
             sw.spawnParticles(
                     CustomParticles.STAVE_PARTICLE, // your particle type
+                    x, y, z,
+                    1,          // count
+                    0.0, 0.0, 0.0, // position spread (x,y,z)
+                    0.0         // speed
+            );
+
+            z = user.getZ() - radius * Math.cos(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
+            x = user.getX() - radius * Math.sin(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
+            sw.spawnParticles(
+                    CustomParticles.STAVE_PARTICLE,
+                    x, y, z,
+                    1,          // count
+                    0.0, 0.0, 0.0, // position spread (x,y,z)
+                    0.0         // speed
+            );
+
+            x = (user.getX() + radius * Math.cos(angle)*Math.sin(angle)); //* random.nextTriangular(1, 1.3f);
+            z = user.getZ() + radius * Math.sin(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
+            sw.spawnParticles(
+                    CustomParticles.STAVE_PARTICLE,
+                    x, y, z,
+                    1,          // count
+                    0.0, 0.0, 0.0, // position spread (x,y,z)
+                    0.0         // speed
+            );
+
+            z = (user.getZ() + radius * Math.cos(angle)*Math.sin(angle)); //* random.nextTriangular(1, 1.3f);
+            x = user.getX() + radius * Math.sin(angle)*Math.sin(angle); //* random.nextTriangular(1, 1.3f);
+            sw.spawnParticles(
+                    CustomParticles.STAVE_PARTICLE,
                     x, y, z,
                     1,          // count
                     0.0, 0.0, 0.0, // position spread (x,y,z)

@@ -3,9 +3,9 @@
 	"id": "the_tower",
 	"version": "${version}",
 	"name": "The_Tower",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A dark fantasy mod that takes place in a new dimension, called the Frage.The Frage is set upon by judgement day, and you would do good to aid them.",
 	"authors": [
-		"Me!"
+		"Me"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",

@@ -28,6 +28,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item GLUH;
     public static Item YUMP; //*add textures
     public static Item KLAEN;
+    public static Item BLAJ;
     public static Item CHALICE_OF_BLOOD;
     public static Item CUP_OF_GUNK;
     public static Item STAVE;
@@ -44,6 +45,10 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item TOOTH;
     public static Item SANGUINE_SYRINGE;
     public static Item CONTRACT;
+    public static Item PALE_AXE;
+    public static Item MY_RAGE;
+    public static Item MY_FUEL;
+
 
 
     public static void load() {
@@ -64,6 +69,9 @@ public class item_init { //this is the class that initialises items in the mod
         YUMP = register("yump", new Item(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("yump")))));
 
+        BLAJ = register("blaj", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("blaj")))));
+
         KLAEN = register("klaen", new BlockItem(
                 stake_init.STAKE, //change
                 new Item.Settings().food(
@@ -73,7 +81,7 @@ public class item_init { //this is the class that initialises items in the mod
                                 new ConsumableComponents().food()
                                         .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(pale_death_init.PALE_DEATH, 13 * 20, 1), 1.0f))
                                         .build())
-                        .maxCount(16)
+                        .maxCount(9)
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("klaen")))));
 
         CHALICE_OF_BLOOD = Registry.register(Registries.ITEM,
@@ -135,6 +143,7 @@ public class item_init { //this is the class that initialises items in the mod
                         new ConsumableComponents().drink()
                                 .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(SanguineStatusEffect.SANGUINE, 120 * 20, 0), 1.0f))
                                 .build())
+                .maxCount(9)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("sanguine_flask"))))); //only gotten through distilling process
 
         FINGER = register("finger", new Item(new Item.Settings()
@@ -147,10 +156,21 @@ public class item_init { //this is the class that initialises items in the mod
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("tooth")))));
 
         SANGUINE_SYRINGE = register("sanguine_syringe", new Item(new Item.Settings()
+                .maxCount(9)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("sanguine_syringe")))));
 
         CONTRACT = register("contract", new Item(new Item.Settings()
+                .maxCount(1)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("contract")))));
+
+        PALE_AXE = register("pale_axe", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pale_axe")))));
+
+        MY_RAGE = register("my_rage", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("my_rage")))));
+
+        MY_FUEL = register("my_fuel", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("my_fuel")))));
     }
 
     public static Item register(String name, Item item) {

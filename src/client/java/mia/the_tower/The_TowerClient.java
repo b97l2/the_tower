@@ -49,6 +49,7 @@ public class The_TowerClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.FRAGE_MARKER, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLUE_HOSTAS, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GOLDEN_THURIBLE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SPIRITS, RenderLayer.getTranslucent());
 
 		//this is for rendering fluids
 		FluidRenderHandlerRegistry.INSTANCE.register(

@@ -22,6 +22,7 @@ public class CustomItemGroups {
                         entries.add(block_init.STITCHED_FLESH);
                         entries.add(block_init.DARKNESS);
                         entries.add(block_init.OXIDISED_DARKNESS);
+                        entries.add(block_init.ITORE);
 
                         //items
                         entries.add(item_init.KLAEN);
@@ -32,6 +33,8 @@ public class CustomItemGroups {
                         entries.add(item_init.SANGUINE_SYRINGE);
                         entries.add(item_init.CONTRACT);
                         entries.add(item_init.TOOTH);
+                        entries.add(item_init.MY_RAGE);
+
 
                         //fluids
                         entries.add(item_init.CHALICE_OF_BLOOD);
@@ -51,6 +54,9 @@ public class CustomItemGroups {
                         entries.add(block_init.POTENT_HEAVENS_LIGHT);
                         entries.add(block_init.INFESTED_ROCK);
                         entries.add(block_init.SALT);
+                        entries.add(block_init.AFHD);
+                        entries.add(block_init.SLATE);
+
 
 
                         //plants
@@ -75,11 +81,14 @@ public class CustomItemGroups {
                         //usable items
                         entries.add(item_init.GLUH);
                         entries.add(item_init.YUMP);
+                        entries.add(item_init.BLAJ);
                         entries.add(item_init.HORNWORM);
                         entries.add(item_init.DRAGONS_EYE);
+                        entries.add(item_init.MY_FUEL);
                         entries.add(item_init.PILE_OF_SALT);
                         entries.add(item_init.PILLAR_OF_SALT);
                         entries.add(item_init.GABRIELS_TRUMPET);
+                        entries.add(item_init.PALE_AXE);
 
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);
@@ -98,6 +107,8 @@ public class CustomItemGroups {
                         entries.add(block_init.SHADOW);
                         entries.add(block_init.JESTERS_HAT);
                         entries.add(block_init.LOAF);
+                        entries.add(block_init.TANKARD);
+                        entries.add(block_init.SPIRITS);
 
                         //golden
                         entries.add(block_init.GOLDEN_THURIBLE);

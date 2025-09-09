@@ -2,10 +2,8 @@ package mia.the_tower.initialisation;
 
 import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.biomes.ExtraTallFlower;
+import mia.the_tower.initialisation.block.*;
 import mia.the_tower.initialisation.block.BarrierBlock;
-import mia.the_tower.initialisation.block.GoldThurible;
-import mia.the_tower.initialisation.block.LaunchBlock;
-import mia.the_tower.initialisation.block.MarkerBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffects;
@@ -447,7 +445,40 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_column")))));
 
-    ;
+    public static final Block AFHD = registerBlock("afhd",
+            new Block(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.LAPIS_BLUE)
+                    .strength(3F, 12.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "afhd")))));
+
+    public static final Block SLATE = registerBlock("slate",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.BLACK)
+                    .strength(1F, 3.0F)
+                    .sounds(BlockSoundGroup.DEEPSLATE_TILES)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "slate")))));
+
+    public static final Block ITORE = registerBlock("itore",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.BLACK)
+                    .strength(1F, 3.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "itore")))));
+
+    public static final Block TANKARD = registerBlock("tankard",
+            new TankardBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.BROWN)
+                    .strength(0.3F, 1.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tankard")))));
+
+    public static final Block SPIRITS = registerBlock("spirits",
+            new SpiritsBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.WHITE)
+                    .strength(0.3F, 1.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "spirits")))));
 
 
     public static Block registerBlock(String name, Block block) { //this is the method to register a new (non-item) block
@@ -506,6 +537,11 @@ public class block_init {
         registerBlockItem("gold_stairs", GOLD_STAIRS);
         registerBlockItem("gold_slab", GOLD_SLAB);
         registerBlockItem("gold_column", GOLD_COLUMN);
+        registerBlockItem("afhd", AFHD);
+        registerBlockItem("slate", SLATE);
+        registerBlockItem("itore", ITORE);
+        registerBlockItem("tankard", TANKARD);
+        registerBlockItem("spirits", SPIRITS);
 
     } //to load into game
 

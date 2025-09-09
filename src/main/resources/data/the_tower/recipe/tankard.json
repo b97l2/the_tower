@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "!": "minecraft:wheat",
+    "#": "minecraft:water_bucket",
+    "X": "#minecraft:planks"
+  },
+  "pattern": [
+    " ! ",
+    "X#X",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:tankard"
+  },
+  "show_notification": true
+}
