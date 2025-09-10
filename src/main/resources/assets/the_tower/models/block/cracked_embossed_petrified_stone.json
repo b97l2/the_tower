@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "the_tower:block/petrified_stone_top",
+    "side": "the_tower:block/cracked_embossed_petrified_stone"
+  }
+}

@@ -24,7 +24,7 @@ public class TheFrage {
     public static void bootstrapType(Registerable<DimensionType> context) {
         context.register(THE_FRAGE_TYPE, new DimensionType(
                 OptionalLong.of(12000), // fixedTime
-                false, // hasSkylight
+                true, // hasSkylight
                 false, // hasCeiling
                 false, // ultraWarm
                 true, // natural

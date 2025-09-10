@@ -297,6 +297,26 @@ public class block_init {
                     .strength(1.0F, 2.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "infested_rock")))));
 
+    public static final Block PETRIFIED_STONE = registerBlock("petrified_stone",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone")))));
+
+    public static final Block CRACKED_PETRIFIED_STONE = registerBlock("cracked_petrified_stone",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cracked_petrified_stone")))));
+
+    public static final Block EMBOSSED_PETRIFIED_STONE = registerBlock("embossed_petrified_stone",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone")))));
+
+    public static final Block CRACKED_EMBOSSED_PETRIFIED_STONE = registerBlock("cracked_embossed_petrified_stone",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cracked_embossed_petrified_stone")))));
+
     public static final Block ROD_OF_LUMINESCENCE = registerBlock("rod_of_luminescence",
             new TwoBlockTallRod(AbstractBlock.Settings.create()
                     .strength(1.0F, 0.3F)
@@ -522,6 +542,10 @@ public class block_init {
         registerBlockItem("gabriels_trumpets_bush", GABRIELS_TRUMPETS_BUSH); // make berries and change loot table
         registerBlockItem("sapphire_rose", SAPPHIRE_ROSE);
         registerBlockItem("infested_rock", INFESTED_ROCK);
+        registerBlockItem("petrified_stone", PETRIFIED_STONE);
+        registerBlockItem("cracked_petrified_stone", CRACKED_PETRIFIED_STONE);
+        registerBlockItem("embossed_petrified_stone", EMBOSSED_PETRIFIED_STONE);
+        registerBlockItem("cracked_embossed_petrified_stone", CRACKED_EMBOSSED_PETRIFIED_STONE);
         registerBlockItem("cerulean_shortgrass", CERULEAN_SHORTGRASS);
         registerBlockItem("rod_of_luminescence", ROD_OF_LUMINESCENCE);
         registerBlockItem("can_of_retardation", CAN_OF_RETARDATION);

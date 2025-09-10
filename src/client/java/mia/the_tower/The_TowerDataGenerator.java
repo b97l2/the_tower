@@ -19,6 +19,7 @@ public class The_TowerDataGenerator implements DataGeneratorEntrypoint {
 	public void buildRegistry(RegistryBuilder registryBuilder) { //need one for datagen here
 		registryBuilder.addRegistry(RegistryKeys.BIOME, Shadowlands::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.BIOME, ThePit::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.BIOME, CeruleanCoast::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, TheFrage::bootstrapType);
 	}
 }

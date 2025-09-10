@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 0,
+  "ingredient": "the_tower:embossed_petrified_stone",
+  "result": {
+    "id": "the_tower:cracked_embossed_petrified_stone"
+  }
+}

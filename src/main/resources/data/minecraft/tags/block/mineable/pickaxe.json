@@ -18,8 +18,11 @@
     "the_tower:gold_wall",
     "the_tower:gold_column",
     "the_tower:afhd",
-    "the_tower:itore"
-
+    "the_tower:itore",
+    "the_tower:petrified_stone",
+    "the_tower:cracked_petrified_stone",
+    "the_tower:embossed_petrified_stone",
+    "the_tower:cracked_embossed_petrified_stone"
   ]
 }
 

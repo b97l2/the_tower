@@ -1,6 +1,7 @@
 package mia.the_tower;
 
 import mia.the_tower.initialisation.*;
+import mia.the_tower.initialisation.biomes.CeruleanCoast;
 import mia.the_tower.initialisation.biomes.Shadowlands;
 import mia.the_tower.initialisation.biomes.ThePit;
 import mia.the_tower.initialisation.block.stake_init;
@@ -51,6 +52,7 @@ public class The_Tower implements ModInitializer {
 		DecayStatusEffect.load();
 		Shadowlands.load();
 		ThePit.load();
+		CeruleanCoast.load();
 		TheFrage.load();
 		CustomItemGroups.load();
 		SanguineStatusEffect.load();

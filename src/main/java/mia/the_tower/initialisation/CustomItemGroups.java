@@ -53,6 +53,10 @@ public class CustomItemGroups {
                         entries.add(block_init.HEAVENS_LIGHT);
                         entries.add(block_init.POTENT_HEAVENS_LIGHT);
                         entries.add(block_init.INFESTED_ROCK);
+                        entries.add(block_init.PETRIFIED_STONE);
+                        entries.add(block_init.CRACKED_PETRIFIED_STONE);
+                        entries.add(block_init.EMBOSSED_PETRIFIED_STONE);
+                        entries.add(block_init.CRACKED_EMBOSSED_PETRIFIED_STONE);
                         entries.add(block_init.SALT);
                         entries.add(block_init.AFHD);
                         entries.add(block_init.SLATE);

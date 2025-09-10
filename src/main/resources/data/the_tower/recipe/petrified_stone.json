@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 0,
+  "ingredient": "the_tower:infested_rock",
+  "result": {
+    "id": "the_tower:petrified_stone"
+  }
+}
