@@ -1,5 +1,6 @@
 package mia.the_tower.initialisation.biomes;
 
+import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.*;
@@ -39,8 +40,7 @@ public class Shadowlands {
 
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld
         DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
-        DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
+        biomeBuilder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ITORE_PLACED_KEY);
 
         biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_PLAINS);
         DefaultBiomeFeatures.addForestFlowers(biomeBuilder);

@@ -1,7 +1,7 @@
 package mia.the_tower.initialisation;
 
 import mia.the_tower.The_Tower;
-import mia.the_tower.initialisation.biomes.ExtraTallFlower;
+import mia.the_tower.initialisation.block.ExtraTallFlower;
 import mia.the_tower.initialisation.block.*;
 import mia.the_tower.initialisation.block.BarrierBlock;
 import net.minecraft.block.*;
@@ -61,6 +61,11 @@ public class block_init {
             new Block(AbstractBlock.Settings.create()
                     .strength(0.8F, 6.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "skin")))));
+
+    public static final Block FILTH = registerBlock("filth",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(0.8F, 6.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "filth")))));
 
     public static final Block HEAVENS_LIGHT = registerBlock("heavens_light",
             new Block(AbstractBlock.Settings.create()
@@ -291,11 +296,15 @@ public class block_init {
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "loaf")))));
 
-
     public static final Block INFESTED_ROCK = registerBlock("infested_rock",
             new CustomDirt(AbstractBlock.Settings.create()
                     .strength(1.0F, 2.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "infested_rock")))));
+
+    public static final Block DRAGONS_EYE_ORE = registerBlock("dragons_eye_ore",
+            new CustomDirt(AbstractBlock.Settings.create()
+                    .strength(1.5F, 3.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "dragons_eye_ore")))));
 
     public static final Block PETRIFIED_STONE = registerBlock("petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
@@ -316,6 +325,21 @@ public class block_init {
             new PillarBlock(AbstractBlock.Settings.create()
                     .strength(3.0F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cracked_embossed_petrified_stone")))));
+
+    public static final Block TILED_PETRIFIED_STONE = registerBlock("tiled_petrified_stone",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone")))));
+
+    public static final Block CRACKED_TILED_PETRIFIED_STONE = registerBlock("cracked_tiled_petrified_stone",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cracked_tiled_petrified_stone")))));
+
+    public static final Block ADORNED_PETRIFIED_STONE = registerBlock("adorned_petrified_stone",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone")))));
 
     public static final Block ROD_OF_LUMINESCENCE = registerBlock("rod_of_luminescence",
             new TwoBlockTallRod(AbstractBlock.Settings.create()
@@ -521,6 +545,7 @@ public class block_init {
         registerBlockItem("cube_of_perceiving", CUBE_OF_PERCEIVING); //*add texture
         registerBlockItem("pulled_teeth", PULLED_TEETH);
         registerBlockItem("skin", SKIN);
+        registerBlockItem("filth", FILTH);
         registerBlockItem("heavens_light", HEAVENS_LIGHT);
         registerBlockItem("potent_heavens_light", POTENT_HEAVENS_LIGHT);
         registerBlockItem("heavens_earth", HEAVENS_EARTH);
@@ -542,10 +567,14 @@ public class block_init {
         registerBlockItem("gabriels_trumpets_bush", GABRIELS_TRUMPETS_BUSH); // make berries and change loot table
         registerBlockItem("sapphire_rose", SAPPHIRE_ROSE);
         registerBlockItem("infested_rock", INFESTED_ROCK);
+        registerBlockItem("dragons_eye_ore", DRAGONS_EYE_ORE);
         registerBlockItem("petrified_stone", PETRIFIED_STONE);
         registerBlockItem("cracked_petrified_stone", CRACKED_PETRIFIED_STONE);
         registerBlockItem("embossed_petrified_stone", EMBOSSED_PETRIFIED_STONE);
         registerBlockItem("cracked_embossed_petrified_stone", CRACKED_EMBOSSED_PETRIFIED_STONE);
+        registerBlockItem("adorned_petrified_stone", ADORNED_PETRIFIED_STONE);
+        registerBlockItem("tiled_petrified_stone", TILED_PETRIFIED_STONE);
+        registerBlockItem("cracked_tiled_petrified_stone", CRACKED_TILED_PETRIFIED_STONE);
         registerBlockItem("cerulean_shortgrass", CERULEAN_SHORTGRASS);
         registerBlockItem("rod_of_luminescence", ROD_OF_LUMINESCENCE);
         registerBlockItem("can_of_retardation", CAN_OF_RETARDATION);

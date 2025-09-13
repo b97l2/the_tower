@@ -5,12 +5,16 @@ import mia.the_tower.initialisation.biomes.CeruleanCoast;
 import mia.the_tower.initialisation.biomes.Shadowlands;
 import mia.the_tower.initialisation.biomes.ThePit;
 import mia.the_tower.initialisation.block.stake_init;
+import mia.the_tower.initialisation.datagen.ModWorldGenerator;
 import mia.the_tower.initialisation.dimentions.TheFrage;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.sounds.CustomSounds;
 import mia.the_tower.initialisation.status_effects.*;
+import mia.the_tower.initialisation.util.CustomTags;
+import mia.the_tower.initialisation.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -58,6 +62,8 @@ public class The_Tower implements ModInitializer {
 		SanguineStatusEffect.load();
 		CustomSounds.load();
 		CustomParticles.load();
+		ModWorldGeneration.generateModWorldGen();
+		CustomTags.load();
 
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			Iterator<Map.Entry<ServerPlayerEntity, GameMode>> iterator = spectatingPlayers.entrySet().iterator();

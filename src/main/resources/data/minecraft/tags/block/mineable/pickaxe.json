@@ -22,7 +22,11 @@
     "the_tower:petrified_stone",
     "the_tower:cracked_petrified_stone",
     "the_tower:embossed_petrified_stone",
-    "the_tower:cracked_embossed_petrified_stone"
+    "the_tower:cracked_embossed_petrified_stone",
+    "the_tower:dragons_eye_ore",
+    "the_tower:cracked_tiled_petrified_stone",
+    "the_tower:tiled_petrified_stone",
+    "the_tower:adorned_petrified_stone"
   ]
 }
 

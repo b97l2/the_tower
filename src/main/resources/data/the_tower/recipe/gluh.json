@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "gluh",
+  "ingredients": [
+    "the_tower:cube_of_gluh"
+  ],
+  "result": {
+    "count": 4,
+    "id": "the_tower:gluh"
+  }
+}

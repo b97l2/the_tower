@@ -12,8 +12,8 @@
   "disable_mob_generation": false,
   "legacy_random_source": false,
   "noise": {
-    "height": 384,
-    "min_y": -64,
+    "height": 640,
+    "min_y": -160,
     "size_horizontal": 1,
     "size_vertical": 1
   },
@@ -478,6 +478,31 @@
           "result_state": {
             "Name": "the_tower:infested_rock"
           }
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biome_is": ["the_tower:the_pit"]
+        },
+        "then_run": {
+          "type": "minecraft:sequence",
+          "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:vertical_gradient",
+                "random_name": "the_tower:filth_layer",
+                "true_at_and_below": { "above_bottom": 60 },
+                "false_at_and_above": { "above_bottom": 100 }
+              },
+              "then_run": {
+                "type": "minecraft:block",
+                "result_state": { "Name": "the_tower:filth" }
+              }
+            }
+          ]
         }
       }
     ]

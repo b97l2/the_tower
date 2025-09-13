@@ -23,7 +23,7 @@ public class TheFrage {
 
     public static void bootstrapType(Registerable<DimensionType> context) {
         context.register(THE_FRAGE_TYPE, new DimensionType(
-                OptionalLong.of(12000), // fixedTime
+                OptionalLong.empty(), //OptionalLong.of(12000), // fixedTime
                 true, // hasSkylight
                 false, // hasCeiling
                 false, // ultraWarm
@@ -36,7 +36,7 @@ public class TheFrage {
                 640, // logicalHeight
                 BlockTags.INFINIBURN_OVERWORLD, // infiniburn
                 DimensionTypes.OVERWORLD_ID, // effectsLocation
-                2.0f, // ambientLight
+                3.0f, // ambientLight
                 new DimensionType.MonsterSettings(false, false, UniformIntProvider.create(0, 0), 0)));
     }
 

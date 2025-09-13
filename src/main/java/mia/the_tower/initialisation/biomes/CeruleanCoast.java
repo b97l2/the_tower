@@ -1,5 +1,8 @@
 package mia.the_tower.initialisation.biomes;
 
+import mia.the_tower.initialisation.world.ModPlacedFeatures;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
@@ -39,12 +42,25 @@ public class CeruleanCoast {
                 new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
 
+        var placedLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+
+        //add ores here as well
+        biomeBuilder.feature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                placedLookup.getOrThrow(ModPlacedFeatures.AFHD_PLACED_KEY)
+        );
+        biomeBuilder.feature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                placedLookup.getOrThrow(ModPlacedFeatures.DRAGONS_EYE_ORE_PLACED_KEY)
+        );
+
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld
         DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
-        DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
+        //DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
+        //DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
 
         biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_PLAINS);
+
         DefaultBiomeFeatures.addForestFlowers(biomeBuilder);
         DefaultBiomeFeatures.addLargeFerns(biomeBuilder);
 

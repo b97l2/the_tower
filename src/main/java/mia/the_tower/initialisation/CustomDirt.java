@@ -1,6 +1,6 @@
 package mia.the_tower.initialisation;
 
-import mia.the_tower.initialisation.biomes.ExtraTallFlower;
+import mia.the_tower.initialisation.block.ExtraTallFlower;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;

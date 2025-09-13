@@ -17,6 +17,7 @@ public class CustomItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(block_init.CUBE_OF_FLESH);
                         entries.add(block_init.CUBE_OF_PERCEIVING);
+                        entries.add(block_init.FILTH);
                         entries.add(block_init.PULLED_TEETH);
                         entries.add(block_init.SKIN);
                         entries.add(block_init.STITCHED_FLESH);
@@ -53,15 +54,17 @@ public class CustomItemGroups {
                         entries.add(block_init.HEAVENS_LIGHT);
                         entries.add(block_init.POTENT_HEAVENS_LIGHT);
                         entries.add(block_init.INFESTED_ROCK);
+                        entries.add(block_init.DRAGONS_EYE_ORE);
                         entries.add(block_init.PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_PETRIFIED_STONE);
                         entries.add(block_init.EMBOSSED_PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_EMBOSSED_PETRIFIED_STONE);
+                        entries.add(block_init.TILED_PETRIFIED_STONE);
+                        entries.add(block_init.CRACKED_TILED_PETRIFIED_STONE);
+                        entries.add(block_init.ADORNED_PETRIFIED_STONE);
                         entries.add(block_init.SALT);
                         entries.add(block_init.AFHD);
                         entries.add(block_init.SLATE);
-
-
 
                         //plants
                         entries.add(block_init.GLUH_VINE_STAGE0);

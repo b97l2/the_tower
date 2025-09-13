@@ -92,7 +92,12 @@
   "item.the_tower.petrified_stone": "Petrified Stone",
   "item.the_tower.cracked_petrified_stone": "Cracked Petrified Stone",
   "item.the_tower.embossed_petrified_stone": "Embossed Petrified Stone",
-  "item.the_tower.cracked_embossed_petrified_stone": "Cracked Embossed Petrified Stone"
+  "item.the_tower.cracked_embossed_petrified_stone": "Cracked Embossed Petrified Stone",
+  "item.the_tower.tiled_petrified_stone": "Tiled Petrified Stone",
+  "item.the_tower.cracked_tiled_petrified_stone": "Cracked Tiled Petrified Stone",
+  "item.the_tower.adorned_petrified_stone": "Adorned Petrified Stone",
+  "item.the_tower.dragons_eye_ore": "Dragon's Eye Ore",
+  "item.the_tower.filth": "Filth"
 }
 
 

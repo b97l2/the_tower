@@ -1,11 +1,8 @@
 package mia.the_tower.initialisation.items;
 
-import mia.the_tower.initialisation.TripleBlockPart;
 import mia.the_tower.initialisation.TwoBlockTallRod;
-import mia.the_tower.initialisation.biomes.ExtraTallFlower;
 import mia.the_tower.initialisation.block_init; // <-- swap/remove if you use a different marker block
 import mia.the_tower.initialisation.particle.CustomParticles;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.component.DataComponentTypes;
@@ -34,8 +31,6 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
-
-import static net.minecraft.command.argument.BlockPosArgumentType.getBlockPos;
 
 public class StaveItem extends Item {
 
