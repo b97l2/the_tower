@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": "minecraft:iron_ingot",
+    "!": "the_tower:heavens_light"
+  },
+  "pattern": [
+    " X!",
+    " XX",
+    "X  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:shepherds_staff"
+  },
+  "show_notification": true
+}

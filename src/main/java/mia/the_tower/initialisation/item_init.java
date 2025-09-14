@@ -2,6 +2,7 @@ package mia.the_tower.initialisation;
 
 import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.stake_init;
+import mia.the_tower.initialisation.items.ShepherdsStaffItem;
 import mia.the_tower.initialisation.items.StaveItem;
 import mia.the_tower.initialisation.status_effects.InstantMineEffect;
 import mia.the_tower.initialisation.status_effects.SanguineStatusEffect;
@@ -48,6 +49,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item PALE_AXE;
     public static Item MY_RAGE;
     public static Item MY_FUEL;
+    public static Item SHEPHERDS_STAFF;
 
 
 
@@ -171,6 +173,9 @@ public class item_init { //this is the class that initialises items in the mod
 
         MY_FUEL = register("my_fuel", new Item(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("my_fuel")))));
+
+        SHEPHERDS_STAFF = register("shepherds_staff", new ShepherdsStaffItem(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("shepherds_staff")))));
     }
 
     public static Item register(String name, Item item) {

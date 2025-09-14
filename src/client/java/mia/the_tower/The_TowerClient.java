@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.minecraft.client.render.RenderLayer;
 
+
 public class The_TowerClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
@@ -79,5 +80,6 @@ public class The_TowerClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.GOLD_INCENSE, GoldIncense.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.GLUH_PARTICLE, GluhParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.STAVE_PARTICLE, StaveParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(CustomParticles.WHITE_INCENSE, WhiteIncense.Factory::new);
 	}
 }

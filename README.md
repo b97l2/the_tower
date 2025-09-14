@@ -1,11 +1,11 @@
-The Tower is a 32x32 pixel dark fantasy mod for Minecraft I am producing.
+The Tower is a 32x32 pixel dark fantasy mod for Minecraft 1.21.4 I am producing.
 Recipes and other documentation can be found here: https://docs.google.com/document/d/1SfmgJ9P-nhZDNGyzLKuFQ86XyhwXdvvtXj3D1SyzGGw/edit?usp=sharing
 
 This mod introduces a new dimension called the Frage. The Frage is a world set upon by 
 judgement day. Its rivers run red with blood and all manner of beasts roam the lands. 
 
 Within the Frage you can currently encounter a multitude of new blocks, ores, plants, status effects, liquids, particles,
-and food. In the future you will also be able to encounter new mobs (including bosses), crafting (distilling) system, weapons, 
+items, and food. In the future you will also be able to encounter new mobs (including bosses), crafting (distilling) system, weapons, 
 armour, and an interesting lore. 
 __________________________________________________________________________________
 As this is the first time I am using Java, I am using a tutorial (Modding by Kaupenjoe on YouTube) 

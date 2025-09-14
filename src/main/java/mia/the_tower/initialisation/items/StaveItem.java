@@ -75,7 +75,7 @@ public class StaveItem extends Item {
             CircleSpawn((ServerWorld) user.getWorld(), user, 2.5, 100, random); // 24 points, radius 1.5
             FlowerSpawn((ServerWorld) user.getWorld(), user, 0.45, 100, random);
             CrossSpawn((ServerWorld) user.getWorld(), user, 0.45, 50, random);
-            SphereSpawn((ServerWorld) user.getWorld(), user, 5.5, 100, random);
+            SphereSpawn((ServerWorld) user.getWorld(), user, 5.5, 25, random);
             sw.spawnParticles(
                     ParticleTypes.ASH,
                     user.getX(),

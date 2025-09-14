@@ -28,6 +28,9 @@ public class CustomParticles {
     public static final SimpleParticleType STAVE_PARTICLE =
             registerParticle("stave_particle", FabricParticleTypes.simple());
 
+    public static final SimpleParticleType WHITE_INCENSE =
+            registerParticle("white_incense", FabricParticleTypes.simple());
+
     private static SimpleParticleType registerParticle(String name, SimpleParticleType particleType) {
         return Registry.register(Registries.PARTICLE_TYPE, Identifier.of("the_tower", name), particleType);
     }

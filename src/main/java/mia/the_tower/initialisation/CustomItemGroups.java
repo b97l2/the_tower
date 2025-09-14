@@ -96,6 +96,7 @@ public class CustomItemGroups {
                         entries.add(item_init.PILLAR_OF_SALT);
                         entries.add(item_init.GABRIELS_TRUMPET);
                         entries.add(item_init.PALE_AXE);
+                        entries.add(item_init.SHEPHERDS_STAFF);
 
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);
