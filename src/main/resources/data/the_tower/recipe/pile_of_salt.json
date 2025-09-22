@@ -3,11 +3,10 @@
   "category": "misc",
   "group": "pile_of_salt",
   "ingredients": [
-    "minecraft:sand",
-    "minecraft:gravel"
+    "the_tower:salt"
   ],
   "result": {
-    "count": 3,
+    "count": 4,
     "id": "the_tower:pile_of_salt"
   }
 }

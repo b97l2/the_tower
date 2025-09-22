@@ -1,5 +1,6 @@
 package mia.the_tower.initialisation.biomes;
 
+import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -27,9 +28,8 @@ public class Shadowlands {
 
     public static Biome createShadowlands(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-        //spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PORCUPINE, 2, 3, 5)); //spawning mod entities
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.VOID_MOTH, 2, 3, 5)); //spawning mod entities
 
-        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
 
         DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
         DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);

@@ -2,6 +2,9 @@ package mia.the_tower.initialisation;
 
 import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.stake_init;
+import mia.the_tower.initialisation.entity.ModEntities;
+import mia.the_tower.initialisation.items.BlajItem;
+import mia.the_tower.initialisation.items.PillarOfSaltItem;
 import mia.the_tower.initialisation.items.ShepherdsStaffItem;
 import mia.the_tower.initialisation.items.StaveItem;
 import mia.the_tower.initialisation.status_effects.InstantMineEffect;
@@ -14,6 +17,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -50,6 +54,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item MY_RAGE;
     public static Item MY_FUEL;
     public static Item SHEPHERDS_STAFF;
+    public static Item VOID_MOTH_SPAWN_EGG;
 
 
 
@@ -71,7 +76,7 @@ public class item_init { //this is the class that initialises items in the mod
         YUMP = register("yump", new Item(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("yump")))));
 
-        BLAJ = register("blaj", new Item(new Item.Settings()
+        BLAJ = register("blaj", new BlajItem(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("blaj")))));
 
         KLAEN = register("klaen", new BlockItem(
@@ -111,9 +116,10 @@ public class item_init { //this is the class that initialises items in the mod
                 .maxCount(1)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("stave")))));
 
-        PILLAR_OF_SALT = register("pillar_of_salt", new Item(new Item.Settings()
+        PILLAR_OF_SALT = register("pillar_of_salt", new PillarOfSaltItem(new Item.Settings()
                 .maxCount(1)
-                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pillar_of_salt"))))); //add logic in custom class
+                .useCooldown(10)
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pillar_of_salt")))));
 
         PILE_OF_SALT = register("pile_of_salt", new Item(new Item.Settings().food(
                         new FoodComponent.Builder()
@@ -176,6 +182,9 @@ public class item_init { //this is the class that initialises items in the mod
 
         SHEPHERDS_STAFF = register("shepherds_staff", new ShepherdsStaffItem(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("shepherds_staff")))));
+
+        VOID_MOTH_SPAWN_EGG = register("void_moth_spawn_egg", new SpawnEggItem(ModEntities.VOID_MOTH, new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("void_moth_spawn_egg")))));
     }
 
     public static Item register(String name, Item item) {

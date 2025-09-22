@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
-import mia.the_tower.initialisation.TripleBlockPart;
 
 public class ExtraTallFlower extends PlantBlock {
     public static final EnumProperty<TripleBlockPart> THIRD = EnumProperty.of("third", TripleBlockPart.class);

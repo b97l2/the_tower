@@ -4,9 +4,12 @@ import mia.the_tower.initialisation.*;
 import mia.the_tower.initialisation.biomes.CeruleanCoast;
 import mia.the_tower.initialisation.biomes.Shadowlands;
 import mia.the_tower.initialisation.biomes.ThePit;
+import mia.the_tower.initialisation.block.column_init;
 import mia.the_tower.initialisation.block.stake_init;
-import mia.the_tower.initialisation.datagen.ModWorldGenerator;
+import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.dimentions.TheFrage;
+import mia.the_tower.initialisation.entity.ModEntities;
+import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.sounds.CustomSounds;
 import mia.the_tower.initialisation.status_effects.*;
@@ -14,8 +17,8 @@ import mia.the_tower.initialisation.util.CustomTags;
 import mia.the_tower.initialisation.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
@@ -64,6 +67,11 @@ public class The_Tower implements ModInitializer {
 		CustomParticles.load();
 		ModWorldGeneration.generateModWorldGen();
 		CustomTags.load();
+		ModCarvers.load();
+		ModEntities.load();
+
+		//for entities
+		FabricDefaultAttributeRegistry.register(ModEntities.VOID_MOTH, VoidMothEntity.createAttributes());
 
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			Iterator<Map.Entry<ServerPlayerEntity, GameMode>> iterator = spectatingPlayers.entrySet().iterator();

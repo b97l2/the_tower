@@ -1,41 +1,25 @@
 package mia.the_tower.initialisation.items;
 
-import mia.the_tower.initialisation.TwoBlockTallRod;
-import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.particle.CustomParticles;
+import mia.the_tower.initialisation.sounds.CustomSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.consume.UseAction;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.network.packet.s2c.play.PositionFlag;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Set;
 
 public class ShepherdsStaffItem extends Item {
 
@@ -43,10 +27,10 @@ public class ShepherdsStaffItem extends Item {
         super(settings);
     }
 
-    // Charge time (ticks)
+    // Use time (ticks)
     @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
-        return 100;
+        return 1000;
     }
 
     /*
@@ -131,8 +115,7 @@ public class ShepherdsStaffItem extends Item {
         user.setCurrentHand(hand);
 
         if (!world.isClient) {
-            world.playSound(null, user.getBlockPos(), SoundEvents.BLOCK_METAL_BREAK, SoundCategory.PLAYERS, 0.1f, 2.0f);
-            //change to a tinkling sound effect
+            world.playSound(null, user.getBlockPos(), CustomSounds.SHEPHERDS_STAFF_USE, SoundCategory.PLAYERS, 1.0f, 1.0f);
         }
         return ActionResult.SUCCESS;
     }
@@ -144,12 +127,6 @@ public class ShepherdsStaffItem extends Item {
         if (!world.isClient && world instanceof ServerWorld sw) {
             CircleSpawn((ServerWorld) user.getWorld(), user, 6.5, 35, random); // 24 points, radius 1.5
         }
-    }
-
-    private void saveLore(ItemStack stack, String overworldStr, String frageStr) {
-        Text line0 = Text.literal(overworldStr != null ? overworldStr : "");
-        Text line1 = Text.literal(frageStr     != null ? frageStr     : "");
-        stack.set(DataComponentTypes.LORE, new LoreComponent(List.of(line0, line1)));
     }
 
     @Override

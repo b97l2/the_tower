@@ -1,6 +1,7 @@
 package mia.the_tower.initialisation;
 
 import mia.the_tower.The_Tower;
+import mia.the_tower.initialisation.block.column_init;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -21,8 +22,6 @@ public class CustomItemGroups {
                         entries.add(block_init.PULLED_TEETH);
                         entries.add(block_init.SKIN);
                         entries.add(block_init.STITCHED_FLESH);
-                        entries.add(block_init.DARKNESS);
-                        entries.add(block_init.OXIDISED_DARKNESS);
                         entries.add(block_init.ITORE);
 
                         //items
@@ -53,6 +52,10 @@ public class CustomItemGroups {
                         entries.add(block_init.HEAVENS_EARTH);
                         entries.add(block_init.HEAVENS_LIGHT);
                         entries.add(block_init.POTENT_HEAVENS_LIGHT);
+                        entries.add(block_init.DARKNESS);
+                        entries.add(block_init.OXIDISED_DARKNESS);
+                        entries.add(block_init.BLAJ_ORE);
+                        entries.add(block_init.BLAJ_LESSER_ORE);
                         entries.add(block_init.INFESTED_ROCK);
                         entries.add(block_init.DRAGONS_EYE_ORE);
                         entries.add(block_init.PETRIFIED_STONE);
@@ -97,6 +100,7 @@ public class CustomItemGroups {
                         entries.add(item_init.GABRIELS_TRUMPET);
                         entries.add(item_init.PALE_AXE);
                         entries.add(item_init.SHEPHERDS_STAFF);
+                        entries.add(item_init.VOID_MOTH_SPAWN_EGG);
 
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);

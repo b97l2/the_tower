@@ -1,13 +1,19 @@
 package mia.the_tower;
 
+import mia.the_tower.entity.VoidMothModel;
+import mia.the_tower.entity.VoidMothRenderer;
 import mia.the_tower.initialisation.*;
 import mia.the_tower.initialisation.block.stake_init;
+import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.particle.CustomParticles;
+import mia.the_tower.particle.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 
 
@@ -81,5 +87,11 @@ public class The_TowerClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.GLUH_PARTICLE, GluhParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.STAVE_PARTICLE, StaveParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.WHITE_INCENSE, WhiteIncense.Factory::new);
+
+
+		//this is for entities
+		EntityModelLayerRegistry.registerModelLayer(VoidMothModel.VOID_MOTH, VoidMothModel::getTexturedModelData);
+		EntityRendererRegistry.register(ModEntities.VOID_MOTH, VoidMothRenderer::new);
+
 	}
 }

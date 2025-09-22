@@ -1,5 +1,6 @@
 package mia.the_tower.initialisation.biomes;
 
+import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
@@ -27,26 +28,9 @@ public class ThePit {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
         //spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PORCUPINE, 2, 3, 5)); //spawning mod entities
 
-        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
-
-        DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
-        DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
-
         GenerationSettings.LookupBackedBuilder biomeBuilder =
                 new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
-
-        //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld
-        DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
-        DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
-
-        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_PLAINS);
-        DefaultBiomeFeatures.addForestFlowers(biomeBuilder);
-        DefaultBiomeFeatures.addLargeFerns(biomeBuilder);
-
-        DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
 
         return new Biome.Builder()
                 .precipitation(true)

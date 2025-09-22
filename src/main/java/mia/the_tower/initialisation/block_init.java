@@ -4,6 +4,7 @@ import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.ExtraTallFlower;
 import mia.the_tower.initialisation.block.*;
 import mia.the_tower.initialisation.block.BarrierBlock;
+import mia.the_tower.initialisation.sounds.CustomSounds;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffects;
@@ -21,14 +22,31 @@ import net.minecraft.util.Identifier;
 public class block_init {
 
 
-    public static final Block DARKNESS = registerBlock("darkness", //!this creates a block of specified name
+    public static final Block DARKNESS = registerBlock("darkness", //this creates a block of specified name
             new Block(AbstractBlock.Settings.create() //this begins the part where we put the block settings
                     //here you list the settings of the block.
                     //you can also copy the settings of a vanilla block
-                    .strength(1.0F, 800.0F)
+                    .strength(1.0F, 1000.0F)
                     .requiresTool()
                     .slipperiness(0.99999F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "darkness")))));
+
+    public static final Block BLAJ_ORE = registerBlock("blaj_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(2.0F, 1000.0F)
+                    .requiresTool()
+                    .emissiveLighting(Blocks::always)
+                    .sounds(CustomSounds.BLAJ_BLOCK)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "blaj_ore")))));
+
+    public static final Block BLAJ_LESSER_ORE = registerBlock("blaj_lesser_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(2.0F, 1000.0F)
+                    .requiresTool()
+                    .emissiveLighting(Blocks::always)
+                    .sounds(CustomSounds.BLAJ_BLOCK)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "blaj_lesser_ore")))));
+
 
     public static final Block OXIDISED_DARKNESS = registerBlock("oxidised_darkness",
             new Block(AbstractBlock.Settings.create()
@@ -595,6 +613,8 @@ public class block_init {
         registerBlockItem("itore", ITORE);
         registerBlockItem("tankard", TANKARD);
         registerBlockItem("spirits", SPIRITS);
+        registerBlockItem("blaj_ore", BLAJ_ORE);
+        registerBlockItem("blaj_lesser_ore", BLAJ_LESSER_ORE);
 
     } //to load into game
 

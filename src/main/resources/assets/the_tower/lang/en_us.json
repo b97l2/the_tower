@@ -84,6 +84,8 @@
   "item.the_tower.my_rage": "My Rage",
   "item.the_tower.my_fuel": "My Fuel",
   "item.the_tower.blaj": "Blaj",
+  "item.the_tower.blaj_ore": "Superior Blaj Ore",
+  "item.the_tower.blaj_lesser_ore": "Lesser Blaj Ore",
   "item.the_tower.afhd": "Afhd",
   "item.the_tower.slate": "Slate",
   "item.the_tower.itore": "Itore",
@@ -98,7 +100,9 @@
   "item.the_tower.adorned_petrified_stone": "Adorned Petrified Stone",
   "item.the_tower.dragons_eye_ore": "Dragon's Eye Ore",
   "item.the_tower.filth": "Filth",
-  "item.the_tower.shepherds_staff": "Shepherd's Staff"
+  "item.the_tower.shepherds_staff": "Shepherd's Staff",
+  "entity.the_tower.void_moth": "Void Moth",
+  "item.the_tower.void_moth_spawn_egg": "Void Moth Egg"
 }
 
 

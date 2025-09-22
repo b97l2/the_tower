@@ -1,8 +1,8 @@
 // 1.21.4	-999999999-01-01T00:00:00	The_Tower/World Gen
 b77c769cc30a3a3e0eab840484a4b249b04c73c4 data/the_tower/dimension_type/the_frage_type.json
 61639a6e14f83b62c4f5ae2f561f3192a3c9077c data/the_tower/worldgen/biome/cerulean_coast.json
-163b2b495d39d70073676ed023f91179fb588a32 data/the_tower/worldgen/biome/shadowlands.json
-f1d650a732e9f0bbaa072c647b3827e0959d225a data/the_tower/worldgen/biome/the_pit.json
+b2b46539b9dc1e8f8fec864be9ffe8f465a934a1 data/the_tower/worldgen/biome/shadowlands.json
+8c81e32370708d7705c0b944864692fdad8f2980 data/the_tower/worldgen/biome/the_pit.json
 ae0ca48e2dee0fd0f942e37f28e9ec90d03a03ff data/the_tower/worldgen/configured_feature/afhd.json
 5bdd8d04015dbc590ce0568bf67fb289ea803bec data/the_tower/worldgen/configured_feature/dragons_eye_ore.json
 6652530b1f6732248400091a1751d8825d578916 data/the_tower/worldgen/configured_feature/itore.json

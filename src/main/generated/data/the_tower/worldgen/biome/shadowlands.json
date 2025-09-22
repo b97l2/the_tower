@@ -54,10 +54,10 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "minecraft:wolf",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 5
+        "type": "the_tower:void_moth",
+        "maxCount": 5,
+        "minCount": 3,
+        "weight": 2
       },
       {
         "type": "minecraft:sheep",

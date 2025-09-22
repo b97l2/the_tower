@@ -5,27 +5,36 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
+import net.minecraft.world.gen.placementmodifier.*;
 
 import java.util.List;
 
 public class ModPlacedFeatures {
 
-    //ore needs a line here
+    //features need a line here
+
+    //ore
     public static final RegistryKey<PlacedFeature> AFHD_PLACED_KEY = registerKey("afhd_placed");
     public static final RegistryKey<PlacedFeature> DRAGONS_EYE_ORE_PLACED_KEY = registerKey("dragons_eye_ore_placed");
     public static final RegistryKey<PlacedFeature> ITORE_PLACED_KEY = registerKey("itore_placed");
 
+    //other
+
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
-        //ore needs a line here
+        //ore
+        //needs a line here
         register(context, AFHD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.AFHD_KEY),
                 ModOrePlacement.modifiersWithCount(14, //veins per chunk
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-120), YOffset.fixed(30)))); //first one is min y level, second is max y level
@@ -38,8 +47,14 @@ public class ModPlacedFeatures {
         register(context, ITORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ITORE_KEY),
                 ModOrePlacement.modifiersWithCount(14,
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-140), YOffset.fixed(60))));
-
         //for ore then we go to gen/ModOreGeneration
+
+        //other
+
+
+        //for any feature then you go to the gen/ModXXXGeneration file, or create it.
+        //I am not sure if this is necessary for spawning in custom biomes, or if it is only for vanilla.
+        //Best include it anyways I suppose
 
     }
 //this is the method to register a placed feature

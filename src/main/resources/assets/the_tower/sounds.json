@@ -11,5 +11,30 @@
       "the_tower:scream7",
       "the_tower:scream8"
     ]
+  },
+  "blaj_use": {
+    "subtitle": "sounds.the_tower.blaj_use",
+    "sounds": [
+      "the_tower:blaj_use"
+    ]
+  },
+  "blaj_block_hit": {
+    "subtitle": "sounds.the_tower.blaj_block_hit",
+    "sounds": [
+      "the_tower:blaj_block_hit1",
+      "the_tower:blaj_block_hit2",
+      "the_tower:blaj_block_hit3",
+      "the_tower:blaj_block_hit4"
+    ]
+  },
+  "shepherds_staff_use": {
+    "subtitle": "sounds.the_tower.shepherds_staff_use",
+    "sounds": [
+      "the_tower:shepherds_staff_use1",
+      "the_tower:shepherds_staff_use2",
+      "the_tower:shepherds_staff_use3",
+      "the_tower:shepherds_staff_use4"
+    ]
   }
 }
+

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_tower:item/void_moth_spawn_egg"
+  }
+}

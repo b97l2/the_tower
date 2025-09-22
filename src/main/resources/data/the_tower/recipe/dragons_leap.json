@@ -2,14 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "X": "minecraft:emerald",
-    "!": "minecraft:iron_nugget",
-    "B": "the_tower:gluh"
+    "X": "minecraft:iron_nugget",
+    "B": "the_tower:dragons_eye"
   },
   "pattern": [
-    "!X!",
+    " X ",
     "XBX",
-    "!X!"
+    " X "
   ],
   "result": {
     "count": 1,

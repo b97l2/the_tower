@@ -11,6 +11,7 @@ public class CustomParticles {
     //to make a new particle, create a new class in the client portion of the mod, under mia.the_tower, defining the behaviour
     //then register it here
     //then put it in the client initialiser
+    //then give it a json file
     //then add a texture
 
     public static final SimpleParticleType EMBERS_OF_THE_FRAGE =

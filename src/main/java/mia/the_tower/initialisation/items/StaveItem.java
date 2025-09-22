@@ -1,6 +1,6 @@
 package mia.the_tower.initialisation.items;
 
-import mia.the_tower.initialisation.TwoBlockTallRod;
+import mia.the_tower.initialisation.block.TwoBlockTallRod;
 import mia.the_tower.initialisation.block_init; // <-- swap/remove if you use a different marker block
 import mia.the_tower.initialisation.particle.CustomParticles;
 import net.minecraft.block.Blocks;
