@@ -2,28 +2,30 @@ package mia.the_tower.initialisation;
 
 import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.stake_init;
+import mia.the_tower.initialisation.blockentity.blockentity_init;
 import mia.the_tower.initialisation.entity.ModEntities;
-import mia.the_tower.initialisation.items.BlajItem;
-import mia.the_tower.initialisation.items.PillarOfSaltItem;
-import mia.the_tower.initialisation.items.ShepherdsStaffItem;
-import mia.the_tower.initialisation.items.StaveItem;
+import mia.the_tower.initialisation.items.*;
 import mia.the_tower.initialisation.status_effects.InstantMineEffect;
 import mia.the_tower.initialisation.status_effects.SanguineStatusEffect;
 import mia.the_tower.initialisation.status_effects.levitate_init;
 import mia.the_tower.initialisation.status_effects.pale_death_init;
-import net.minecraft.component.type.ConsumableComponents;
-import net.minecraft.component.type.FoodComponent;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.decoration.AbstractDecorationEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.*;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 import static mia.the_tower.initialisation.block_init.*;
 
@@ -55,6 +57,9 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item MY_FUEL;
     public static Item SHEPHERDS_STAFF;
     public static Item VOID_MOTH_SPAWN_EGG;
+    public static Item GINKO_LEAF;
+    public static Item CIRCLET_OF_GLUT;
+    public static Item PLATE;
 
 
 
@@ -119,6 +124,7 @@ public class item_init { //this is the class that initialises items in the mod
         PILLAR_OF_SALT = register("pillar_of_salt", new PillarOfSaltItem(new Item.Settings()
                 .maxCount(1)
                 .useCooldown(10)
+                .rarity(Rarity.UNCOMMON)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pillar_of_salt")))));
 
         PILE_OF_SALT = register("pile_of_salt", new Item(new Item.Settings().food(
@@ -169,9 +175,11 @@ public class item_init { //this is the class that initialises items in the mod
 
         CONTRACT = register("contract", new Item(new Item.Settings()
                 .maxCount(1)
+                .rarity(Rarity.EPIC)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("contract")))));
 
         PALE_AXE = register("pale_axe", new Item(new Item.Settings()
+                .rarity(Rarity.EPIC)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pale_axe")))));
 
         MY_RAGE = register("my_rage", new Item(new Item.Settings()
@@ -185,6 +193,54 @@ public class item_init { //this is the class that initialises items in the mod
 
         VOID_MOTH_SPAWN_EGG = register("void_moth_spawn_egg", new SpawnEggItem(ModEntities.VOID_MOTH, new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("void_moth_spawn_egg")))));
+
+        GINKO_LEAF = register("ginko_leaf", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("ginko_leaf")))));
+
+        CIRCLET_OF_GLUT = register("circlet_of_glut", new CircletOfGlutItem(new Item.Settings()
+                //.equippable(EquipmentSlot.HEAD)
+                .rarity(Rarity.EPIC)
+                .maxCount(1)
+                .component(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.builder()
+                        .add(
+                                EntityAttributes.ATTACK_DAMAGE, // +4 max HP
+                                new EntityAttributeModifier(
+                                        Identifier.of("the_tower","circlet_of_glut_attack_damage"),
+                                        -3000,
+                                        EntityAttributeModifier.Operation.ADD_VALUE),
+                                AttributeModifierSlot.HEAD
+                        )
+                        .add(
+                                EntityAttributes.ARMOR, // +4 max HP
+                                new EntityAttributeModifier(
+                                        Identifier.of("the_tower","circlet_of_glut_armour"),
+                                        -40,
+                                        EntityAttributeModifier.Operation.ADD_VALUE),
+                                AttributeModifierSlot.HEAD
+                        )
+                        .add(
+                                EntityAttributes.ARMOR_TOUGHNESS, // +4 max HP
+                                new EntityAttributeModifier(
+                                        Identifier.of("the_tower","circlet_of_glut_armour_toughness"),
+                                        -40,
+                                        EntityAttributeModifier.Operation.ADD_VALUE),
+                                AttributeModifierSlot.HEAD
+                        )
+                        .build()
+                )
+                .component(
+                        DataComponentTypes.EQUIPPABLE,
+                        EquippableComponent.builder(EquipmentSlot.HEAD)
+                                .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_CHAIN)
+                                .model(CustomEquipmentAssets.CIRCLET_OF_GLUT)
+                                .damageOnHurt(false)
+                                .build()
+                )
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("circlet_of_glut")))));
+
+        PLATE = register("plate", new ItemFrameItem(ModEntities.PLATE,
+                new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("plate")))));
     }
 
     public static Item register(String name, Item item) {

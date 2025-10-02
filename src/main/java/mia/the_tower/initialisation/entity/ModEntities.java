@@ -1,5 +1,6 @@
 package mia.the_tower.initialisation.entity;
 
+import mia.the_tower.initialisation.entity.custom.PlateEntity;
 import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -22,11 +23,27 @@ public class ModEntities {
     private static final RegistryKey<EntityType<?>> VOID_MOTH_KEY =
             RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of("the_tower", "void_moth"));
 
+    private static final RegistryKey<EntityType<?>> PLATE_KEY =
+            RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of("the_tower", "plate"));
+
+
+
     //one here
     public static final EntityType<VoidMothEntity> VOID_MOTH = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of("the_tower", "void_moth"),
             EntityType.Builder.create(VoidMothEntity::new, SpawnGroup.CREATURE)
                     .dimensions(1f, 0.4f).build(VOID_MOTH_KEY));
+
+    public static final EntityType<PlateEntity> PLATE = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of("the_tower", "plate"),
+            EntityType.Builder.<PlateEntity>create(PlateEntity::new, SpawnGroup.MISC)
+                    .dropsNothing()
+                    .dimensions(0.5F, 0.5F)
+                    .eyeHeight(0.0F)
+                    .maxTrackingRange(10)
+                    .trackingTickInterval(Integer.MAX_VALUE)
+                    .dimensions(1f, 0.4f)
+                    .build(PLATE_KEY));
 
     public static void load() {}
 

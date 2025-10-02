@@ -1,9 +1,15 @@
 package mia.the_tower.initialisation;
 
+import com.mojang.serialization.MapCodec;
 import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.ExtraTallFlower;
 import mia.the_tower.initialisation.block.*;
 import mia.the_tower.initialisation.block.BarrierBlock;
+import mia.the_tower.initialisation.blockentity.IronCofferBlock;
+import mia.the_tower.initialisation.fluid.BloodFluid;
+import mia.the_tower.initialisation.fluid.BloodFluidBlock;
+import mia.the_tower.initialisation.fluid.GunkFluid;
+import mia.the_tower.initialisation.fluid.GunkFluidBlock;
 import mia.the_tower.initialisation.sounds.CustomSounds;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -359,6 +365,12 @@ public class block_init {
                     .strength(3.0F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone")))));
 
+    public static final Block GROTESQUE = registerBlock("grotesque",
+            new CustomHorisontalFacingBlock(AbstractBlock.Settings.create()
+                    .strength(3.0F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "grotesque")))));
+
     public static final Block ROD_OF_LUMINESCENCE = registerBlock("rod_of_luminescence",
             new TwoBlockTallRod(AbstractBlock.Settings.create()
                     .strength(1.0F, 0.3F)
@@ -384,7 +396,7 @@ public class block_init {
 
     public static final Block BLOOD = Registry.register(Registries.BLOCK,
             RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("blood")),
-            new FluidBlock(STILL_BLOOD, AbstractBlock.Settings.create()
+            new BloodFluidBlock(STILL_BLOOD, AbstractBlock.Settings.create()
                     .replaceable()
                     .mapColor(MapColor.DARK_RED)
                     .nonOpaque()
@@ -409,7 +421,7 @@ public class block_init {
             new BarrelBlock(AbstractBlock.Settings.create()
                     .strength(3.0F, 0.3F)
                     .requiresTool()
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "coffer")))));
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "coffer"))))); //check, i dont rememeber this
 
     public static final Block SALT = registerBlock("salt",
             new Block(AbstractBlock.Settings.create()
@@ -507,6 +519,15 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_column")))));
 
+    public static final Block GOLD_TRAPDOOR = registerBlock("gold_trapdoor",
+            new TrapdoorBlock(BlockSetType.COPPER, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_trapdoor")))));
+
     public static final Block AFHD = registerBlock("afhd",
             new Block(AbstractBlock.Settings.create()
                     .requiresTool()
@@ -541,6 +562,37 @@ public class block_init {
                     .mapColor(MapColor.WHITE)
                     .strength(0.3F, 1.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "spirits")))));
+
+    public static final Block SAUERKRAUT = registerBlock("sauerkraut",
+            new SauerkrautBlock(AbstractBlock.Settings.create()
+                    .strength(0.3F, 1.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "sauerkraut")))));
+
+//    public static final Block IRON_COFFER = registerBlock("iron_coffer",
+//            new IronCofferBlock(AbstractBlock.Settings.create()
+//                    .mapColor(MapColor.GRAY)
+//                    .strength(1F, 10.0F)
+//                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "iron_coffer")))));
+
+    public static final Block GOLD_BARS = registerBlock("gold_bars",
+            new PaneBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.METAL)
+                    .mapColor(MapColor.GOLD)
+                    .strength(5F, 6.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_bars")))));
+
+    public static final Block GOLD_LADDER = registerBlock("gold_ladder",
+            new LadderBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .nonOpaque()
+                    .noCollision()
+                    .sounds(BlockSoundGroup.METAL)
+                    .mapColor(MapColor.GOLD)
+                    .strength(3F, 6.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_ladder")))));
+
 
 
     public static Block registerBlock(String name, Block block) { //this is the method to register a new (non-item) block
@@ -615,6 +667,12 @@ public class block_init {
         registerBlockItem("spirits", SPIRITS);
         registerBlockItem("blaj_ore", BLAJ_ORE);
         registerBlockItem("blaj_lesser_ore", BLAJ_LESSER_ORE);
+        //registerBlockItem("iron_coffer", IRON_COFFER);
+        registerBlockItem("gold_bars", GOLD_BARS);
+        registerBlockItem("grotesque", GROTESQUE);
+        registerBlockItem("gold_trapdoor", GOLD_TRAPDOOR);
+        registerBlockItem("gold_ladder", GOLD_LADDER);
+        registerBlockItem("sauerkraut", SAUERKRAUT);
 
     } //to load into game
 

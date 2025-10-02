@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": "minecraft:glass_pane",
+    "!": "minecraft:water_bucket"
+  },
+  "pattern": [
+    "X!X",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:sauerkraut"
+  },
+  "show_notification": true
+}

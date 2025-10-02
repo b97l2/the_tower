@@ -130,6 +130,7 @@ public class BlajItem extends Item {
         if (r < primary_weight) return State[0];
         return State[1];
     }
+
 }
 
 

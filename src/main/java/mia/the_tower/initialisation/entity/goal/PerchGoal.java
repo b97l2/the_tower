@@ -10,6 +10,8 @@ import net.minecraft.util.math.Vec3i;
 
 import java.util.EnumSet;
 
+//something is wrong here, need to investigate
+//moths keep killing themselves
 public class PerchGoal extends Goal {
     private final VoidMothEntity mob;
     private BlockPos targetPos;

@@ -10,6 +10,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import javax.xml.stream.events.EntityReference;
+
 public class CustomItemGroups {
     public static final ItemGroup FLESH_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of("the_tower", "flesh_items"),
@@ -65,6 +67,7 @@ public class CustomItemGroups {
                         entries.add(block_init.TILED_PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_TILED_PETRIFIED_STONE);
                         entries.add(block_init.ADORNED_PETRIFIED_STONE);
+                        entries.add(block_init.GROTESQUE);
                         entries.add(block_init.SALT);
                         entries.add(block_init.AFHD);
                         entries.add(block_init.SLATE);
@@ -100,11 +103,13 @@ public class CustomItemGroups {
                         entries.add(item_init.GABRIELS_TRUMPET);
                         entries.add(item_init.PALE_AXE);
                         entries.add(item_init.SHEPHERDS_STAFF);
+                        entries.add(item_init.CIRCLET_OF_GLUT);
                         entries.add(item_init.VOID_MOTH_SPAWN_EGG);
 
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);
                         entries.add(block_init.ROD_OF_LUMINESCENCE);
+                        //entries.add(block_init.IRON_COFFER);
                     }).build());
 
     public static final ItemGroup FUSION_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
@@ -121,6 +126,7 @@ public class CustomItemGroups {
                         entries.add(block_init.LOAF);
                         entries.add(block_init.TANKARD);
                         entries.add(block_init.SPIRITS);
+                        entries.add(block_init.SAUERKRAUT);
 
                         //golden
                         entries.add(block_init.GOLDEN_THURIBLE);
@@ -128,6 +134,10 @@ public class CustomItemGroups {
                         entries.add(block_init.GOLD_STAIRS);
                         entries.add(block_init.GOLD_COLUMN);
                         entries.add(block_init.GOLD_WALL);
+                        entries.add(block_init.GOLD_BARS);
+                        entries.add(block_init.GOLD_TRAPDOOR);
+                        entries.add(block_init.GOLD_LADDER);
+                        entries.add(item_init.GINKO_LEAF);
 
                         //stone
                         entries.add(column_init.STONE_COLUMN);

@@ -54,24 +54,4 @@ public class TankardBlock extends HorizontalFacingBlock {
                 return VoxelShapes.cuboid(0.3125F, 0F, 0.3125F, 0.625F, 0.4375F, 0.75F);
         }
     }
-/*
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        Direction.fromHorizontalQuarterTurns(45) axis = state.get(AXIS);
-        switch (axis) {
-            case X:
-                return VoxelShapes.cuboid(0.0F, 0.25F, 0.25F, 1.0F, 0.75F, 0.75F);
-            case Y:
-                return VoxelShapes.cuboid(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
-            case Z:
-            default:
-                return VoxelShapes.cuboid(0.25F, 0.25F, 0.0F, 0.75F, 0.75F, 1.0F);
-        }
-
-    }
-
- */
-
-
-
 }

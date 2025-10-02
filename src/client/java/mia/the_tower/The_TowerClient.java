@@ -1,7 +1,8 @@
 package mia.the_tower;
 
-import mia.the_tower.entity.VoidMothModel;
-import mia.the_tower.entity.VoidMothRenderer;
+import mia.the_tower.entity.plate.PlateRenderer;
+import mia.the_tower.entity.void_moth.VoidMothModel;
+import mia.the_tower.entity.void_moth.VoidMothRenderer;
 import mia.the_tower.initialisation.*;
 import mia.the_tower.initialisation.block.stake_init;
 import mia.the_tower.initialisation.entity.ModEntities;
@@ -9,12 +10,16 @@ import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.particle.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
+import net.minecraft.client.util.ModelIdentifier;
+import net.minecraft.util.Identifier;
 
 
 public class The_TowerClient implements ClientModInitializer {
@@ -57,6 +62,7 @@ public class The_TowerClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLUE_HOSTAS, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GOLDEN_THURIBLE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SPIRITS, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SAUERKRAUT, RenderLayer.getTranslucent());
 
 		//this is for rendering fluids
 		FluidRenderHandlerRegistry.INSTANCE.register(
@@ -93,5 +99,11 @@ public class The_TowerClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(VoidMothModel.VOID_MOTH, VoidMothModel::getTexturedModelData);
 		EntityRendererRegistry.register(ModEntities.VOID_MOTH, VoidMothRenderer::new);
 
+		EntityRendererRegistry.register(ModEntities.PLATE, PlateRenderer::new);
+		ModelLoadingPlugin.register(ctx -> {
+			ctx.addModels(Identifier.of("the_tower", "block/plate"));
+			// add more if needed:
+			// ctx.addModels(Identifier.of("the_tower", "block/plate_map"));
+		});
 	}
 }

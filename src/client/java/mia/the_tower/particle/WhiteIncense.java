@@ -17,7 +17,7 @@ public class WhiteIncense extends SpriteBillboardParticle {
         this.scale *= this.random.nextFloat() * 0.6F + 1.5F;
         this.maxAge = (int)((double)3000.0F / (Math.random() * 0.8 + 0.2));
         this.velocityMultiplier = 0.1f;
-        this.gravityStrength = 0.75f;
+        this.gravityStrength = 1f;
         this.collidesWithWorld = true;
         this.velocityX = vx;
         this.velocityY = vy;

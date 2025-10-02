@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class SanguineStatusEffect extends StatusEffect {
     public static final RegistryEntry<StatusEffect> SANGUINE = register(
             "sanguine",
-            new InstantMineEffect(StatusEffectCategory.NEUTRAL, 0x420000)
+            new InstantMineEffect(StatusEffectCategory.BENEFICIAL, 0x420000)
                     .addAttributeModifier(
                             EntityAttributes.ATTACK_DAMAGE,
                             Identifier.of("the_tower", "effect.sanguine.attack_damage"),

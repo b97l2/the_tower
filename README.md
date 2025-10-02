@@ -23,10 +23,15 @@ yourlocalbreadman (instagram) - Block of Gluh texture (comission) and Gluh conce
 
 zarakikenpachi (discord) - Various item icons (comission)
 
-Valerie-Vivegnis (freesound.org) - Various scream sounds (License: Attribution 4.0)
+Valerie-Vivegnis (freesound.org) - "Scream- woman- pain 1",
+"Scream- woman- pain 2",
+"Scream- woman- pain 3",
+"Scream- woman- pain 4" (License: Attribution 4.0)
 
-JohnsonBrandEditing (freesound.org) - Various scream sounds (License: Creative Commons 0)
+JohnsonBrandEditing (freesound.org) - "human male scream multi" (License: Creative Commons 0)
 
-marc3122 (freesound.org) - Various scream sounds (License: Creative Commons 0)
+marc3122 (freesound.org) - "Male Screams [1]" (License: Creative Commons 0)
 
-copyc4t (freesound.org) - Spooky organ bell from hell by (License: Attribution 4.0)
+copyc4t (freesound.org) - "Spooky organ bell from hell" (License: Attribution 4.0)
+
+gpag1 (freesound.org) - "Small japanese cast iron wind chime" (License: Attribution 4.0)

@@ -6,10 +6,13 @@ import mia.the_tower.initialisation.biomes.Shadowlands;
 import mia.the_tower.initialisation.biomes.ThePit;
 import mia.the_tower.initialisation.block.column_init;
 import mia.the_tower.initialisation.block.stake_init;
+import mia.the_tower.initialisation.blockentity.blockentity_init;
 import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.dimentions.TheFrage;
 import mia.the_tower.initialisation.entity.ModEntities;
+import mia.the_tower.initialisation.entity.custom.PlateEntity;
 import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
+import mia.the_tower.initialisation.fluid.GunkFluidBlock;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.sounds.CustomSounds;
 import mia.the_tower.initialisation.status_effects.*;
@@ -69,6 +72,7 @@ public class The_Tower implements ModInitializer {
 		CustomTags.load();
 		ModCarvers.load();
 		ModEntities.load();
+		//blockentity_init.load();
 
 		//for entities
 		FabricDefaultAttributeRegistry.register(ModEntities.VOID_MOTH, VoidMothEntity.createAttributes());

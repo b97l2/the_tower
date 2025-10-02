@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "the_tower:filth"
+    "the_tower:filth",
+    "the_tower:salt"
   ]
 }

@@ -102,7 +102,16 @@
   "item.the_tower.filth": "Filth",
   "item.the_tower.shepherds_staff": "Shepherd's Staff",
   "entity.the_tower.void_moth": "Void Moth",
-  "item.the_tower.void_moth_spawn_egg": "Void Moth Egg"
+  "item.the_tower.void_moth_spawn_egg": "Void Moth Spawn Egg",
+  "item.the_tower.ginko_leaf": "Ginko Leaf",
+  "item.the_tower.gold_bars": "Gold Bars",
+  "item.the_tower.iron_coffer": "Iron Coffer",
+  "item.the_tower.grotesque": "Grotesque",
+  "item.the_tower.circlet_of_glut": "Circlet of Glut",
+  "item.the_tower.gold_trapdoor": "Gold Trapdoor",
+  "item.the_tower.gold_ladder": "Gold Ladder",
+  "item.the_tower.plate": "Plate",
+  "item.the_tower.sauerkraut": "Sauerkraut"
 }
 
 

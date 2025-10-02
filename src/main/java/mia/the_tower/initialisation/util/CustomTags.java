@@ -12,12 +12,13 @@ public class CustomTags {
             public static final TagKey<Block> CERULEAN_COAST_REPLACEABLE = createTag("cerulean_coast_replaceable");
             public static final TagKey<Block> SHADOWLANDS_REPLACEABLE = createTag("shadowlands_replaceable");
 
-            private static TagKey<Block> createTag(String name) {
+    private static TagKey<Block> createTag(String name) {
                 return TagKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", name));
             }
         }
 
         public static class Items {
+            public static final TagKey<Item> COFFER_KEYS = createTag("coffer_keys");
 
             private static TagKey<Item> createTag(String name) {
                 return TagKey.of(RegistryKeys.ITEM, Identifier.of("the_tower", name));
