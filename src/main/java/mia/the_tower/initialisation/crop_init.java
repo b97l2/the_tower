@@ -57,7 +57,7 @@ public class crop_init {
 
     }
 
-    public static Block registerBlock(String name, Block block) { //this is the method to register a new (non item) block
+    public static Block registerBlock(String name, Block block) { //this is the method to load a new (non item) block
         Identifier id = Identifier.of("the_tower", name);
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, id);
         return Registry.register(Registries.BLOCK, blockKey, block);

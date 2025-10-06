@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "can_of_retardation",
+  "ingredients": [
+    "the_tower:key",
+    "minecraft:green_dye"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:green_key"
+  }
+}

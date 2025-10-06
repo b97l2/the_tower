@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "the_tower:infested_rock",
+    "!": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "###",
+    "!!!",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:simple_coffer"
+  },
+  "show_notification": true
+}

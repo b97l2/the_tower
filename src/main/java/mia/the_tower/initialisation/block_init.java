@@ -1,11 +1,10 @@
 package mia.the_tower.initialisation;
 
-import com.mojang.serialization.MapCodec;
 import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.ExtraTallFlower;
 import mia.the_tower.initialisation.block.*;
 import mia.the_tower.initialisation.block.BarrierBlock;
-import mia.the_tower.initialisation.blockentity.IronCofferBlock;
+import mia.the_tower.initialisation.blockentity.ColouredCofferBlock;
 import mia.the_tower.initialisation.fluid.BloodFluid;
 import mia.the_tower.initialisation.fluid.BloodFluidBlock;
 import mia.the_tower.initialisation.fluid.GunkFluid;
@@ -568,11 +567,124 @@ public class block_init {
                     .strength(0.3F, 1.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "sauerkraut")))));
 
-//    public static final Block IRON_COFFER = registerBlock("iron_coffer",
-//            new IronCofferBlock(AbstractBlock.Settings.create()
-//                    .mapColor(MapColor.GRAY)
-//                    .strength(1F, 10.0F)
-//                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "iron_coffer")))));
+    public static final Block WHITE_COFFER = registerBlock("white_coffer",
+            new ColouredCofferBlock(DyeColor.WHITE, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "white_coffer")))));
+
+    public static final Block ORANGE_COFFER = registerBlock("orange_coffer",
+            new ColouredCofferBlock(DyeColor.ORANGE, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "orange_coffer")))));
+
+    public static final Block MAGENTA_COFFER = registerBlock("magenta_coffer",
+            new ColouredCofferBlock(DyeColor.MAGENTA, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "magenta_coffer")))));
+
+    public static final Block LIGHT_BLUE_COFFER = registerBlock("light_blue_coffer",
+            new ColouredCofferBlock(DyeColor.LIGHT_BLUE, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "light_blue_coffer")))));
+
+    public static final Block YELLOW_COFFER = registerBlock("yellow_coffer",
+            new ColouredCofferBlock(DyeColor.YELLOW, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "yellow_coffer")))));
+
+    public static final Block LIME_COFFER = registerBlock("lime_coffer",
+            new ColouredCofferBlock(DyeColor.LIME, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "lime_coffer")))));
+
+    public static final Block PINK_COFFER = registerBlock("pink_coffer",
+            new ColouredCofferBlock(DyeColor.PINK, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "pink_coffer")))));
+
+    public static final Block GREY_COFFER = registerBlock("grey_coffer",
+            new ColouredCofferBlock(DyeColor.GRAY, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "grey_coffer")))));
+
+    public static final Block LIGHT_GREY_COFFER = registerBlock("light_grey_coffer",
+            new ColouredCofferBlock(DyeColor.LIGHT_GRAY, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "light_grey_coffer")))));
+
+    public static final Block CYAN_COFFER = registerBlock("cyan_coffer",
+            new ColouredCofferBlock(DyeColor.CYAN, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cyan_coffer")))));
+
+    public static final Block PURPLE_COFFER = registerBlock("purple_coffer",
+            new ColouredCofferBlock(DyeColor.PURPLE, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "purple_coffer")))));
+
+    public static final Block BLUE_COFFER = registerBlock("blue_coffer",
+            new ColouredCofferBlock(DyeColor.BLUE, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "blue_coffer")))));
+
+    public static final Block BROWN_COFFER = registerBlock("brown_coffer",
+            new ColouredCofferBlock(DyeColor.BROWN, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "brown_coffer")))));
+
+    public static final Block GREEN_COFFER = registerBlock("green_coffer",
+            new ColouredCofferBlock(DyeColor.GREEN, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "green_coffer")))));
+
+    public static final Block RED_COFFER = registerBlock("red_coffer",
+            new ColouredCofferBlock(DyeColor.RED, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "red_coffer")))));
+
+    public static final Block BLACK_COFFER = registerBlock("black_coffer",
+            new ColouredCofferBlock(DyeColor.BLACK, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "black_coffer")))));
+
+    public static final Block SIMPLE_COFFER = registerBlock("simple_coffer",
+            new CustomHorisontalFacingBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1F, 10.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "simple_coffer")))));
 
     public static final Block GOLD_BARS = registerBlock("gold_bars",
             new PaneBlock(AbstractBlock.Settings.create()
@@ -595,7 +707,7 @@ public class block_init {
 
 
 
-    public static Block registerBlock(String name, Block block) { //this is the method to register a new (non-item) block
+    public static Block registerBlock(String name, Block block) { //this is the method to load a new (non-item) block
         Identifier id = Identifier.of("the_tower", name);
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, id);
         return Registry.register(Registries.BLOCK, blockKey, block);
@@ -667,12 +779,28 @@ public class block_init {
         registerBlockItem("spirits", SPIRITS);
         registerBlockItem("blaj_ore", BLAJ_ORE);
         registerBlockItem("blaj_lesser_ore", BLAJ_LESSER_ORE);
-        //registerBlockItem("iron_coffer", IRON_COFFER);
         registerBlockItem("gold_bars", GOLD_BARS);
         registerBlockItem("grotesque", GROTESQUE);
         registerBlockItem("gold_trapdoor", GOLD_TRAPDOOR);
         registerBlockItem("gold_ladder", GOLD_LADDER);
         registerBlockItem("sauerkraut", SAUERKRAUT);
+        registerBlockItem("white_coffer", WHITE_COFFER);
+        registerBlockItem("orange_coffer", ORANGE_COFFER);
+        registerBlockItem("magenta_coffer", MAGENTA_COFFER);
+        registerBlockItem("light_blue_coffer", LIGHT_BLUE_COFFER);
+        registerBlockItem("yellow_coffer", YELLOW_COFFER);
+        registerBlockItem("lime_coffer", LIME_COFFER);
+        registerBlockItem("pink_coffer", PINK_COFFER);
+        registerBlockItem("grey_coffer", GREY_COFFER);
+        registerBlockItem("light_grey_coffer", LIGHT_GREY_COFFER);
+        registerBlockItem("cyan_coffer", CYAN_COFFER);
+        registerBlockItem("purple_coffer", PURPLE_COFFER);
+        registerBlockItem("blue_coffer", BLUE_COFFER);
+        registerBlockItem("brown_coffer", BROWN_COFFER);
+        registerBlockItem("green_coffer", GREEN_COFFER);
+        registerBlockItem("red_coffer", RED_COFFER);
+        registerBlockItem("black_coffer", BLACK_COFFER);
+        registerBlockItem("simple_coffer", SIMPLE_COFFER);
 
     } //to load into game
 

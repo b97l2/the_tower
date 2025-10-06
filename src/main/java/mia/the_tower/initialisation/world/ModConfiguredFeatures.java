@@ -17,7 +17,7 @@ import java.util.List;
 public class ModConfiguredFeatures {
 
     //for features, start here
-    //to register a feature, it needs a line here
+    //to load a feature, it needs a line here
 
     //ore
     public static final RegistryKey<ConfiguredFeature<?, ?>> AFHD_KEY = registerKey("afhd");
@@ -55,7 +55,7 @@ public class ModConfiguredFeatures {
         //for features you want naturally generated in the world (incl ore), then we go into ModPlacedFeatures
 
     }
-//this is the method to register a configured feature
+//this is the method to load a configured feature
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of("the_tower", name));
     }

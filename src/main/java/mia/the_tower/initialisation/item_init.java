@@ -24,6 +24,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
@@ -60,7 +61,23 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item GINKO_LEAF;
     public static Item CIRCLET_OF_GLUT;
     public static Item PLATE;
-
+    public static Item WHITE_KEY;
+    public static Item ORANGE_KEY;
+    public static Item MAGENTA_KEY;
+    public static Item LIGHT_BLUE_KEY;
+    public static Item YELLOW_KEY;
+    public static Item LIME_KEY;
+    public static Item PINK_KEY;
+    public static Item GREY_KEY;
+    public static Item LIGHT_GREY_KEY;
+    public static Item CYAN_KEY;
+    public static Item PURPLE_KEY;
+    public static Item BLUE_KEY;
+    public static Item BROWN_KEY;
+    public static Item GREEN_KEY;
+    public static Item RED_KEY;
+    public static Item BLACK_KEY;
+    public static Item KEY;
 
 
     public static void load() {
@@ -241,6 +258,75 @@ public class item_init { //this is the class that initialises items in the mod
         PLATE = register("plate", new ItemFrameItem(ModEntities.PLATE,
                 new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("plate")))));
+
+        WHITE_KEY = register("white_key", new KeyItem(DyeColor.WHITE,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("white_key")))));
+
+        ORANGE_KEY = register("orange_key", new KeyItem(DyeColor.ORANGE,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("orange_key")))));
+
+        MAGENTA_KEY = register("magenta_key", new KeyItem(DyeColor.MAGENTA,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("magenta_key")))));
+
+        LIGHT_BLUE_KEY = register("light_blue_key", new KeyItem(DyeColor.LIGHT_BLUE,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("light_blue_key")))));
+
+        YELLOW_KEY = register("yellow_key", new KeyItem(DyeColor.YELLOW,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("yellow_key")))));
+
+        LIME_KEY = register("lime_key", new KeyItem(DyeColor.LIME,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("lime_key")))));
+
+        PINK_KEY = register("pink_key", new KeyItem(DyeColor.PINK,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pink_key")))));
+
+        GREY_KEY = register("grey_key", new KeyItem(DyeColor.GRAY,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("grey_key")))));
+
+        LIGHT_GREY_KEY = register("light_grey_key", new KeyItem(DyeColor.LIGHT_GRAY,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("light_grey_key")))));
+
+        CYAN_KEY = register("cyan_key", new KeyItem(DyeColor.CYAN,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("cyan_key")))));
+
+        PURPLE_KEY = register("purple_key", new KeyItem(DyeColor.PURPLE,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("purple_key")))));
+
+        BLUE_KEY = register("blue_key", new KeyItem(DyeColor.BLUE,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("blue_key")))));
+
+        BROWN_KEY = register("brown_key", new KeyItem(DyeColor.BROWN,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("brown_key")))));
+
+        GREEN_KEY = register("green_key", new KeyItem(DyeColor.GREEN,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("green_key")))));
+
+        RED_KEY = register("red_key", new KeyItem(DyeColor.RED,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("red_key")))));
+
+        BLACK_KEY = register("black_key", new KeyItem(DyeColor.BLACK,
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("black_key")))));
+
+        KEY = register("key", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("key")))));
+
     }
 
     public static Item register(String name, Item item) {

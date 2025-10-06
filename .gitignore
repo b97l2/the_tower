@@ -38,3 +38,4 @@ replay_*.log
 *.hprof
 *.jfr
 /src/main/resources/assets/the_tower/textures/
+/build/

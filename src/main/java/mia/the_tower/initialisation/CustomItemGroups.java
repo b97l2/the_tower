@@ -71,6 +71,7 @@ public class CustomItemGroups {
                         entries.add(block_init.SALT);
                         entries.add(block_init.AFHD);
                         entries.add(block_init.SLATE);
+                        entries.add(block_init.SIMPLE_COFFER);
 
                         //plants
                         entries.add(block_init.GLUH_VINE_STAGE0);
@@ -105,6 +106,23 @@ public class CustomItemGroups {
                         entries.add(item_init.SHEPHERDS_STAFF);
                         entries.add(item_init.CIRCLET_OF_GLUT);
                         entries.add(item_init.VOID_MOTH_SPAWN_EGG);
+                        entries.add(item_init.KEY);
+                        entries.add(item_init.WHITE_KEY);
+                        entries.add(item_init.ORANGE_KEY);
+                        entries.add(item_init.MAGENTA_KEY);
+                        entries.add(item_init.LIGHT_BLUE_KEY);
+                        entries.add(item_init.YELLOW_KEY);
+                        entries.add(item_init.LIME_KEY);
+                        entries.add(item_init.PINK_KEY);
+                        entries.add(item_init.GREY_KEY);
+                        entries.add(item_init.LIGHT_GREY_KEY);
+                        entries.add(item_init.CYAN_KEY);
+                        entries.add(item_init.PURPLE_KEY);
+                        entries.add(item_init.BLUE_KEY);
+                        entries.add(item_init.BROWN_KEY);
+                        entries.add(item_init.GREEN_KEY);
+                        entries.add(item_init.RED_KEY);
+                        entries.add(item_init.BLACK_KEY);
 
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);

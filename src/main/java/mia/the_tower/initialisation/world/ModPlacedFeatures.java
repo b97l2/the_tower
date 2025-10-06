@@ -57,7 +57,7 @@ public class ModPlacedFeatures {
         //Best include it anyways I suppose
 
     }
-//this is the method to register a placed feature
+//this is the method to load a placed feature
     public static RegistryKey<PlacedFeature> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of("the_tower", name));
     }

@@ -10,10 +10,11 @@ import mia.the_tower.initialisation.blockentity.blockentity_init;
 import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.dimentions.TheFrage;
 import mia.the_tower.initialisation.entity.ModEntities;
-import mia.the_tower.initialisation.entity.custom.PlateEntity;
 import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
+import mia.the_tower.initialisation.items.util.CofferToKey;
 import mia.the_tower.initialisation.particle.CustomParticles;
+import mia.the_tower.initialisation.screen.screen_init;
 import mia.the_tower.initialisation.sounds.CustomSounds;
 import mia.the_tower.initialisation.status_effects.*;
 import mia.the_tower.initialisation.util.CustomTags;
@@ -51,8 +52,10 @@ public class The_Tower implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		item_init.load(); //this loads all items inside the file item_init into minecraft
+	 //this loads all items inside the file item_init into minecraft
+		item_init.load();
 		block_init.load();
+		blockentity_init.load();
 		crop_init.load();
 		column_init.load();
 		levitate_init.load();
@@ -72,7 +75,9 @@ public class The_Tower implements ModInitializer {
 		CustomTags.load();
 		ModCarvers.load();
 		ModEntities.load();
-		//blockentity_init.load();
+		screen_init.load();
+		CofferToKey.load();
+
 
 		//for entities
 		FabricDefaultAttributeRegistry.register(ModEntities.VOID_MOTH, VoidMothEntity.createAttributes());

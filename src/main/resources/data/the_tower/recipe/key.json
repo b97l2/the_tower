@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    " ##",
+    " ##",
+    "#  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:key"
+  },
+  "show_notification": true
+}

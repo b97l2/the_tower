@@ -7,7 +7,9 @@ import mia.the_tower.initialisation.*;
 import mia.the_tower.initialisation.block.stake_init;
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.particle.CustomParticles;
+import mia.the_tower.initialisation.screen.screen_init;
 import mia.the_tower.particle.*;
+import mia.the_tower.screen.ColouredCofferScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
@@ -16,6 +18,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
 import net.minecraft.client.util.ModelIdentifier;
@@ -105,5 +108,10 @@ public class The_TowerClient implements ClientModInitializer {
 			// add more if needed:
 			// ctx.addModels(Identifier.of("the_tower", "block/plate_map"));
 		});
+
+		//this is for screens
+		HandledScreens.register(screen_init.COFFER, ColouredCofferScreen::new);
+
+
 	}
 }
