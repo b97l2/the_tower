@@ -8,11 +8,21 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.PressableWidget;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
-public class ColouredCofferScreen extends HandledScreen<CofferScreenHandler> {
+public class
+ColouredCofferScreen extends HandledScreen<CofferScreenHandler> {
     // vanilla chest background works for 9x3 if we size regions appropriately
-    private static final Identifier BG = Identifier.of("minecraft", "textures/gui/container/generic_54.png");
+    private static final Identifier BG = Identifier.of("the_tower", "textures/gui/container/coffer_screen.png");
+    private static final Identifier TEX_PREV = Identifier.of("the_tower", "textures/gui/container/pagination_button_coloured_coffer_left.png");
+    private static final Identifier TEX_NEXT = Identifier.of("the_tower", "textures/gui/container/pagination_button_coloured_coffer_right.png");
+
+    private IconButton prevBtn;
+    private IconButton nextBtn;
 
     // derived sizes for 9x3
     private static final int TOP_HEIGHT = 17 + CofferScreenHandler.ROWS_VISIBLE * 18; // 71 for 3 rows
@@ -28,52 +38,88 @@ public class ColouredCofferScreen extends HandledScreen<CofferScreenHandler> {
     }
 
     @Override
-    protected void drawBackground(DrawContext ctx, float delta, int mouseX, int mouseY) {
-        RenderSystem.enableBlend();
-        int x = (this.width  - this.backgroundWidth)  / 2;
-        int y = (this.height - this.backgroundHeight) / 2;
+    protected void init() {
+        super.init();
 
-        // top panel (rows x 18 + 17)
-        ctx.drawTexture(RenderLayer::getGuiTextured, BG, x, y,
-                0.0f, 0.0f, this.backgroundWidth, TOP_HEIGHT, 256, 256);
+        // 12x12 buttons beside the grid; adjust positions as you like
+        prevBtn = new IconButton(this.backgroundWidth + 22 - 20, this.backgroundHeight - 3*19 +2, 12, 12, TEX_PREV, () ->
+                this.client.interactionManager.clickButton(this.handler.syncId, 0) // page--
+        );
+        nextBtn = new IconButton(this.backgroundWidth +22 + 20 + 18, this.backgroundHeight - 3*19 +2, 12, 12, TEX_NEXT, () ->
+                this.client.interactionManager.clickButton(this.handler.syncId, 1) // page++
+        );
 
-        // bottom panel (player inventory)
-        ctx.drawTexture(RenderLayer::getGuiTextured, BG, x, y + TOP_HEIGHT,
-                0.0f, 126.0f, this.backgroundWidth, BOTTOM_HEIGHT, 256, 256);
-
-        // simple scrollbar on the right edge
-        if (hasScrollbar()) {
-            int trackX = x + 174;
-            int trackY = y + 18;
-            int trackH = CofferScreenHandler.ROWS_VISIBLE * 18 - 17; // 37 for 3 rows
-            int thumbY = trackY + (int)(scroll * Math.max(trackH, 0));
-            // track
-            ctx.fill(trackX, trackY, trackX + 2, trackY + CofferScreenHandler.ROWS_VISIBLE * 18, 0xFF000000);
-            // thumb
-            ctx.fill(trackX - 1, thumbY, trackX + 3, thumbY + 17, 0xFFAAAAAA);
-        }
-    }
-
-    private boolean hasScrollbar() {
-        return handler.getBaseRow() > 0;
+        this.addDrawableChild(prevBtn);
+        this.addDrawableChild(nextBtn);
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double horizontal, double vertical) {
-        if (!hasScrollbar()) return false;
-        int max = handler.getBaseRow();
-        int base = handler.getBaseRow();
-        int next = MathHelper.clamp(base - (int)Math.signum(vertical), 0, max);
-        if (next != base) {
-            this.client.interactionManager.clickButton(this.handler.syncId, next);
-            this.scroll = max == 0 ? 0f : (float) next / (float) max;
-        }
-        return true;
+    protected void handledScreenTick() {
+        int page  = this.handler.getPage();
+        int total = this.handler.getTotalPagesSynced();
+
+        if (prevBtn != null) prevBtn.active = page > 0;
+        if (nextBtn != null) nextBtn.active = page < total - 1;
     }
+
+    @Override
+    protected void drawBackground(DrawContext ctx, float delta, int mouseX, int mouseY) {
+        int i = (this.width - this.backgroundWidth) / 2;
+        int j = (this.height - this.backgroundHeight) / 2;
+        ctx.drawTexture(RenderLayer::getGuiTextured, BG, i, j, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, 256, 256);
+    }
+
 
     @Override
     protected void drawForeground(DrawContext ctx, int mouseX, int mouseY) {
-        ctx.drawText(this.textRenderer, this.title, this.titleX, this.titleY, 0x404040, false);
-        ctx.drawText(this.textRenderer, this.playerInventoryTitle, this.playerInventoryTitleX, this.playerInventoryTitleY, 0x404040, false);
+        //these are to draw titles, but I don't want this for this block
+//        ctx.drawText(this.textRenderer, this.title, this.titleX, this.titleY, 0x404040, false);
+//        ctx.drawText(this.textRenderer, this.playerInventoryTitle, this.playerInventoryTitleX, this.playerInventoryTitleY, 0x404040, false);
+
+        //this is for page indicator
+        String p = (handler.getPage() + 1) + " of " + handler.getTotalPagesSynced();
+        int w = this.textRenderer.getWidth(p);
+        ctx.drawText(this.textRenderer, p, this.backgroundWidth/2 - w/2, this.backgroundHeight/2 - 10, 0x404040, false);
     }
+
+    @Override
+    public void render(DrawContext ctx, int mouseX, int mouseY, float delta) {
+        //this.renderBackground(ctx);                 // 1) dim the world behind
+        super.render(ctx, mouseX, mouseY, delta);   // 2) draw slots/items/etc.
+        this.drawMouseoverTooltip(ctx, mouseX, mouseY); // 3) draw item tooltips last
+    }
+
+    private static final class IconButton extends PressableWidget {
+        private final Identifier texture;
+        private final Runnable onClick;
+
+        IconButton(int x, int y, int w, int h, Identifier texture, Runnable onClick) {
+            super(x, y, w, h, Text.empty());
+            this.texture = texture;
+            this.onClick = onClick;
+        }
+
+        @Override
+        public void onPress() {
+            if (onClick != null) onClick.run();
+        }
+
+        @Override
+        protected void renderWidget(DrawContext ctx, int mouseX, int mouseY, float delta) {
+            int state = !this.active ? 2 : (this.isHovered() ? 1 : 0); // 0=normal,1=hover,2=disabled
+            float u = 0.0f;
+            float v = state * this.height;
+            int sheetW = this.width;   // set to full sheet width (or 256 if using an atlas-style sheet)
+            int sheetH = this.height * 3;
+
+            ctx.drawTexture(RenderLayer::getGuiTextured, texture, this.getX(), this.getY(),
+                    u, v, this.width, this.height, sheetW, sheetH);
+        }
+
+        @Override
+        protected void appendClickableNarrations(net.minecraft.client.gui.screen.narration.NarrationMessageBuilder b) {
+            // Optional narration; leave empty for icon-only
+        }
+    }
+
 }

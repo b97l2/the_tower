@@ -4,7 +4,7 @@
   "group": "can_of_retardation",
   "ingredients": [
     "the_tower:key",
-    "minecraft:grey_dye"
+    "minecraft:gray_dye"
   ],
   "result": {
     "count": 1,

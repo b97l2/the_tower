@@ -28,7 +28,7 @@ public class CofferScreenHandler  extends ScreenHandler {
     // Properties synced to client: [0] totalRows, [1] baseRow
     private final PropertyDelegate props = new ArrayPropertyDelegate(2);
 
-    private int baseRow = 0;
+    private int page = 0; //for pagination
 
     /* ---------- client constructor (registered factory) ---------- */
     public CofferScreenHandler(int syncId, PlayerInventory playerInv) {
@@ -51,14 +51,35 @@ public class CofferScreenHandler  extends ScreenHandler {
         this.backing    = backing;
         this.window     = new WindowedInventory(backing, 0, WINDOW_SLOTS);
 
-        // initial sync
-        props.set(0, totalRows());
-        props.set(1, baseRow);
+        props.set(0, totalPages());
+        props.set(1, page);
         this.addProperties(props);
 
         layoutSlots(playerInv);
         backing.onOpen(playerInv.player);
-        clampAndApplyBaseRow();
+        applyPage(); // sets window base and re-syncs page props
+    }
+
+    private int totalPages() {
+        if (backing == null) return 1; // client uses props
+        int size = backing.size();
+        int pageSize = WINDOW_SLOTS;
+        int pages = (size + pageSize - 1) / pageSize;
+        return Math.max(pages, 1);
+    }
+
+    private void applyPage() {
+        int maxPage = totalPages() - 1;
+        if (page < 0) page = 0;
+        if (page > maxPage) page = maxPage;
+
+        window.setBaseIndex(page * WINDOW_SLOTS);
+
+        // keep client in sync
+        props.set(0, totalPages());
+        props.set(1, page);
+
+        this.sendContentUpdates();
     }
 
     /* ---------- layout ---------- */
@@ -90,43 +111,26 @@ public class CofferScreenHandler  extends ScreenHandler {
     }
 
     /* ---------- windowing + scrolling ---------- */
-    private int totalRows() {
-        if (backing == null) return ROWS_VISIBLE; // client will use synced prop
-        int rows = Math.max(0, (int)Math.ceil(backing.size() / (double)COLS));
-        return Math.max(rows, ROWS_VISIBLE);
-    }
 
-    private void clampAndApplyBaseRow() {
-        int maxBase = Math.max(0, getSyncedTotalRows() - ROWS_VISIBLE);
-        baseRow = MathHelper.clamp(baseRow, 0, maxBase);
-        window.setBaseIndex(baseRow * COLS);
-        props.set(0, getSyncedTotalRows()); // keep total rows fresh for client
-        props.set(1, baseRow);
-        this.sendContentUpdates();
-    }
-
-    /** Called from client (HandledScreen) via clickButton(syncId, newBaseRow). */
     @Override
     public boolean onButtonClick(PlayerEntity player, int id) {
-        this.baseRow = id;        // id is target baseRow
-        clampAndApplyBaseRow();
+        // id: 0 = prev, 1 = next
+        if (id == 0) page--;
+        else if (id == 1) page++;
+        else return false;
+
+        applyPage();
         return true;
     }
 
-    /* ---------- access for the client screen ---------- */
-    public int getBaseRow() {
-        // server uses field; client uses prop
-        return this.backing != null ? this.baseRow : props.get(1);
+    public int getPage() {
+        return (backing != null) ? page : Math.max(0, props.get(1));
     }
 
-    public int getSyncedTotalRows() {
-        // server: compute live; client: from prop
-        return this.backing != null ? totalRows() : Math.max(props.get(0), ROWS_VISIBLE);
+    public int getTotalPagesSynced() {
+        return (backing != null) ? totalPages() : Math.max(1, props.get(0));
     }
 
-    public int getMaxBaseRowSynced() {
-        return Math.max(0, getSyncedTotalRows() - ROWS_VISIBLE);
-    }
 
     /* ---------- required overrides ---------- */
     @Override
@@ -151,16 +155,60 @@ public class CofferScreenHandler  extends ScreenHandler {
             int hotEnd      = hotStart + 9;
 
             if (index < cofferEnd) {
+                // coffer window -> player inventory + hotbar (unchanged)
                 if (!this.insertItem(stack, invStart, hotEnd, true)) return ItemStack.EMPTY;
             } else {
-                // Only insert into enabled coffer slots
-                if (!this.insertItem(stack, cofferStart, cofferEnd, false)) return ItemStack.EMPTY;
+                // player -> coffer: merge into the ENTIRE backing (not just the window)
+                if (!insertIntoBackingAllRows(stack)) return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) slot.setStack(ItemStack.EMPTY);
             else slot.markDirty();
+
+            // keep the window/props fresh
+            applyPage(); //this the right place??
         }
         return original;
+    }
+
+    private boolean insertIntoBackingAllRows(ItemStack stack) {
+        if (backing == null || stack.isEmpty()) return false;
+
+        boolean movedAny = false;
+
+        // Pass 1: merge into existing compatible stacks across ALL rows
+        for (int i = 0, n = backing.size(); i < n && !stack.isEmpty(); i++) {
+            ItemStack cur = backing.getStack(i);
+            if (!cur.isEmpty() && net.minecraft.item.ItemStack.areItemsEqual(cur, stack)) {
+                int max = Math.min(cur.getMaxCount(), stack.getMaxCount());
+                int canMove = Math.min(stack.getCount(), max - cur.getCount());
+                if (canMove > 0) {
+                    cur.increment(canMove);
+                    stack.decrement(canMove);
+                    movedAny = true;
+                }
+            }
+        }
+
+        // Pass 2: place into empty slots across ALL rows
+        for (int i = 0, n = backing.size(); i < n && !stack.isEmpty(); i++) {
+            ItemStack cur = backing.getStack(i);
+            if (cur.isEmpty()) {
+                // place up to stack.getMaxCount()
+                int toMove = Math.min(stack.getCount(), stack.getMaxCount());
+                ItemStack place = stack.copy();
+                place.setCount(toMove);
+                backing.setStack(i, place);
+                stack.decrement(toMove);
+                movedAny = true;
+            }
+        }
+
+        if (movedAny) {
+            backing.markDirty();
+            this.sendContentUpdates();
+        }
+        return movedAny;
     }
 
     /* ---------- inner: 27-slot window proxy ---------- */
@@ -216,11 +264,20 @@ public class CofferScreenHandler  extends ScreenHandler {
         }
 
         private boolean mapsToValidIndex() {
-            int mapped = handler.getBaseRow() * COLS + this.getIndex(); // global index in backing
-            return mapped < handler.getSyncedTotalRows() * COLS;
+            int mappedIndex = handler.getPage() * WINDOW_SLOTS + this.getIndex();
+
+            // server uses live size; client uses page count * window size
+            int maxItems = (handler.backing != null)
+                    ? handler.backing.size()
+                    : handler.getTotalPagesSynced() * WINDOW_SLOTS;
+
+            return mappedIndex < maxItems;
         }
 
-        @Override public boolean isEnabled()   { return mapsToValidIndex(); }
-        @Override public boolean canInsert(ItemStack stack) { return mapsToValidIndex() && super.canInsert(stack); }
+        @Override public boolean isEnabled() { return mapsToValidIndex(); }
+
+        @Override public boolean canInsert(ItemStack stack) {
+            return mapsToValidIndex() && super.canInsert(stack);
+        }
     }
 }

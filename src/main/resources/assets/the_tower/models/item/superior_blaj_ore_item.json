@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_tower:item/superior_blaj_ore_item"
+  }
+}

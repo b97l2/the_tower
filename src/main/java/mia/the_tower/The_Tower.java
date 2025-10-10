@@ -23,6 +23,8 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
@@ -78,6 +80,12 @@ public class The_Tower implements ModInitializer {
 		screen_init.load();
 		CofferToKey.load();
 
+		//for flammable blocks
+		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LEAVES, 40, 60);
+
+		//for strippable blocks
+		//StrippableBlockRegistry.register(block_init.GINKGO_LOG, block_init.STRIPPED_GINKGO_LOG);
 
 		//for entities
 		FabricDefaultAttributeRegistry.register(ModEntities.VOID_MOTH, VoidMothEntity.createAttributes());

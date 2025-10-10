@@ -47,8 +47,8 @@
   "item.the_tower.cerulean_shortgrass": "Cerulean Shortgrass",
   "item.the_tower.rod_of_luminescence": "Rod of Luminescence",
   "item.the_tower.can_of_retardation": "Can of Retardation",
-  "item.the_tower.chalice_of_blood": "Chalice of Blood",
-  "item.the_tower.cup_of_gunk": "Goblet of Gunk",
+  "item.the_tower.chalice_of_blood": "Bucket of Blood",
+  "item.the_tower.cup_of_gunk": "Bucket of Gunk",
   "effect.the_tower.decay": "Decay",
   "item.the_tower.oxidised_darkness": "Oxidised Void",
   "dimension.the_tower.the_frage": "The Frage",
@@ -84,8 +84,10 @@
   "item.the_tower.my_rage": "My Rage",
   "item.the_tower.my_fuel": "My Fuel",
   "item.the_tower.blaj": "Blaj",
-  "item.the_tower.blaj_ore": "Superior Blaj Ore",
-  "item.the_tower.blaj_lesser_ore": "Lesser Blaj Ore",
+  "item.the_tower.blaj_ore": "Superior Blaj Ore Block",
+  "item.the_tower.blaj_lesser_ore": "Lesser Blaj Ore Block",
+  "item.the_tower.superior_blaj_ore_item": "Superior Blaj Ore",
+  "item.the_tower.lesser_blaj_ore": "Lesser Blaj Ore",
   "item.the_tower.afhd": "Afhd",
   "item.the_tower.slate": "Slate",
   "item.the_tower.itore": "Itore",
@@ -103,7 +105,7 @@
   "item.the_tower.shepherds_staff": "Shepherd's Staff",
   "entity.the_tower.void_moth": "Void Moth",
   "item.the_tower.void_moth_spawn_egg": "Void Moth Spawn Egg",
-  "item.the_tower.ginko_leaf": "Ginko Leaf",
+  "item.the_tower.ginkgo_leaf": "Ginkgo Leaf",
   "item.the_tower.gold_bars": "Gold Bars",
   "item.the_tower.iron_coffer": "Iron Coffer",
   "item.the_tower.grotesque": "Grotesque",
@@ -146,7 +148,12 @@
   "item.the_tower.red_coffer": "Red Coffer",
   "item.the_tower.black_coffer": "Black Coffer",
   "item.the_tower.simple_coffer": "Iron Coffer",
-  "container.iron_coffer": "Iron Coffer"
+  "container.coloured_coffer": "Iron Coffer",
+  "item.the_tower.ginkgo_log": "Ginkgo Log",
+  "item.the_tower.ginkgo_leaves": "Ginkgo Leaves",
+  "item.the_tower.ginkgo_fruit": "Ginkgo Fruit",
+  "item.the_tower.golden_seed": "Golden Seed",
+  "item.the_tower.itore_ore": "Itore Ore"
 }
 
 

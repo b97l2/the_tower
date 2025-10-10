@@ -30,7 +30,9 @@
     "the_tower:gold_bars",
     "the_tower:grotesque",
     "the_tower:gold_trapdoor",
-    "the_tower:gold_ladder"
+    "the_tower:gold_ladder",
+    "the_tower:blaj_ore",
+    "the_tower:blaj_lesser_ore"
   ]
 }
 

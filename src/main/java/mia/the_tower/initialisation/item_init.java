@@ -2,7 +2,6 @@ package mia.the_tower.initialisation;
 
 import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.stake_init;
-import mia.the_tower.initialisation.blockentity.blockentity_init;
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.items.*;
 import mia.the_tower.initialisation.status_effects.InstantMineEffect;
@@ -11,12 +10,11 @@ import mia.the_tower.initialisation.status_effects.levitate_init;
 import mia.the_tower.initialisation.status_effects.pale_death_init;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.*;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.decoration.AbstractDecorationEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 import net.minecraft.registry.Registries;
@@ -58,7 +56,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item MY_FUEL;
     public static Item SHEPHERDS_STAFF;
     public static Item VOID_MOTH_SPAWN_EGG;
-    public static Item GINKO_LEAF;
+    public static Item GINKGO_LEAF;
     public static Item CIRCLET_OF_GLUT;
     public static Item PLATE;
     public static Item WHITE_KEY;
@@ -78,6 +76,11 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item RED_KEY;
     public static Item BLACK_KEY;
     public static Item KEY;
+    public static Item GINKGO_FRUIT;
+    public static Item SUPERIOR_BLAJ_ORE_ITEM;
+    public static Item LESSER_BLAJ_ORE_ITEM;
+    public static Item ITORE_ORE;
+    public static Item GOLDEN_SEED;
 
 
     public static void load() {
@@ -100,6 +103,15 @@ public class item_init { //this is the class that initialises items in the mod
 
         BLAJ = register("blaj", new BlajItem(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("blaj")))));
+
+        SUPERIOR_BLAJ_ORE_ITEM = register("superior_blaj_ore_item", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("superior_blaj_ore_item")))));
+
+        LESSER_BLAJ_ORE_ITEM = register("lesser_blaj_ore_item", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("lesser_blaj_ore_item")))));
+
+        ITORE_ORE = register("itore_ore", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("itore_ore")))));
 
         KLAEN = register("klaen", new BlockItem(
                 stake_init.STAKE, //change
@@ -211,8 +223,26 @@ public class item_init { //this is the class that initialises items in the mod
         VOID_MOTH_SPAWN_EGG = register("void_moth_spawn_egg", new SpawnEggItem(ModEntities.VOID_MOTH, new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("void_moth_spawn_egg")))));
 
-        GINKO_LEAF = register("ginko_leaf", new Item(new Item.Settings()
-                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("ginko_leaf")))));
+        GINKGO_LEAF = register("ginkgo_leaf", new Item(new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("ginkgo_leaf")))));
+
+        GOLDEN_SEED = register("golden_seed", new BlockItem(
+                GINKGO_SAPLING, //change
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("golden_seed")))));
+
+        GINKGO_FRUIT = register("ginkgo_fruit", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .alwaysEdible()
+                                .build(),
+                        new ConsumableComponents().food()
+                                .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.POISON, 15 * 20, 1), 1.0f))
+                                .build())
+                .useRemainder(GOLDEN_SEED)
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("ginkgo_fruit")))));
+
+
 
         CIRCLET_OF_GLUT = register("circlet_of_glut", new CircletOfGlutItem(new Item.Settings()
                 //.equippable(EquipmentSlot.HEAD)

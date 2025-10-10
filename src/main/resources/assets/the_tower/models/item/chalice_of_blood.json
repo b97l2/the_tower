@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "the_tower:item/chalice_of_blood"
+    "layer0": "the_tower:item/bucket_of_blood"
   }
 }

@@ -10,6 +10,7 @@ import mia.the_tower.initialisation.fluid.BloodFluidBlock;
 import mia.the_tower.initialisation.fluid.GunkFluid;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
 import mia.the_tower.initialisation.sounds.CustomSounds;
+import mia.the_tower.initialisation.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffects;
@@ -527,6 +528,30 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_trapdoor")))));
 
+    public static final Block GINKGO_LOG = registerBlock("ginkgo_log",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GOLD)
+                    .burnable()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_log")))));
+
+    public static final Block GINKGO_LEAVES = registerBlock("ginkgo_leaves",
+            new LeavesBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GOLD)
+                    .sounds(BlockSoundGroup.GRASS)
+                    .burnable()
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_log")))));
+
+    public static final Block GINKGO_SAPLING = registerBlock("ginkgo_sapling",
+            new SaplingBlock(ModSaplingGenerators.GINKGO, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GOLD)
+                    .sounds(BlockSoundGroup.GRASS)
+                    .burnable()
+                    .nonOpaque()
+                    .noCollision()
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_sapling")))));
+
     public static final Block AFHD = registerBlock("afhd",
             new Block(AbstractBlock.Settings.create()
                     .requiresTool()
@@ -801,6 +826,8 @@ public class block_init {
         registerBlockItem("red_coffer", RED_COFFER);
         registerBlockItem("black_coffer", BLACK_COFFER);
         registerBlockItem("simple_coffer", SIMPLE_COFFER);
+        registerBlockItem("ginkgo_log", GINKGO_LOG);
+        registerBlockItem("ginkgo_leaves", GINKGO_LEAVES);
 
     } //to load into game
 

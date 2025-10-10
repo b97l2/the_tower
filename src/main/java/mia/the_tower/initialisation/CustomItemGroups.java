@@ -10,8 +10,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import javax.xml.stream.events.EntityReference;
-
 public class CustomItemGroups {
     public static final ItemGroup FLESH_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of("the_tower", "flesh_items"),
@@ -71,7 +69,6 @@ public class CustomItemGroups {
                         entries.add(block_init.SALT);
                         entries.add(block_init.AFHD);
                         entries.add(block_init.SLATE);
-                        entries.add(block_init.SIMPLE_COFFER);
 
                         //plants
                         entries.add(block_init.GLUH_VINE_STAGE0);
@@ -124,10 +121,15 @@ public class CustomItemGroups {
                         entries.add(item_init.RED_KEY);
                         entries.add(item_init.BLACK_KEY);
 
+                        //non-usable items
+                        entries.add(item_init.SUPERIOR_BLAJ_ORE_ITEM);
+                        entries.add(item_init.LESSER_BLAJ_ORE_ITEM);
+                        entries.add(item_init.ITORE_ORE);
+
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);
                         entries.add(block_init.ROD_OF_LUMINESCENCE);
-                        //entries.add(block_init.IRON_COFFER);
+                        entries.add(block_init.SIMPLE_COFFER);
                     }).build());
 
     public static final ItemGroup FUSION_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
@@ -155,7 +157,11 @@ public class CustomItemGroups {
                         entries.add(block_init.GOLD_BARS);
                         entries.add(block_init.GOLD_TRAPDOOR);
                         entries.add(block_init.GOLD_LADDER);
-                        entries.add(item_init.GINKO_LEAF);
+                        entries.add(item_init.GOLDEN_SEED);
+                        entries.add(item_init.GINKGO_LEAF);
+                        entries.add(block_init.GINKGO_LOG);
+                        entries.add(block_init.GINKGO_LEAVES);
+                        entries.add(item_init.GINKGO_FRUIT);
 
                         //stone
                         entries.add(column_init.STONE_COLUMN);
