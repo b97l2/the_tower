@@ -32,7 +32,9 @@
     "the_tower:gold_trapdoor",
     "the_tower:gold_ladder",
     "the_tower:blaj_ore",
-    "the_tower:blaj_lesser_ore"
+    "the_tower:blaj_lesser_ore",
+    "the_tower:silver_ore",
+    "the_tower:silver_vein"
   ]
 }
 

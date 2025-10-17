@@ -13,6 +13,7 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
@@ -28,9 +29,18 @@ public class ThePit {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
         //spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PORCUPINE, 2, 3, 5)); //spawning mod entities
 
+        //general
+        var placedLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE); //?
+        var carverLookup  = context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
+
         GenerationSettings.LookupBackedBuilder biomeBuilder =
-                new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                        context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+                new GenerationSettings.LookupBackedBuilder(placedLookup, carverLookup);
+
+//        //for carver
+//        RegistryKey<ConfiguredCarver<?>> PIT_CARVER_KEY =
+//                RegistryKey.of(RegistryKeys.CONFIGURED_CARVER, Identifier.of("the_tower", "pit_carver"));
+//
+//        biomeBuilder.carver(PIT_CARVER_KEY);
 
         return new Biome.Builder()
                 .precipitation(true)

@@ -18,6 +18,10 @@ public class ModOreGeneration {
                 ModPlacedFeatures.AFHD_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(Shadowlands.SHADOWLANDS), GenerationStep.Feature.UNDERGROUND_ORES,
                 ModPlacedFeatures.ITORE_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(CeruleanCoast.CERULEAN_COAST), GenerationStep.Feature.UNDERGROUND_ORES,
+                ModPlacedFeatures.SILVER_ORE_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(CeruleanCoast.CERULEAN_COAST), GenerationStep.Feature.UNDERGROUND_ORES,
+                ModPlacedFeatures.SILVER_VEIN_PLACED_KEY);
 
         //then last of all, go to the biome class and include the ore there
     }

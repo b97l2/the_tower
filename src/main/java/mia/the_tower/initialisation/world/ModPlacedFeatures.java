@@ -27,6 +27,9 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> AFHD_PLACED_KEY = registerKey("afhd_placed");
     public static final RegistryKey<PlacedFeature> DRAGONS_EYE_ORE_PLACED_KEY = registerKey("dragons_eye_ore_placed");
     public static final RegistryKey<PlacedFeature> ITORE_PLACED_KEY = registerKey("itore_placed");
+    public static final RegistryKey<PlacedFeature> SILVER_ORE_PLACED_KEY = registerKey("silver_ore_placed");
+    public static final RegistryKey<PlacedFeature> SILVER_VEIN_PLACED_KEY = registerKey("silver_vein_placed");
+
 
     //other
 
@@ -36,17 +39,23 @@ public class ModPlacedFeatures {
         //ore
         //needs a line here
         register(context, AFHD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.AFHD_KEY),
-                ModOrePlacement.modifiersWithCount(14, //veins per chunk
+                ModOrePlacement.modifiersWithCount(3, //veins per chunk
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-120), YOffset.fixed(30)))); //first one is min y level, second is max y level
         //you can use other HeightRangePlacementModifiers as well, or make your owm.
-        //univorm gives univorm distribution in between min and max y
+        //uniform gives uniform distribution in between min and max y
         //trapezoid gives highest probability in the middle between the two values which decreases either side
         register(context, DRAGONS_EYE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DRAGONS_EYE_ORE_KEY),
                 ModOrePlacement.modifiersWithCount(3, //veins per chunk
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(-120), YOffset.fixed(0))));
+                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(-200), YOffset.fixed(-30))));
         register(context, ITORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ITORE_KEY),
-                ModOrePlacement.modifiersWithCount(14,
+                ModOrePlacement.modifiersWithCount(5,
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-140), YOffset.fixed(60))));
+        register(context, SILVER_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_ORE_KEY),
+                ModOrePlacement.modifiersWithCount(5, //veins per chunk
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(-120), YOffset.fixed(0))));
+        register(context, SILVER_VEIN_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_VEIN_KEY),
+                ModOrePlacement.modifiersWithCount(2, //veins per chunk
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(-160), YOffset.fixed(-60))));
         //for ore then we go to gen/ModOreGeneration
 
         //other

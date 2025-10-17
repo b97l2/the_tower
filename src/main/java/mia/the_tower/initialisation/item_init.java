@@ -81,7 +81,9 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item LESSER_BLAJ_ORE_ITEM;
     public static Item ITORE_ORE;
     public static Item GOLDEN_SEED;
-
+    public static Item RAW_SILVER;
+    public static Item SILVER_INGOT;
+    public static Item RUFESCENT_PEARL;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -356,6 +358,18 @@ public class item_init { //this is the class that initialises items in the mod
         KEY = register("key", new Item(
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("key")))));
+
+        RAW_SILVER = register("raw_silver", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("raw_silver")))));
+
+        SILVER_INGOT = register("silver_ingot", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("silver_ingot")))));
+
+        RUFESCENT_PEARL = register("rufescent_pearl", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("rufescent_pearl")))));
 
     }
 

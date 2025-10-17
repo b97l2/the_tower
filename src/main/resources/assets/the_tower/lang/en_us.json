@@ -87,7 +87,7 @@
   "item.the_tower.blaj_ore": "Superior Blaj Ore Block",
   "item.the_tower.blaj_lesser_ore": "Lesser Blaj Ore Block",
   "item.the_tower.superior_blaj_ore_item": "Superior Blaj Ore",
-  "item.the_tower.lesser_blaj_ore": "Lesser Blaj Ore",
+  "item.the_tower.lesser_blaj_ore_item": "Lesser Blaj Ore",
   "item.the_tower.afhd": "Afhd",
   "item.the_tower.slate": "Slate",
   "item.the_tower.itore": "Itore",
@@ -153,7 +153,12 @@
   "item.the_tower.ginkgo_leaves": "Ginkgo Leaves",
   "item.the_tower.ginkgo_fruit": "Ginkgo Fruit",
   "item.the_tower.golden_seed": "Golden Seed",
-  "item.the_tower.itore_ore": "Itore Ore"
+  "item.the_tower.itore_ore": "Itore Ore",
+  "item.the_tower.raw_silver": "Raw Silver",
+  "item.the_tower.silver_ingot": "Silver Ingot",
+  "item.the_tower.rufescent_pearl": "Rufescent Pearl",
+  "item.the_tower.silver_ore": "Silver Ore",
+  "item.the_tower.silver_vein": "Silver Vein"
 }
 
 

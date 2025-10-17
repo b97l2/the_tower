@@ -13,6 +13,7 @@ import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
+import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
 import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
@@ -28,6 +29,9 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> AFHD_KEY = registerKey("afhd");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DRAGONS_EYE_ORE_KEY = registerKey("dragons_eye_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ITORE_KEY = registerKey("itore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SILVER_ORE_KEY = registerKey("silver_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SILVER_VEIN_KEY = registerKey("silver_vein");
+
 
     //tree
     public static final RegistryKey<ConfiguredFeature<?, ?>> GINKGO_KEY = registerKey("ginkgo");
@@ -54,12 +58,18 @@ public class ModConfiguredFeatures {
                         );
         List<OreFeatureConfig.Target> frageDragonsEyeOres =
                 List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.DRAGONS_EYE_ORE.getDefaultState()));
+        List<OreFeatureConfig.Target> frageSilverOres =
+                List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.SILVER_ORE.getDefaultState()));
+        List<OreFeatureConfig.Target> frageSilverVeinOres =
+                List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.SILVER_VEIN.getDefaultState()));
         List<OreFeatureConfig.Target> frageItoreOres =
                 List.of(OreFeatureConfig.createTarget(shadowlandsReplaceables, block_init.ITORE.getDefaultState()));
         //this defines how big the vein is with the size parameter
         register(context, AFHD_KEY, Feature.ORE, new OreFeatureConfig(frageAfhdOres, 40));
         register(context, DRAGONS_EYE_ORE_KEY, Feature.ORE, new OreFeatureConfig(frageDragonsEyeOres, 9));
-        register(context, ITORE_KEY, Feature.ORE, new OreFeatureConfig(frageItoreOres, 9));
+        register(context, ITORE_KEY, Feature.ORE, new OreFeatureConfig(frageItoreOres, 3));
+        register(context, SILVER_ORE_KEY, Feature.ORE, new OreFeatureConfig(frageSilverOres, 25));
+        register(context, SILVER_VEIN_KEY, Feature.ORE, new OreFeatureConfig(frageSilverVeinOres, 9));
 
         //for tree
         register(context, GINKGO_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
@@ -67,7 +77,7 @@ public class ModConfiguredFeatures {
                 new ForkingTrunkPlacer(7, 8, 5),
 
                 BlockStateProvider.of(block_init.GINKGO_LEAVES),
-                new RandomSpreadFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(6), ConstantIntProvider.create(7), 7),
+                new JungleFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(6), 5),
 
                 new TwoLayersFeatureSize(3, 0, 4)).build());
 

@@ -1,5 +1,6 @@
 package mia.the_tower.initialisation.biomes;
 
+import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -15,6 +16,7 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
@@ -38,11 +40,18 @@ public class CeruleanCoast {
         DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
         DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
 
-        GenerationSettings.LookupBackedBuilder biomeBuilder =
-                new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                        context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+        //general
+        var placedLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE); //?
+        var carverLookup  = context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
 
-        var placedLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+        GenerationSettings.LookupBackedBuilder biomeBuilder =
+                new GenerationSettings.LookupBackedBuilder(placedLookup, carverLookup);
+
+        //for carver
+//        RegistryKey<ConfiguredCarver<?>> PIT_CARVER_KEY =
+//                RegistryKey.of(RegistryKeys.CONFIGURED_CARVER, Identifier.of("the_tower", "pit_carver"));
+//
+//        gen.carver(PIT_CARVER_KEY);
 
         //add ores here as well
         biomeBuilder.feature(
@@ -52,6 +61,14 @@ public class CeruleanCoast {
         biomeBuilder.feature(
                 GenerationStep.Feature.UNDERGROUND_ORES,
                 placedLookup.getOrThrow(ModPlacedFeatures.DRAGONS_EYE_ORE_PLACED_KEY)
+        );
+        biomeBuilder.feature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                placedLookup.getOrThrow(ModPlacedFeatures.SILVER_VEIN_PLACED_KEY)
+        );
+        biomeBuilder.feature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                placedLookup.getOrThrow(ModPlacedFeatures.SILVER_ORE_PLACED_KEY)
         );
 
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld

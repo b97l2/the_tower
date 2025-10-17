@@ -322,7 +322,7 @@ public class block_init {
 
     public static final Block INFESTED_ROCK = registerBlock("infested_rock",
             new CustomDirt(AbstractBlock.Settings.create()
-                    .strength(1.0F, 2.0F)
+                    .strength(2.5F, 2.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "infested_rock")))));
 
     public static final Block DRAGONS_EYE_ORE = registerBlock("dragons_eye_ore",
@@ -332,42 +332,42 @@ public class block_init {
 
     public static final Block PETRIFIED_STONE = registerBlock("petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone")))));
 
     public static final Block CRACKED_PETRIFIED_STONE = registerBlock("cracked_petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cracked_petrified_stone")))));
 
     public static final Block EMBOSSED_PETRIFIED_STONE = registerBlock("embossed_petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone")))));
 
     public static final Block CRACKED_EMBOSSED_PETRIFIED_STONE = registerBlock("cracked_embossed_petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cracked_embossed_petrified_stone")))));
 
     public static final Block TILED_PETRIFIED_STONE = registerBlock("tiled_petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone")))));
 
     public static final Block CRACKED_TILED_PETRIFIED_STONE = registerBlock("cracked_tiled_petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cracked_tiled_petrified_stone")))));
 
     public static final Block ADORNED_PETRIFIED_STONE = registerBlock("adorned_petrified_stone",
             new PillarBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone")))));
 
     public static final Block GROTESQUE = registerBlock("grotesque",
             new CustomHorisontalFacingBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 20.0F)
+                    .strength(3.3F, 20.0F)
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "grotesque")))));
 
@@ -730,7 +730,21 @@ public class block_init {
                     .strength(3F, 6.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_ladder")))));
 
+    public static final Block SILVER_ORE = registerBlock("silver_ore",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.GRAY)
+                    .strength(2.6F, 4.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_ore")))));
 
+    public static final Block SILVER_VEIN = registerBlock("silver_vein",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.GRAY)
+                    .strength(2.6F, 4.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_vein")))));
 
     public static Block registerBlock(String name, Block block) { //this is the method to load a new (non-item) block
         Identifier id = Identifier.of("the_tower", name);
@@ -828,7 +842,8 @@ public class block_init {
         registerBlockItem("simple_coffer", SIMPLE_COFFER);
         registerBlockItem("ginkgo_log", GINKGO_LOG);
         registerBlockItem("ginkgo_leaves", GINKGO_LEAVES);
-
+        registerBlockItem("silver_ore", SILVER_ORE);
+        registerBlockItem("silver_vein", SILVER_VEIN);
     } //to load into game
 
 }

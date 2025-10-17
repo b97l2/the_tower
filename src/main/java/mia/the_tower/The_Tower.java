@@ -59,14 +59,15 @@ public class The_Tower implements ModInitializer {
 		block_init.load();
 		blockentity_init.load();
 		crop_init.load();
+		ModCarvers.load();
 		column_init.load();
 		levitate_init.load();
 		pale_death_init.load();
 		stake_init.load();
 		InstantMineEffect.load();
 		DecayStatusEffect.load();
-		Shadowlands.load();
 		ThePit.load();
+		Shadowlands.load();
 		CeruleanCoast.load();
 		TheFrage.load();
 		CustomItemGroups.load();
@@ -75,7 +76,6 @@ public class The_Tower implements ModInitializer {
 		CustomParticles.load();
 		ModWorldGeneration.generateModWorldGen();
 		CustomTags.load();
-		ModCarvers.load();
 		ModEntities.load();
 		screen_init.load();
 		CofferToKey.load();

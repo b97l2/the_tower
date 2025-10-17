@@ -58,6 +58,8 @@ public class CustomItemGroups {
                         entries.add(block_init.BLAJ_LESSER_ORE);
                         entries.add(block_init.INFESTED_ROCK);
                         entries.add(block_init.DRAGONS_EYE_ORE);
+                        entries.add(block_init.SILVER_ORE);
+                        entries.add(block_init.SILVER_VEIN);
                         entries.add(block_init.PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_PETRIFIED_STONE);
                         entries.add(block_init.EMBOSSED_PETRIFIED_STONE);
@@ -125,6 +127,9 @@ public class CustomItemGroups {
                         entries.add(item_init.SUPERIOR_BLAJ_ORE_ITEM);
                         entries.add(item_init.LESSER_BLAJ_ORE_ITEM);
                         entries.add(item_init.ITORE_ORE);
+                        entries.add(item_init.RAW_SILVER);
+                        entries.add(item_init.SILVER_INGOT);
+                        entries.add(item_init.RUFESCENT_PEARL);
 
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);

@@ -42,15 +42,17 @@ ColouredCofferScreen extends HandledScreen<CofferScreenHandler> {
         super.init();
 
         // 12x12 buttons beside the grid; adjust positions as you like
-        prevBtn = new IconButton(this.backgroundWidth + 22 - 20, this.backgroundHeight - 3*19 +2, 12, 12, TEX_PREV, () ->
+        prevBtn = new IconButton(0, 0, 12, 12, TEX_PREV, () ->
                 this.client.interactionManager.clickButton(this.handler.syncId, 0) // page--
         );
-        nextBtn = new IconButton(this.backgroundWidth +22 + 20 + 18, this.backgroundHeight - 3*19 +2, 12, 12, TEX_NEXT, () ->
+        nextBtn = new IconButton(0, 0, 12, 12, TEX_NEXT, () ->
                 this.client.interactionManager.clickButton(this.handler.syncId, 1) // page++
         );
 
         this.addDrawableChild(prevBtn);
         this.addDrawableChild(nextBtn);
+
+        placeButtons();
     }
 
     @Override
@@ -120,6 +122,23 @@ ColouredCofferScreen extends HandledScreen<CofferScreenHandler> {
         protected void appendClickableNarrations(net.minecraft.client.gui.screen.narration.NarrationMessageBuilder b) {
             // Optional narration; leave empty for icon-only
         }
+    }
+
+ //this is to keep buttons in the right place despite resolution changes
+    private static final int BTN_W = 12, BTN_H = 12;
+    private static final int BTN_MARGIN_RIGHT = 47;   // distance from right edge of the container
+    private static final int BTN_TOP_OFFSET   = 71;  // distance from container top to row 1
+    private static final int BTN_GAP          = 58;   // gap between prev/next
+
+    private void placeButtons() {
+        // anchor to the right edge of the container, not magic numbers
+        int right = this.x + this.backgroundWidth;          // container right x
+        int nextX = right - BTN_MARGIN_RIGHT - BTN_W;       // rightmost button
+        int prevX = nextX - BTN_GAP - BTN_W;
+        int y     = this.y + BTN_TOP_OFFSET;
+
+        if (prevBtn != null) prevBtn.setPosition(prevX, y);
+        if (nextBtn != null) nextBtn.setPosition(nextX, y);
     }
 
 }
