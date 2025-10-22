@@ -2,17 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "X": "the_tower:silver_ingot",
-    "!": "the_tower:heavens_light"
+    "#": "the_tower:silver_wire"
   },
   "pattern": [
-    " X!",
-    " XX",
-    "X  "
+    "###",
+    "###",
+    "###"
   ],
   "result": {
     "count": 1,
-    "id": "the_tower:shepherds_staff"
+    "id": "the_tower:silver_ingot"
   },
   "show_notification": true
 }

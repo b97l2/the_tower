@@ -528,6 +528,16 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_trapdoor")))));
 
+    public static final Block GOLD_BUTTON = registerBlock("gold_button",
+            new ButtonBlock(BlockSetType.COPPER, 10, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_button")))));
+
+
     public static final Block GINKGO_LOG = registerBlock("ginkgo_log",
             new PillarBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.GOLD)
@@ -746,6 +756,16 @@ public class block_init {
                     .sounds(BlockSoundGroup.STONE)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_vein")))));
 
+    public static final Block SILVER_LANTERN = registerBlock("silver_lantern",
+            new LanternBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.LIGHT_GRAY)
+                    .strength(2.6F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .luminance(state -> 13)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_lantern")))));
+
     public static Block registerBlock(String name, Block block) { //this is the method to load a new (non-item) block
         Identifier id = Identifier.of("the_tower", name);
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, id);
@@ -844,6 +864,8 @@ public class block_init {
         registerBlockItem("ginkgo_leaves", GINKGO_LEAVES);
         registerBlockItem("silver_ore", SILVER_ORE);
         registerBlockItem("silver_vein", SILVER_VEIN);
+        registerBlockItem("gold_button", GOLD_BUTTON);
+        registerBlockItem("silver_lantern", SILVER_LANTERN);
     } //to load into game
 
 }

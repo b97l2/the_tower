@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 
 public class GoldThurible extends LanternBlock {
 
-    private static final float SPAWN_CHANCE_PER_TICK = 0.35f; // per display tick
     private static final int   PARTICLES_PER_SPAWN   = 2;     // how many each time it triggers
     private static final double AREA_HALF_SIZE       = 2.5;   // 5x5 area => +/- 2.5 from center
 
@@ -27,8 +26,7 @@ public class GoldThurible extends LanternBlock {
     @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random rand) {
-        // This method is client-side; no need for a block entity
-        // Throttle: ~20% chance per client tick
+        // ~20% chance per client tick
         final double baseY = pos.getY() + (state.get(HANGING) ? 0.30 : 0.70);
 
         for (int i = 0; i < PARTICLES_PER_SPAWN; i++) {
@@ -36,7 +34,6 @@ public class GoldThurible extends LanternBlock {
             double z = pos.getZ() + 0.5 + (rand.nextDouble() * (AREA_HALF_SIZE * 2.0) - AREA_HALF_SIZE);
             double y = baseY + (rand.nextDouble() * 0.15 - 0.05); // small vertical jitter
 
-            // Mild upward drift; tweak as needed
             double vx = 0.0;
             double vy = 0.0; //0.01 + rand.nextDouble() * 0.01;
             double vz = 0.0;

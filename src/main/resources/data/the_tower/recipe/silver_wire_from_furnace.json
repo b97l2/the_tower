@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 20,
+  "experience": 0,
+  "ingredient": "the_tower:raw_silver_nugget",
+  "result": {
+    "id": "the_tower:silver_wire"
+  }
+}

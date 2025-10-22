@@ -158,7 +158,11 @@
   "item.the_tower.silver_ingot": "Silver Ingot",
   "item.the_tower.rufescent_pearl": "Rufescent Pearl",
   "item.the_tower.silver_ore": "Silver Ore",
-  "item.the_tower.silver_vein": "Silver Vein"
+  "item.the_tower.silver_vein": "Silver Vein",
+  "item.the_tower.gold_button": "Gold Button",
+  "item.the_tower.silver_lantern": "Silver Lantern",
+  "item.the_tower.silver_wire": "Silver Wire",
+  "item.the_tower.raw_silver_nugget": "Raw Silver Nugget"
 }
 
 

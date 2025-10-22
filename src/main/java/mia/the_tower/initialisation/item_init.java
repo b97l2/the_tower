@@ -82,7 +82,9 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item ITORE_ORE;
     public static Item GOLDEN_SEED;
     public static Item RAW_SILVER;
+    public static Item RAW_SILVER_NUGGET;
     public static Item SILVER_INGOT;
+    public static Item SILVER_WIRE;
     public static Item RUFESCENT_PEARL;
 
     public static void load() {
@@ -363,9 +365,17 @@ public class item_init { //this is the class that initialises items in the mod
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("raw_silver")))));
 
+        RAW_SILVER_NUGGET = register("raw_silver_nugget", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("raw_silver_nugget")))));
+
         SILVER_INGOT = register("silver_ingot", new Item(
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("silver_ingot")))));
+
+        SILVER_WIRE = register("silver_wire", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("silver_wire")))));
 
         RUFESCENT_PEARL = register("rufescent_pearl", new Item(
                 new Item.Settings()

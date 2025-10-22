@@ -128,13 +128,16 @@ public class CustomItemGroups {
                         entries.add(item_init.LESSER_BLAJ_ORE_ITEM);
                         entries.add(item_init.ITORE_ORE);
                         entries.add(item_init.RAW_SILVER);
+                        entries.add(item_init.RAW_SILVER_NUGGET);
                         entries.add(item_init.SILVER_INGOT);
+                        entries.add(item_init.SILVER_WIRE);
                         entries.add(item_init.RUFESCENT_PEARL);
 
                         //craftable items
                         entries.add(block_init.DRAGONS_LEAP);
                         entries.add(block_init.ROD_OF_LUMINESCENCE);
                         entries.add(block_init.SIMPLE_COFFER);
+                        entries.add(block_init.SILVER_LANTERN);
                     }).build());
 
     public static final ItemGroup FUSION_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
@@ -162,6 +165,7 @@ public class CustomItemGroups {
                         entries.add(block_init.GOLD_BARS);
                         entries.add(block_init.GOLD_TRAPDOOR);
                         entries.add(block_init.GOLD_LADDER);
+                        entries.add(block_init.GOLD_BUTTON);
                         entries.add(item_init.GOLDEN_SEED);
                         entries.add(item_init.GINKGO_LEAF);
                         entries.add(block_init.GINKGO_LOG);

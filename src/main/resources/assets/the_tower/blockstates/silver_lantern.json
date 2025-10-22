@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "the_tower:block/silver_lantern"
+    },
+    "hanging=true": {
+      "model": "the_tower:block/silver_lantern_hanging"
+    }
+  }
+}
