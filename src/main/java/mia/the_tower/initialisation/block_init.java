@@ -756,13 +756,21 @@ public class block_init {
                     .sounds(BlockSoundGroup.STONE)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_vein")))));
 
+    public static final Block SILVER_BLOCK = registerBlock("silver_block",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.GRAY)
+                    .strength(2.8F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_block")))));
+
     public static final Block SILVER_LANTERN = registerBlock("silver_lantern",
             new LanternBlock(AbstractBlock.Settings.create()
                     .requiresTool()
                     .mapColor(MapColor.LIGHT_GRAY)
-                    .strength(2.6F, 4.0F)
+                    .strength(2.8F, 4.0F)
                     .sounds(BlockSoundGroup.METAL)
-                    .luminance(state -> 13)
+                    .luminance(state -> 15)
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_lantern")))));
 
@@ -866,6 +874,7 @@ public class block_init {
         registerBlockItem("silver_vein", SILVER_VEIN);
         registerBlockItem("gold_button", GOLD_BUTTON);
         registerBlockItem("silver_lantern", SILVER_LANTERN);
+        registerBlockItem("silver_block", SILVER_BLOCK);
     } //to load into game
 
 }

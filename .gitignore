@@ -37,5 +37,16 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
 /src/main/resources/assets/the_tower/textures/
-/build/
+
+#all in /build but libs
+/build/classes
+/build/datagen
+/build/devlibs
+/build/generated
+/build/loom-cache
+/build/processIncludeJars
+/build/reports
+/build/resources
+/build/tmp

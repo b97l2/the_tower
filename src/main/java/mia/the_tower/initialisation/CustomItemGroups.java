@@ -60,6 +60,7 @@ public class CustomItemGroups {
                         entries.add(block_init.DRAGONS_EYE_ORE);
                         entries.add(block_init.SILVER_ORE);
                         entries.add(block_init.SILVER_VEIN);
+                        entries.add(block_init.SILVER_BLOCK);
                         entries.add(block_init.PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_PETRIFIED_STONE);
                         entries.add(block_init.EMBOSSED_PETRIFIED_STONE);
