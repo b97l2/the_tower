@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:quartz",
+    "!": "the_tower:silver_ingot"
+  },
+  "pattern": [
+    "!#!"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:circlet_of_glut"
+  },
+  "show_notification": true
+}

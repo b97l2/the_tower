@@ -94,6 +94,7 @@ public class CustomItemGroups {
 
                         //usable items
                         entries.add(item_init.GLUH);
+                        entries.add(item_init.TWINTAIL_BERRY);
                         entries.add(item_init.YUMP);
                         entries.add(item_init.BLAJ);
                         entries.add(item_init.HORNWORM);

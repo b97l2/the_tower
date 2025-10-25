@@ -277,7 +277,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "starlight_lichen")))));
 
     public static final Block GABRIELS_TRUMPETS_BUSH = registerBlock("gabriels_trumpets_bush", //!*texture
-            new SweetBerryBushBlock(AbstractBlock.Settings.create()
+            new TwintailBerryBushBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.CYAN)
                     .ticksRandomly()
                     .noCollision()

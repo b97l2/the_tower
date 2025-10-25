@@ -38,8 +38,8 @@
   "item.the_tower.blue_bell": "Bluebell",
   "item.the_tower.blue_foxglove": "Blue Foxglove",
   "item.the_tower.cerulean_wildgrass": "Cerulean Wildgrass",
-  "item.the_tower.starlight_lichen": "Starlight Lichen",
-  "item.the_tower.gabriels_trumpets_bush": "Gabriel's Trumpets Bush",
+  "item.the_tower.starlight_lichen": "Bloodstain Lichen",
+  "item.the_tower.gabriels_trumpets_bush": "Twintail Berry Bush",
   "item.the_tower.sapphire_rose": "Sapphire Rose",
   "item.the_tower.jesters_hat": "Jester's Hat",
   "item.the_tower.dragons_leap": "Dragon's Leap",
@@ -163,7 +163,8 @@
   "item.the_tower.silver_lantern": "Silver Lantern",
   "item.the_tower.silver_wire": "Silver Wire",
   "item.the_tower.raw_silver_nugget": "Raw Silver Nugget",
-  "item.the_tower.silver_block": "Silver Block"
+  "item.the_tower.silver_block": "Silver Block",
+  "item.the_tower.twintail_berry": "Twintail Berry"
 }
 
 

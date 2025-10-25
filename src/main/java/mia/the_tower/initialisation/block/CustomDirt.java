@@ -36,7 +36,9 @@ public class CustomDirt extends Block implements Fertilizable {
                 block_init.SAPPHIRE_ROSE,
                 block_init.CERULEAN_PETALS,
                 block_init.CERULEAN_SHORTGRASS,
-                block_init.BLUE_HOSTAS
+                block_init.BLUE_HOSTAS,
+                block_init.BLUE_BELL,
+                block_init.CERULEAN_WILDGRASS
         );
         return plantPool.get(random.nextInt(plantPool.size()));
     }

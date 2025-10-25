@@ -86,6 +86,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item SILVER_INGOT;
     public static Item SILVER_WIRE;
     public static Item RUFESCENT_PEARL;
+    public static Item TWINTAIL_BERRY;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -246,8 +247,6 @@ public class item_init { //this is the class that initialises items in the mod
                 .useRemainder(GOLDEN_SEED)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("ginkgo_fruit")))));
 
-
-
         CIRCLET_OF_GLUT = register("circlet_of_glut", new CircletOfGlutItem(new Item.Settings()
                 //.equippable(EquipmentSlot.HEAD)
                 .rarity(Rarity.EPIC)
@@ -380,6 +379,14 @@ public class item_init { //this is the class that initialises items in the mod
         RUFESCENT_PEARL = register("rufescent_pearl", new Item(
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("rufescent_pearl")))));
+
+        TWINTAIL_BERRY = register("twintail_berry", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(3)
+                                .saturationModifier(0.1F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("twintail_berry")))));
 
     }
 

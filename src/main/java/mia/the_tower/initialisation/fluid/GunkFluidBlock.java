@@ -1,13 +1,17 @@
 package mia.the_tower.initialisation.fluid;
 
+import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.status_effects.DecayStatusEffect;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
@@ -26,6 +30,9 @@ public class GunkFluidBlock extends FluidBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, net.minecraft.entity.Entity entity) {
+        if (entity instanceof LivingEntity && entity.getType() != ModEntities.VOID_MOTH && entity.getType() != EntityType.BEE) { //change to relevant mobs later
+            entity.slowMovement(state, new Vec3d(0.8F, 0.75, 0.8F));
+        }
         if (entity instanceof PlayerEntity player) {
 
             playerTimeOutside.put(player, 0);

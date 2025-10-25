@@ -35,11 +35,6 @@ public class CeruleanCoast {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
         //spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PORCUPINE, 2, 3, 5)); //spawning mod entities
 
-        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
-
-        DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
-        DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
-
         //general
         var placedLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE); //?
         var carverLookup  = context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
@@ -72,17 +67,12 @@ public class CeruleanCoast {
         );
 
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld
-        DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
+        //DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
         //DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
         //DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
 
-        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_PLAINS);
-
-        DefaultBiomeFeatures.addForestFlowers(biomeBuilder);
-        DefaultBiomeFeatures.addLargeFerns(biomeBuilder);
-
-        DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
-        DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
+        //vegetation
+        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.CERULEAN_GRASS_PATCH_PLACED_KEY);
 
         return new Biome.Builder()
                 .precipitation(true)

@@ -11,15 +11,17 @@ import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
 import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.NoiseBlockStateProvider;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 import java.util.List;
-
+//relevant mc files to look at: VegetationConfiguredFeatures
 public class ModConfiguredFeatures {
 
     //for features, start here
@@ -32,13 +34,14 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> SILVER_ORE_KEY = registerKey("silver_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SILVER_VEIN_KEY = registerKey("silver_vein");
 
-
     //tree
     public static final RegistryKey<ConfiguredFeature<?, ?>> GINKGO_KEY = registerKey("ginkgo");
 
+    //vegetation
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_GRASS_PATCH_KEY = registerKey("cerulean_grass_patch");
+
     //other
     public static final RegistryKey<ConfiguredFeature<?, ?>> BLAJ_KEY = registerKey("blaj");
-
 
 
 
@@ -80,6 +83,23 @@ public class ModConfiguredFeatures {
                 new JungleFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(6), 5),
 
                 new TwoLayersFeatureSize(3, 0, 4)).build());
+
+        //for vegetation
+        ConfiguredFeatures.register(
+                context,
+                CERULEAN_GRASS_PATCH_KEY,
+                Feature.RANDOM_PATCH,
+                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(new NoiseBlockStateProvider( //this is for multiple types of blocks
+                                2345L,
+                                new DoublePerlinNoiseSampler.NoiseParameters(0, 1.0),
+                                0.020833334F,
+                                List.of(
+                                        block_init.CERULEAN_SHORTGRASS.getDefaultState(),
+                                        block_init.CERULEAN_WILDGRASS.getDefaultState()
+                                )
+                        ))));
+        //add one here for cerulean petals, also with randomised direction and amount (not sure how to do. look at vanilla)
 
         //other
         register(context, BLAJ_KEY, features_init.BLAJ_FEATURE, DefaultFeatureConfig.INSTANCE);

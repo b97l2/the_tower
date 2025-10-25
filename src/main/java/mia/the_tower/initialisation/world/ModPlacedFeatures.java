@@ -1,24 +1,26 @@
 package mia.the_tower.initialisation.world;
 
+import mia.the_tower.initialisation.block_init;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerbedBlock;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
 import net.minecraft.world.gen.placementmodifier.*;
 
 import java.util.List;
-
+//relevant mc files to look at: VegetationPlacedFeatures
 public class ModPlacedFeatures {
 
     //features need a line here
@@ -30,8 +32,11 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> SILVER_ORE_PLACED_KEY = registerKey("silver_ore_placed");
     public static final RegistryKey<PlacedFeature> SILVER_VEIN_PLACED_KEY = registerKey("silver_vein_placed");
 
+    //vegetation
+    public static final RegistryKey<PlacedFeature> CERULEAN_GRASS_PATCH_PLACED_KEY = registerKey("cerulean_grass_patch_placed");
 
     //other
+
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -57,6 +62,20 @@ public class ModPlacedFeatures {
                 ModOrePlacement.modifiersWithCount(2, //veins per chunk
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-160), YOffset.fixed(-60))));
         //for ore then we go to gen/ModOreGeneration
+
+        //vegetation
+
+
+        PlacedFeatures.register(
+                context,
+                CERULEAN_GRASS_PATCH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.CERULEAN_GRASS_PATCH_KEY),
+                CountPlacementModifier.of(3),
+                RarityFilterPlacementModifier.of(2),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of()
+        );
 
         //other
 
