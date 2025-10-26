@@ -23,6 +23,7 @@ public class CustomItemGroups {
                         entries.add(block_init.SKIN);
                         entries.add(block_init.STITCHED_FLESH);
                         entries.add(block_init.ITORE);
+                        entries.add(block_init.GRAVESTONE);
 
                         //items
                         entries.add(item_init.KLAEN);

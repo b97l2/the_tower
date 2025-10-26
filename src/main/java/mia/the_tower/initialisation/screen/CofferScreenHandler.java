@@ -179,7 +179,7 @@ public class CofferScreenHandler  extends ScreenHandler {
         // Pass 1: merge into existing compatible stacks across ALL rows
         for (int i = 0, n = backing.size(); i < n && !stack.isEmpty(); i++) {
             ItemStack cur = backing.getStack(i);
-            if (!cur.isEmpty() && net.minecraft.item.ItemStack.areItemsEqual(cur, stack)) {
+            if (!cur.isEmpty() && net.minecraft.item.ItemStack.areItemsAndComponentsEqual(cur, stack)) {
                 int max = Math.min(cur.getMaxCount(), stack.getMaxCount());
                 int canMove = Math.min(stack.getCount(), max - cur.getCount());
                 if (canMove > 0) {

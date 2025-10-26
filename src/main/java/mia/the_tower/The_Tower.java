@@ -13,6 +13,7 @@ import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
 import mia.the_tower.initialisation.items.util.CofferToKey;
+import mia.the_tower.initialisation.misc.ModDeaths;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.screen.screen_init;
 import mia.the_tower.initialisation.sounds.CustomSounds;
@@ -79,6 +80,7 @@ public class The_Tower implements ModInitializer {
 		ModEntities.load();
 		screen_init.load();
 		CofferToKey.load();
+		ModDeaths.init();
 
 		//for flammable blocks
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);

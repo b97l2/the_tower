@@ -11,7 +11,10 @@ import net.minecraft.util.Identifier;
 
 public class blockentity_init {
 
+    //for a block entity you need to register the block in block_init and register the block entity here as well (top and bottom).
+
     public static BlockEntityType<ColouredCofferBlockEntity> COLORED_COFFER;
+    public static BlockEntityType<StorageTemplateBlockEntity> GRAVESTONE;
 
     private static Block[] cofferBlocks() {
         return new Block[] {
@@ -34,12 +37,17 @@ public class blockentity_init {
         };
     }
 
-    //for a block entity you need to load the block in block_init and load the block entity here as well.
+
     public static void register() {
         COLORED_COFFER = Registry.register(
                 Registries.BLOCK_ENTITY_TYPE,
                 The_Tower.id("coloured_coffer"),
                 FabricBlockEntityTypeBuilder.create(ColouredCofferBlockEntity::new, cofferBlocks()).build(null)
+        );
+        GRAVESTONE = Registry.register(
+                Registries.BLOCK_ENTITY_TYPE,
+                The_Tower.id("gravestone"),
+                FabricBlockEntityTypeBuilder.create(StorageTemplateBlockEntity::new, block_init.GRAVESTONE).build(null)
         );
 
         The_Tower.LOGGER.info("[the_tower] COLORED_COFFER registered: {}", COLORED_COFFER);

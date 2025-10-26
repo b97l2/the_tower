@@ -164,7 +164,9 @@
   "item.the_tower.silver_wire": "Silver Wire",
   "item.the_tower.raw_silver_nugget": "Raw Silver Nugget",
   "item.the_tower.silver_block": "Silver Block",
-  "item.the_tower.twintail_berry": "Twintail Berry"
+  "item.the_tower.twintail_berry": "Twintail Berry",
+  "container.gravestone": "Gravestone",
+  "item.the_tower.gravestone": "Gravestone"
 }
 
 

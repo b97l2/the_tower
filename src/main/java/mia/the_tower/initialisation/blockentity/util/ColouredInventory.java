@@ -47,6 +47,7 @@ public class ColouredInventory implements Inventory{
             entry.items = resized; // replace; do NOT add()
         }
         State.get(world.getServer()).markDirty();
+        enforceSizeInvariant();
     }
 
     public List<ItemStack> onContainerRemoved() {
@@ -73,6 +74,7 @@ public class ColouredInventory implements Inventory{
         }
 
         State.get(world.getServer()).markDirty();
+        enforceSizeInvariant();
         return overflow;
     }
 
@@ -110,9 +112,9 @@ public class ColouredInventory implements Inventory{
 
     @Override
     public void setStack(int slot, ItemStack stack) {
-        if (slot < 0) return;
-        while (slot >= entry.items.size()) {
-            entry.items.add(ItemStack.EMPTY);
+        if (slot < 0 || slot >= entry.items.size()) {
+            // Out of bounds: refuse rather than silently changing capacity.
+            return;
         }
         entry.items.set(slot, stack);
         if (!stack.isEmpty() && stack.getCount() > stack.getMaxCount()) {
@@ -137,6 +139,16 @@ public class ColouredInventory implements Inventory{
         markDirty();
     }
 
+    //this is to make sure the inventory size is consistent
+    private void enforceSizeInvariant() {
+        int expected = Math.max(0, entry.containers * 27);
+        if (entry.items.size() != expected) {
+            DefaultedList<ItemStack> fixed = DefaultedList.ofSize(expected, ItemStack.EMPTY);
+            for (int i = 0; i < Math.min(expected, entry.items.size()); i++) fixed.set(i, entry.items.get(i));
+            entry.items = fixed;
+        }
+    }
+
     // --- Persistent, per-color global state ---
 
     public static final class State extends PersistentState {
@@ -154,6 +166,35 @@ public class ColouredInventory implements Inventory{
 
         private State() {}
 
+        //possibly buggy, unexpectedely removes pages from inventory
+//        public static State fromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
+//            State s = new State();
+//            for (DyeColor c : DyeColor.values()) {
+//                String name = c.getName();
+//                if (!nbt.contains(name, NbtElement.COMPOUND_TYPE)) continue;
+//                NbtCompound cTag = nbt.getCompound(name);
+//
+//                Entry e = new Entry();
+//                e.containers = cTag.getInt("containers");
+//
+//                int expectedSize = Math.max(0, e.containers * 27);
+//
+//                // Load whatever was saved under the standard "Items" list
+//                NbtList itemsList = cTag.getList("Items", NbtElement.COMPOUND_TYPE);
+//                DefaultedList<ItemStack> temp = DefaultedList.ofSize(itemsList.size(), ItemStack.EMPTY);
+//                Inventories.readNbt(cTag, temp, lookup);
+//
+//                // Reconcile to expected size (containers * 27)
+//                e.items = DefaultedList.ofSize(expectedSize, ItemStack.EMPTY);
+//                for (int i = 0; i < Math.min(e.items.size(), temp.size()); i++) {
+//                    e.items.set(i, temp.get(i));
+//                }
+//
+//                s.byColor.put(c, e);
+//            }
+//            return s;
+//        }
+
         public static State fromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
             State s = new State();
             for (DyeColor c : DyeColor.values()) {
@@ -166,21 +207,18 @@ public class ColouredInventory implements Inventory{
 
                 int expectedSize = Math.max(0, e.containers * 27);
 
-                // Load whatever was saved under the standard "Items" list
-                NbtList itemsList = cTag.getList("Items", NbtElement.COMPOUND_TYPE);
-                DefaultedList<ItemStack> temp = DefaultedList.ofSize(itemsList.size(), ItemStack.EMPTY);
+                // Allocate to full capacity so readNbt can place by "Slot" index.
+                DefaultedList<ItemStack> temp = DefaultedList.ofSize(expectedSize, ItemStack.EMPTY);
                 Inventories.readNbt(cTag, temp, lookup);
 
-                // Reconcile to expected size (containers * 27)
-                e.items = DefaultedList.ofSize(expectedSize, ItemStack.EMPTY);
-                for (int i = 0; i < Math.min(e.items.size(), temp.size()); i++) {
-                    e.items.set(i, temp.get(i));
-                }
+                // No extra reconcile/copy step needed; temp already matches capacity.
+                e.items = temp;
 
                 s.byColor.put(c, e);
             }
             return s;
         }
+
 
         @Override
         public NbtCompound writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
@@ -214,4 +252,5 @@ public class ColouredInventory implements Inventory{
             DefaultedList<ItemStack> items = DefaultedList.ofSize(0, ItemStack.EMPTY);
         }
     }
+
 }

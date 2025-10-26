@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "the_tower:block/gravestone",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "the_tower:block/gravestone"
+    },
+    "facing=south": {
+      "model": "the_tower:block/gravestone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "the_tower:block/gravestone",
+      "y": 270
+    }
+  }
+}

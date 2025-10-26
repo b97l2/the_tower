@@ -5,6 +5,7 @@ import mia.the_tower.initialisation.block.ExtraTallFlower;
 import mia.the_tower.initialisation.block.*;
 import mia.the_tower.initialisation.block.BarrierBlock;
 import mia.the_tower.initialisation.blockentity.ColouredCofferBlock;
+import mia.the_tower.initialisation.blockentity.StorageTemplateBlock;
 import mia.the_tower.initialisation.fluid.BloodFluid;
 import mia.the_tower.initialisation.fluid.BloodFluidBlock;
 import mia.the_tower.initialisation.fluid.GunkFluid;
@@ -417,12 +418,6 @@ public class block_init {
                     .mapColor(MapColor.BLACK)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("gunk")))));
 
-    public static final Block COFFER = registerBlock("coffer",
-            new BarrelBlock(AbstractBlock.Settings.create()
-                    .strength(3.0F, 0.3F)
-                    .requiresTool()
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "coffer"))))); //check, i dont rememeber this
-
     public static final Block SALT = registerBlock("salt",
             new Block(AbstractBlock.Settings.create()
                     .strength(0.9F, 0.3F)
@@ -774,6 +769,13 @@ public class block_init {
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_lantern")))));
 
+    public static final Block GRAVESTONE = registerBlock("gravestone",
+            new StorageTemplateBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GRAY)
+                    .strength(1.3F, 50.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gravestone")))));
+
     public static Block registerBlock(String name, Block block) { //this is the method to load a new (non-item) block
         Identifier id = Identifier.of("the_tower", name);
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, id);
@@ -830,7 +832,7 @@ public class block_init {
         registerBlockItem("dragons_leap", DRAGONS_LEAP);
         registerBlockItem("jesters_hat", JESTERS_HAT);
         registerBlockItem("loaf", LOAF);
-        registerBlockItem("coffer", COFFER);
+        registerBlockItem("gravestone", GRAVESTONE);
         registerBlockItem("shadow", SHADOW);
         registerBlockItem("blue_hostas", BLUE_HOSTAS);
         registerBlockItem("salt", SALT);
