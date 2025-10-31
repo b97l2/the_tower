@@ -166,7 +166,12 @@
   "item.the_tower.silver_block": "Silver Block",
   "item.the_tower.twintail_berry": "Twintail Berry",
   "container.gravestone": "Gravestone",
-  "item.the_tower.gravestone": "Gravestone"
+  "item.the_tower.gravestone": "Gravestone",
+  "item.the_tower.chocolate_bar": "Chocolate Bar",
+  "item.the_tower.old_soil": "Old Soil",
+  "item.the_tower.old_meadow": "Old Meadow",
+  "item.the_tower.frayed_note": "Frayed Note",
+  "item.the_tower.divining_rod": "Divining Rod"
 }
 
 

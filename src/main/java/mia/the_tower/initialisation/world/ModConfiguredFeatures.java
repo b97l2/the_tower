@@ -2,6 +2,9 @@ package mia.the_tower.initialisation.world;
 
 import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.util.CustomTags;
+import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
+import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -9,15 +12,22 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
+import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
 import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
 import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
+import net.minecraft.world.gen.foliage.SpruceFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.NoiseBlockStateProvider;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 import java.util.List;
@@ -39,6 +49,7 @@ public class ModConfiguredFeatures {
 
     //vegetation
     public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_GRASS_PATCH_KEY = registerKey("cerulean_grass_patch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_COAST_FLOWERS_PATCH_KEY = registerKey("cerulean_coast_flowers_patch_key");
 
     //other
     public static final RegistryKey<ConfiguredFeature<?, ?>> BLAJ_KEY = registerKey("blaj");
@@ -77,10 +88,18 @@ public class ModConfiguredFeatures {
         //for tree
         register(context, GINKGO_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(block_init.GINKGO_LOG),
-                new ForkingTrunkPlacer(7, 8, 5),
+                new GiantTrunkPlacer(5, 88, 95, 20, 3, 0.5f, 3, 0.3f, 3, 0.4f, 0.8f, 3.5f),
 
                 BlockStateProvider.of(block_init.GINKGO_LEAVES),
-                new JungleFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(6), 5),
+                new GiantFoliagePlacer(        ConstantIntProvider.create(14),   // radius seed (big crowns)
+                        ConstantIntProvider.create(0),    // offset seed
+                        UniformIntProvider.create(18, 42),// max_droop: long hanging curtains
+                        0.9f,                            // strand_chance (per perimeter leaf)
+                        0.90f,                            // strand_continue_chance
+                        0.30f,                            // drift_chance
+                        0.70f,                            // vertical_taper (radius loss per layer)
+                        2                                 // layer_fuzz (+/-)
+                        ),
 
                 new TwoLayersFeatureSize(3, 0, 4)).build());
 
@@ -99,6 +118,32 @@ public class ModConfiguredFeatures {
                                         block_init.CERULEAN_WILDGRASS.getDefaultState()
                                 )
                         ))));
+        ConfiguredFeatures.register(
+                context,
+                CERULEAN_COAST_FLOWERS_PATCH_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchFeatureConfig(
+                        64, // tries per patch
+                        6,  // xz spread
+                        2,  // y spread
+                        PlacedFeatures.createEntry(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockFeatureConfig(
+                                        new WeightedBlockStateProvider(
+                                                DataPool.<BlockState>builder() //this gives weighted distribution within a single patch
+                                                        .add(block_init.SAPPHIRE_ROSE.getDefaultState(), 2)
+                                                        .add(block_init.BLUE_BELL.getDefaultState(), 3)
+                                                        .add(block_init.BLUE_FOXGLOVE.getDefaultState(), 1)
+                                                        .add(block_init.BLUE_HOSTAS.getDefaultState(), 4)
+                                                        .add(block_init.CERULEAN_PETALS.getDefaultState(), 7)
+                                                // add more plants + weights as you like
+                                        )
+                                ),
+                                // Optional: add survival/ground predicates so every variant checks it can live
+                                BlockPredicate.wouldSurvive(block_init.BLUE_FOXGLOVE.getDefaultState(), BlockPos.ORIGIN)
+                        )
+                )
+        );
         //add one here for cerulean petals, also with randomised direction and amount (not sure how to do. look at vanilla)
 
         //other

@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "the_tower:filth",
-    "the_tower:salt"
+    "the_tower:salt",
+    "the_tower:old_soil",
+    "the_tower:old_meadow"
   ]
 }

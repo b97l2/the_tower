@@ -3,7 +3,8 @@
 	"package": "mia.the_tower.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"ExampleClientMixin"
+		"ExampleClientMixin",
+		"GameRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

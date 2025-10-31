@@ -70,6 +70,8 @@ public class CustomItemGroups {
                         entries.add(block_init.CRACKED_TILED_PETRIFIED_STONE);
                         entries.add(block_init.ADORNED_PETRIFIED_STONE);
                         entries.add(block_init.GROTESQUE);
+                        entries.add(block_init.OLD_SOIL);
+                        entries.add(block_init.OLD_MEADOW);
                         entries.add(block_init.SALT);
                         entries.add(block_init.AFHD);
                         entries.add(block_init.SLATE);
@@ -107,6 +109,7 @@ public class CustomItemGroups {
                         entries.add(item_init.PALE_AXE);
                         entries.add(item_init.SHEPHERDS_STAFF);
                         entries.add(item_init.CIRCLET_OF_GLUT);
+                        entries.add(item_init.DIVINING_ROD);
                         entries.add(item_init.VOID_MOTH_SPAWN_EGG);
                         entries.add(item_init.KEY);
                         entries.add(item_init.WHITE_KEY);
@@ -150,6 +153,7 @@ public class CustomItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(item_init.STAVE);
                         entries.add(item_init.GLOOP);
+                        entries.add(item_init.CHOCOLATE_BAR);
 
                         entries.add(block_init.CAN_OF_RETARDATION);
                         entries.add(block_init.SHADOW);

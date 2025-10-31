@@ -34,6 +34,7 @@ public class ModPlacedFeatures {
 
     //vegetation
     public static final RegistryKey<PlacedFeature> CERULEAN_GRASS_PATCH_PLACED_KEY = registerKey("cerulean_grass_patch_placed");
+    public static final RegistryKey<PlacedFeature> CERULEAN_COAST_FLOWERS_PATCH_PLACED_KEY = registerKey("cerulean_coast_flowers_patch_placed");
 
     //other
 
@@ -70,6 +71,16 @@ public class ModPlacedFeatures {
                 context,
                 CERULEAN_GRASS_PATCH_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.CERULEAN_GRASS_PATCH_KEY),
+                CountPlacementModifier.of(3),
+                RarityFilterPlacementModifier.of(2),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of()
+        );
+        PlacedFeatures.register(
+                context,
+                CERULEAN_COAST_FLOWERS_PATCH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.CERULEAN_COAST_FLOWERS_PATCH_KEY),
                 CountPlacementModifier.of(3),
                 RarityFilterPlacementModifier.of(2),
                 SquarePlacementModifier.of(),

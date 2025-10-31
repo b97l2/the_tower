@@ -4,6 +4,7 @@ import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.block.stake_init;
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.items.*;
+import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.status_effects.InstantMineEffect;
 import mia.the_tower.initialisation.status_effects.SanguineStatusEffect;
 import mia.the_tower.initialisation.status_effects.levitate_init;
@@ -87,6 +88,9 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item SILVER_WIRE;
     public static Item RUFESCENT_PEARL;
     public static Item TWINTAIL_BERRY;
+    public static Item CHOCOLATE_BAR;
+    public static Item FRAYED_NOTE;
+    public static Item DIVINING_ROD;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -157,9 +161,15 @@ public class item_init { //this is the class that initialises items in the mod
 
         PILLAR_OF_SALT = register("pillar_of_salt", new PillarOfSaltItem(new Item.Settings()
                 .maxCount(1)
-                .useCooldown(10)
+                .useCooldown(3)
                 .rarity(Rarity.UNCOMMON)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pillar_of_salt")))));
+
+        DIVINING_ROD = register("divining_rod", new SeekingItem(block_init.GRAVESTONE, CustomParticles.STAVE_PARTICLE, new Item.Settings()
+                .maxCount(1)
+                .useCooldown(3)
+                .rarity(Rarity.UNCOMMON)
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("divining_rod")))));
 
         PILE_OF_SALT = register("pile_of_salt", new Item(new Item.Settings().food(
                         new FoodComponent.Builder()
@@ -384,9 +394,21 @@ public class item_init { //this is the class that initialises items in the mod
                 .food(
                         new FoodComponent.Builder()
                                 .nutrition(3)
-                                .saturationModifier(0.1F)
+                                .saturationModifier(0.4F)
                                 .build())
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("twintail_berry")))));
+
+        CHOCOLATE_BAR = register("chocolate_bar", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(6)
+                                .saturationModifier(0.2F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chocolate_bar")))));
+
+        FRAYED_NOTE = register("frayed_note", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("frayed_note")))));
 
     }
 

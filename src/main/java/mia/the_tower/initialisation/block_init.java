@@ -220,6 +220,8 @@ public class block_init {
                     .sounds(BlockSoundGroup.PINK_PETALS)
                     .mapColor(DyeColor.CYAN)
                     .pistonBehavior(PistonBehavior.DESTROY)
+                    .replaceable()
+                    .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cerulean_petals")))));
 
     public static final Block BLUE_BELL = registerBlock("blue_bell",
@@ -233,6 +235,7 @@ public class block_init {
                     .sounds(BlockSoundGroup.GRASS)
                     .offset(AbstractBlock.OffsetType.XZ)
                     .pistonBehavior(PistonBehavior.DESTROY)
+                    .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "blue_bell")))));
 
     public static final Block BLUE_FOXGLOVE = registerBlock("blue_foxglove", //!*texture
@@ -240,6 +243,7 @@ public class block_init {
                     .mapColor(MapColor.CYAN)
                     .noCollision()
                     .breakInstantly()
+                    .nonOpaque()
                     .sounds(BlockSoundGroup.GRASS)
                     .offset(AbstractBlock.OffsetType.XZ)
                     .pistonBehavior(PistonBehavior.DESTROY)
@@ -254,6 +258,7 @@ public class block_init {
                     .offset(AbstractBlock.OffsetType.XZ)
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .replaceable()
+                    .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cerulean_wildgrass")))));
 
     public static final Block CERULEAN_SHORTGRASS = registerBlock("cerulean_shortgrass", //!*texture
@@ -325,6 +330,19 @@ public class block_init {
             new CustomDirt(AbstractBlock.Settings.create()
                     .strength(2.5F, 2.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "infested_rock")))));
+
+    public static final Block OLD_SOIL = registerBlock("old_soil",
+            new CustomDirt(AbstractBlock.Settings.create()
+                    .strength(1.5F, 1.5F)
+                    .sounds(BlockSoundGroup.ROOTED_DIRT)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "old_soil")))));
+
+    public static final Block OLD_MEADOW = registerBlock("old_meadow",
+            new CustomGrass(AbstractBlock.Settings.create()
+                    .strength(1.5F, 1.5F)
+                    .sounds(BlockSoundGroup.GRASS)
+                    .ticksRandomly()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "old_meadow")))));
 
     public static final Block DRAGONS_EYE_ORE = registerBlock("dragons_eye_ore",
             new CustomDirt(AbstractBlock.Settings.create()
@@ -540,12 +558,12 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_log")))));
 
     public static final Block GINKGO_LEAVES = registerBlock("ginkgo_leaves",
-            new LeavesBlock(AbstractBlock.Settings.create()
+            new Block(AbstractBlock.Settings.create()
                     .mapColor(MapColor.GOLD)
                     .sounds(BlockSoundGroup.GRASS)
                     .burnable()
                     .nonOpaque()
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_log")))));
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_leaves")))));
 
     public static final Block GINKGO_SAPLING = registerBlock("ginkgo_sapling",
             new SaplingBlock(ModSaplingGenerators.GINKGO, AbstractBlock.Settings.create()
@@ -877,6 +895,8 @@ public class block_init {
         registerBlockItem("gold_button", GOLD_BUTTON);
         registerBlockItem("silver_lantern", SILVER_LANTERN);
         registerBlockItem("silver_block", SILVER_BLOCK);
+        registerBlockItem("old_soil", OLD_SOIL);
+        registerBlockItem("old_meadow", OLD_MEADOW);
     } //to load into game
 
 }

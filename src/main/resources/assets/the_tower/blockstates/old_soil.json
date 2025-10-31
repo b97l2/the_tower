@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      { "model": "the_tower:block/old_soil1" },
+      { "model": "the_tower:block/old_soil1", "y": 0 },
+      { "model": "the_tower:block/old_soil1", "y": 0 },
+      { "model": "the_tower:block/old_soil1", "y": 0 },
+      { "model": "the_tower:block/old_soil2" },
+      { "model": "the_tower:block/old_soil2", "y": 0 },
+      { "model": "the_tower:block/old_soil2", "y": 0 },
+      { "model": "the_tower:block/old_soil2", "y": 0 }
+
+    ]
+  }
+}

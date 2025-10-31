@@ -20,6 +20,9 @@ import mia.the_tower.initialisation.sounds.CustomSounds;
 import mia.the_tower.initialisation.status_effects.*;
 import mia.the_tower.initialisation.util.CustomTags;
 import mia.the_tower.initialisation.world.gen.ModWorldGeneration;
+
+import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
+import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -81,6 +84,8 @@ public class The_Tower implements ModInitializer {
 		screen_init.load();
 		CofferToKey.load();
 		ModDeaths.init();
+		GiantTrunkPlacer.init();
+		GiantFoliagePlacer.init();
 
 		//for flammable blocks
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);

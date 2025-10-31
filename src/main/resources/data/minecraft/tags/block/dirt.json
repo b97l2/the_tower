@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "the_tower:infested_rock"
+    "the_tower:infested_rock",
+    "the_tower:old_soil",
+    "the_tower:old_meadow"
   ]
 }

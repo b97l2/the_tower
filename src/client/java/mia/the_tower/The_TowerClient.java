@@ -52,6 +52,8 @@ public class The_TowerClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.JESTERS_HAT, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLUE_FOXGLOVE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.CERULEAN_SHORTGRASS, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.CERULEAN_WILDGRASS, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLUE_BELL, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.ROD_OF_LUMINESCENCE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLOOD, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putFluids(

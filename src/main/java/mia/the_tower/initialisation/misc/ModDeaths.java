@@ -1,19 +1,35 @@
 package mia.the_tower.initialisation.misc;
 
+import mia.the_tower.initialisation.items.DeathMarkerItem;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.GlobalPos;
 import net.minecraft.world.GameRules;
 
 import java.util.List;
 
 public final class ModDeaths {
     public static void init() {
+        //fills grave
         ServerLivingEntityEvents.ALLOW_DEATH.register(ModDeaths::onAllowDeath);
+
+        //give player note
+        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+            if (alive) return; // only run on death respawn, not dimension change
+
+            GlobalPos gp = newPlayer.getLastDeathPos().orElse(null);
+            if (gp == null) gp = oldPlayer.getLastDeathPos().orElse(null);
+            if (gp == null) return; // no recorded death location (very early cases)
+
+            ItemStack marker = DeathMarkerItem.of(gp);
+            newPlayer.getInventory().offerOrDrop(marker);
+        });
     }
 
     // Return true to let death proceed (we do); false would cancel death entirely.
@@ -39,6 +55,7 @@ public final class ModDeaths {
 
         // If placement somehow failed, put stacks back so vanilla can drop them as usual.
         if (!placed) GraveUtils.restoreToPlayer(player, snapshot);
+
 
         return true;
     }
