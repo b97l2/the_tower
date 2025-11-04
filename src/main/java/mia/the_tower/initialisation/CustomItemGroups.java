@@ -154,6 +154,8 @@ public class CustomItemGroups {
                         entries.add(item_init.STAVE);
                         entries.add(item_init.GLOOP);
                         entries.add(item_init.CHOCOLATE_BAR);
+                        entries.add(item_init.TOAST);
+                        entries.add(item_init.TOFFEE_APPLE);
 
                         entries.add(block_init.CAN_OF_RETARDATION);
                         entries.add(block_init.SHADOW);

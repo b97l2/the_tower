@@ -6,12 +6,12 @@ import net.minecraft.particle.SimpleParticleType;
 import org.jetbrains.annotations.Nullable;
 
 
-public class StaveParticle extends SpriteBillboardParticle {
+public class GoldOrbParticle extends SpriteBillboardParticle {
     private final SpriteProvider sprites;
 
 
-    public StaveParticle(ClientWorld world, double x, double y, double z,
-                         double vx, double vy, double vz, SpriteProvider sprites) {
+    public GoldOrbParticle(ClientWorld world, double x, double y, double z,
+                           double vx, double vy, double vz, SpriteProvider sprites) {
         super(world, x, y, z, vx, vy, vz);
         this.sprites = sprites;
         this.scale *= this.random.nextFloat() * 0.6F + 1.5F;
@@ -69,7 +69,7 @@ public class StaveParticle extends SpriteBillboardParticle {
         public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z,
                                        double velocityX, double velocityY, double velocityZ) {
 
-            StaveParticle particle = new StaveParticle(world, x, y, z, velocityX, velocityY, velocityZ, this.spriteProvider);
+            GoldOrbParticle particle = new GoldOrbParticle(world, x, y, z, velocityX, velocityY, velocityZ, this.spriteProvider);
             particle.setSprite(spriteProvider.getSprite(world.random));
             return particle;
         }

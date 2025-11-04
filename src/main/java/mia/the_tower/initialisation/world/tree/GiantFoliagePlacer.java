@@ -22,7 +22,6 @@ import net.minecraft.world.gen.foliage.FoliagePlacerType;
  * Shape:
  *  - Rounded canopy whose radius shrinks with depth (vertical taper) + per-layer fuzz.
  *  - From lower layers' perimeter, spawn hanging strands that can drift sideways.
- *
  * Config fields (see CODEC below):
  *  - radius, offset                (standard fields inherited from FoliagePlacer)
  *  - max_droop                     maximum length of a drooping strand
@@ -37,7 +36,7 @@ public class GiantFoliagePlacer extends FoliagePlacer {
 
     // --- Custom knobs ---
     private final IntProvider maxDroop;
-    private final float strandChance;
+    private final float topRoundness;
     private final float strandContinueChance;
     private final float driftChance;
     private final float verticalTaper;
@@ -52,7 +51,7 @@ public class GiantFoliagePlacer extends FoliagePlacer {
                                     .forGetter(p -> p.maxDroop))
                             .and(Codec.floatRange(0.0F, 1.0F)
                                     .fieldOf("strand_chance").orElse(0.35F)
-                                    .forGetter(p -> p.strandChance))
+                                    .forGetter(p -> p.topRoundness))
                             .and(Codec.floatRange(0.0F, 1.0F)
                                     .fieldOf("strand_continue_chance").orElse(0.85F)
                                     .forGetter(p -> p.strandContinueChance))
@@ -73,7 +72,7 @@ public class GiantFoliagePlacer extends FoliagePlacer {
             IntProvider radius,                // vanilla: base radius seed
             IntProvider offset,                // vanilla: vertical offset seed
             IntProvider maxDroop,
-            float strandChance,
+            float topRoundness,
             float strandContinueChance,
             float driftChance,
             float verticalTaper,
@@ -81,7 +80,7 @@ public class GiantFoliagePlacer extends FoliagePlacer {
     ) {
         super(radius, offset);
         this.maxDroop = maxDroop;
-        this.strandChance = strandChance;
+        this.topRoundness = topRoundness;
         this.strandContinueChance = strandContinueChance;
         this.driftChance = driftChance;
         this.verticalTaper = verticalTaper;
@@ -125,38 +124,57 @@ public class GiantFoliagePlacer extends FoliagePlacer {
             int baseRadius,
             int offset
     ) {
-        final BlockPos center = node.getCenter();   // base stays fixed
+        final BlockPos center = node.getCenter();
         final boolean giantTrunk = node.isGiantTrunk();
 
-        for (int dy = 0; dy < foliageHeight; dy++) {
+        // How many layers ABOVE the top to include inside the main blob
+        // Scales with topRoundness and baseRadius, but clamped for perf.
+        final int capMax = Math.min(16, Math.max(1, (int)Math.floor(baseRadius * 0.5)));
+        final int capLayers = (topRoundness <= 0f) ? 0 : Math.max(1, (int)Math.round(topRoundness * capMax));
+
+        // Cache a droop length for this tree (or keep per-layer if you like)
+        final int maxDroopLen = this.maxDroop.get(random);
+
+        // IMPORTANT: one vertical shift path (yOff), no pre-shifted BlockPos
+        for (int dy = -capLayers; dy < foliageHeight; dy++) {
             final int yOff = offset - dy;
 
-            int layerRadius = Math.max(1, (int)Math.round(baseRadius - verticalTaper * dy));
-            if (layerFuzz > 0) {
-                layerRadius += random.nextBetween(-layerFuzz, layerFuzz);
-                if (layerRadius < 1) layerRadius = 1;
+            int layerRadius;
+            if (dy < 0) {
+                // --- Rounded top (spherical cap) ---
+                // normalized height above top: 1..capLayers
+                final int h = -dy;
+                final double t = (double) h / (double) (capLayers + 1); // 0..~1
+                // r = R * sqrt(1 - t^2)
+                layerRadius = (int)Math.round(baseRadius * Math.sqrt(Math.max(0.0, 1.0 - t * t)));
+
+                // smaller fuzz on the cap to keep it smooth
+                if (layerFuzz > 0) {
+                    int fuzz = Math.max(1, layerFuzz / 2);
+                    layerRadius += random.nextBetween(-fuzz, fuzz);
+                }
+            } else {
+                // --- Main blob below the top ---
+                layerRadius = Math.max(1, (int)Math.round(baseRadius - verticalTaper * dy));
+                if (layerFuzz > 0) {
+                    layerRadius += random.nextBetween(-layerFuzz, layerFuzz);
+                }
             }
 
-            // place leaves for this layer (single application of vertical offset)
+            if (layerRadius < 1) continue;  // nothing to place on this layer
+
+            // Place the layer (single application of vertical offset).
             generateSquare(world, placer, random, config, center, layerRadius, yOff, giantTrunk);
 
-            // spawn strands from THIS layer too
+            // Start a strand from EVERY leaf cell in this layer, threading through leaves
+            // (as you already implemented in spawnDroopingStrandsFromAllLeafCellsInLayer).
             BlockPos layerCenter = center.up(yOff);
-            spawnDroopingStrandsFromPerimeter(
-                    world, placer, random, config,
-                    layerCenter, layerRadius, giantTrunk,
-                    maxDroop.get(random) // or keep a cached maxDroopLen outside the loop
+            spawnDroopingStrandsFromAllLeafCellsInLayer(
+                    world, placer, random, config, layerCenter, layerRadius, maxDroopLen
             );
         }
-
-        // Add a small cap to avoid a pancake-flat top
-        int capLayers = 3; // try 1 or 2
-        for (int up = 1; up <= capLayers; up++) {
-            int capRadius = Math.max(1, baseRadius - up - (layerFuzz > 0 ? random.nextBetween(0, layerFuzz) : 0));
-            generateSquare(world, placer, random, config, center, capRadius, offset + up, giantTrunk);
-        }
-
     }
+
     /**
      * Organic acceptance test for layer cells. We treat y (depth) as part of a squashed ellipsoid to avoid boxy crowns.
      * y passed in here is negative going downward (vanilla convention in calls).
@@ -181,85 +199,73 @@ public class GiantFoliagePlacer extends FoliagePlacer {
         return false;
     }
 
+
+    private static boolean isLeafAt(TestableWorld world, BlockPos pos) {
+        return world.testBlockState(pos, s -> s.isIn(BlockTags.LEAVES));
+    }
+
     /**
-     * Scan perimeter cells of a layer and grow hanging strands downward.
+     * Iterate the whole layer's bounding box and fire a strand from every cell
+     * where we placed a leaf this pass.
      */
-    private void spawnDroopingStrandsFromPerimeter(
+    private void spawnDroopingStrandsFromAllLeafCellsInLayer(
             TestableWorld world,
             BlockPlacer placer,
             Random random,
             TreeFeatureConfig config,
             BlockPos layerCenter,
             int r,
-            boolean giantTrunk,
             int maxDroopLen
     ) {
         if (r <= 0) return;
-        BlockPos.Mutable p = new BlockPos.Mutable();
+        final BlockPos.Mutable p = new BlockPos.Mutable();
 
-        // We iterate the square border and only start strands below placed foliage.
-        // Two passes: top/bottom edges, then left/right edges, to avoid duplicates.
-
-        // Z-edges (north/south)
         for (int x = -r; x <= r; x++) {
-            for (int zEdge : new int[]{-r, r + (giantTrunk ? 1 : 0)}) {
-                tryStartStrand(world, placer, random, config, layerCenter, p.set(layerCenter, x, 0, zEdge), maxDroopLen);
-            }
-        }
-        // X-edges (west/east), skip corners already handled:
-        for (int z = -r + 1; z <= r - 1 + (giantTrunk ? 1 : 0); z++) {
-            for (int xEdge : new int[]{-r, r + (giantTrunk ? 1 : 0)}) {
-                tryStartStrand(world, placer, random, config, layerCenter, p.set(layerCenter, xEdge, 0, z), maxDroopLen);
+            for (int z = -r; z <= r; z++) {
+                p.set(layerCenter, x, 0, z);
+                if (placer.hasPlacedBlock(p)) {
+                    // Start a strand at this exact leaf cell
+                    startStrandThroughLeaves(world, placer, random, config, p, maxDroopLen);
+                }
             }
         }
     }
 
-    private static boolean isLeafAt(TestableWorld world, BlockPos pos) {
-        // TestableWorld gives us a predicate-based peek
-        return world.testBlockState(pos, state -> state.isIn(BlockTags.LEAVES));
-    }
-
-    private void tryStartStrand(
+    /**
+     * Strand walker that *threads through* leaves (doesn't stop on them)
+     * and only places when in replaceable space. Stops on non-replaceable.
+     */
+    private void startStrandThroughLeaves(
             TestableWorld world,
             BlockPlacer placer,
             Random random,
             TreeFeatureConfig config,
-            BlockPos layerCenter,
-            BlockPos.Mutable leafPosAtLayer,
+            BlockPos sourceLeafPos,
             int maxDroopLen
     ) {
-        // Only droop below a perimeter leaf we actually placed for this layer:
-        if (!placer.hasPlacedBlock(leafPosAtLayer)) return;
-        if (random.nextFloat() > strandChance) return;
-
-        final BlockPos.Mutable cur = new BlockPos.Mutable().set(leafPosAtLayer).move(Direction.DOWN);
+        final BlockPos.Mutable cur = new BlockPos.Mutable().set(sourceLeafPos).move(Direction.DOWN);
         int steps = 0;
-
-        // Pick a preferred sideways direction; can occasionally change
         Direction preferred = Direction.Type.HORIZONTAL.random(random);
 
         while (steps < maxDroopLen) {
-            // If we're inside existing leaves, just pass through (do not try to place here)
             if (!isLeafAt(world, cur)) {
-                // Not a leaf → try to place. This will succeed in air/water and fail on solid.
-                if (!placeFoliageBlock(world, placer, random, config, cur)) {
-                    // Hit non-replaceable (e.g., log/stone) → stop the strand.
+                // Not inside leaves → try to place; fails on solid → stop
+                if (!FoliagePlacer.placeFoliageBlock(world, placer, random, config, cur)) {
                     break;
                 }
             }
-            // Count this vertical step whether we placed or just threaded through
             steps++;
 
-            // Decide if the strand continues
+            // Continue?
             if (random.nextFloat() > strandContinueChance) break;
 
-            // Optional sideways drift to create a vine-like curve
+            // Drift sideways sometimes
             if (random.nextFloat() < driftChance) {
                 Direction d = (random.nextFloat() < 0.6f) ? preferred : Direction.Type.HORIZONTAL.random(random);
                 cur.move(d);
             }
 
-            // Move down for next step
+            // Move down for next segment
             cur.move(Direction.DOWN);
         }
     }

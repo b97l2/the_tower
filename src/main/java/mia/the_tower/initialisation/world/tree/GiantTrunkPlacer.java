@@ -37,7 +37,6 @@ public class GiantTrunkPlacer extends TrunkPlacer {
     private final float baseRadius;
     private final float topRadius;
     private final float taperPower;
-    private final float flareAmplitude;
     private final float flareSigma;
     private final float shellThicknessBlocks;  // 2 near base, tapers to ~1 near top
     private final float snakeAccelScale;      // random “accel” magnitude per layer
@@ -51,7 +50,6 @@ public class GiantTrunkPlacer extends TrunkPlacer {
             Codec.FLOAT.fieldOf("base_radius").forGetter(p -> p.baseRadius),
             Codec.FLOAT.fieldOf("top_radius").forGetter(p -> p.topRadius),
             Codec.FLOAT.fieldOf("taper_power").forGetter(p -> p.taperPower),
-            Codec.FLOAT.fieldOf("flare_amplitude").forGetter(p -> p.flareAmplitude),
             Codec.FLOAT.fieldOf("flare_sigma").forGetter(p -> p.flareSigma),
             Codec.FLOAT.fieldOf("shell_thickness_blocks").forGetter(p -> p.shellThicknessBlocks),
             Codec.FLOAT.fieldOf("snake_accel_scale").forGetter(p -> p.snakeAccelScale),
@@ -61,13 +59,12 @@ public class GiantTrunkPlacer extends TrunkPlacer {
 
     public GiantTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB,
                             float baseRadius, float topRadius, float taperPower,
-                            float flareAmplitude, float flareSigma, float shellThicknessBlocks, float snakeAccelScale, float snakeDamping,
+                            float flareSigma, float shellThicknessBlocks, float snakeAccelScale, float snakeDamping,
                             float snakeMaxOffset) {
         super(baseHeight, randomHeightA, randomHeightB);
         this.baseRadius = baseRadius;
         this.topRadius = topRadius;
         this.taperPower = taperPower;
-        this.flareAmplitude = flareAmplitude;
         this.flareSigma = flareSigma;
         this.shellThicknessBlocks = shellThicknessBlocks;
         this.snakeAccelScale = snakeAccelScale;
@@ -129,7 +126,9 @@ public class GiantTrunkPlacer extends TrunkPlacer {
             int cy  = startPos.getY() + y;
 
             float core = MathHelper.lerp((float)Math.pow(t, this.taperPower), this.baseRadius, this.topRadius);
-            float flare = this.flareAmplitude * (float) Math.exp(-(y * y) / (2f * this.flareSigma * this.flareSigma));
+            //the variable of the devil, I am ignoring it because it causes more trouble than what it is worth
+            float flareAmplitude = 0;
+            float flare = flareAmplitude * (float) Math.exp(-(y * y) / (2f * this.flareSigma * this.flareSigma));
             float rOuter = Math.max(1.0f, core + flare);
 
             // Thickness tapers slightly with height
@@ -166,6 +165,14 @@ public class GiantTrunkPlacer extends TrunkPlacer {
             }
         }
 
+        extendDownWithStringRoots(
+                world, replacer, random,
+                startPos.getY(),            // baseY of the lowest trunk slice
+                centerX[0], centerZ[0],     // center you used for y = 0
+                config
+        );
+
+
         // Top cap (sealed)
         int topY = startPos.getY() + height;
         int cxi = centerX[Math.max(0, height - 1)];
@@ -184,25 +191,6 @@ public class GiantTrunkPlacer extends TrunkPlacer {
                 }
             }
         }
-
-
-//to extend base to ground
-        int baseY  = startPos.getY();
-        int baseCx = centerX[0];
-        int baseCz = centerZ[0];
-// Use a modest search window around the expected radius
-        int searchR = Math.max(6, MathHelper.ceil(outerR[0]) + 4);
-// Measure outer radius by ray-casting the actual ring at baseY
-        float measuredOuter = sampleBaseOuterRadiusByRaycast(world, baseY, baseCx, baseCz, searchR, 64);
-// Fall back to the model radius if measurement failed
-        if (measuredOuter <= 0f) measuredOuter = Math.max(1f, outerR[0]);
-// Choose a simple thickness (use your shell thickness, clamped to [1,3] for neat seams)
-        float skirtThickness = MathHelper.clamp(this.shellThicknessBlocks, 1.0f, 3.0f);
-// Draw a clean annulus straight down (instead of extending every base cell)
-        extendDownAsRing(world, replacer, random, config, baseY, baseCx, baseCz, measuredOuter, skirtThickness, 10);
-
-
-
 
         // 2) Branches from curved centerline
         int branchCount = 5 + random.nextInt(4);
@@ -491,6 +479,8 @@ public class GiantTrunkPlacer extends TrunkPlacer {
         if (angularSamples <= 0) angularSamples = 48;
         java.util.ArrayList<Float> hits = new java.util.ArrayList<>(angularSamples);
 
+        //baseY = baseY + 1; this stops root generation
+
         // Step along angle rays; record the last r in the FIRST contiguous log segment.
         for (int i = 0; i < angularSamples; i++) {
             double theta = (2.0 * Math.PI) * (i / (double) angularSamples);
@@ -521,65 +511,167 @@ public class GiantTrunkPlacer extends TrunkPlacer {
 
         // Use median to be robust against dents/holes.
         hits.sort(Float::compare);
-        return hits.get(hits.size() / 2);
+        return hits.get(hits.size() / 2); //changing this does nothing
     }
 
-    // Extend a clean annulus (outer radius / thickness) straight down up to maxDrop.
-    private void extendDownAsRing(TestableWorld world,
-                                  BiConsumer<BlockPos, BlockState> replacer,
-                                  Random random,
-                                  TreeFeatureConfig config,
-                                  int baseY, int cx, int cz,
-                                  float outerRadius, float thickness,
-                                  int maxDrop) {
+    /**
+     * Extend the trunk downward where terrain falls away, using many
+     * thin curling "string" roots that hang from the base ring.
+     *
+     * This does NOT modify your existing makeRoot(...). It reads the real base
+     * ring radius by raycasting from the center to the first/outer log segment,
+     * then drops roots from evenly spaced anchor points on that ring.
+     *
+     * Requirements:
+     *  - Your logs are in BlockTags.LOGS / LOGS_THAT_BURN (already true for vanilla/custom).
+     *  - Helper methods present in this class:
+     *      - sampleBaseOuterRadiusByRaycast(...)
+     *      - findGroundY(...)
+     *      - canReplace(...)
+     */
+    private void extendDownWithStringRoots(
+            TestableWorld world,
+            BiConsumer<BlockPos, BlockState> replacer,
+            Random random,
+            int baseY,
+            int cx, int cz,
+            TreeFeatureConfig config
+    ) {
+         //1) Measure the real outer radius of the bottom ring by reading placed logs.
+        int searchR = Math.max(8, MathHelper.ceil(this.baseRadius) + 8);
+        float measuredOuter = sampleBaseOuterRadiusByRaycast(world, baseY, cx, cz, searchR, 96);
+        int rOuter = measuredOuter > 0 ? MathHelper.floor(measuredOuter) : Math.max(2, MathHelper.ceil(this.baseRadius));
 
-        float innerRadius = Math.max(0f, outerRadius - Math.max(1.0f, thickness));
-        int rInt = MathHelper.ceil(outerRadius) + 1;
-        int seamY = baseY - 1;
+        //int rOuter = (int) baseRadius;
 
-        BlockPos.Mutable m = new BlockPos.Mutable();
-        BlockPos.Mutable below = new BlockPos.Mutable();
+        // Use a conservative thickness (integer) for string roots.
+        int rootThickness = MathHelper.clamp(MathHelper.ceil(this.shellThicknessBlocks * 0.5f), 1, 2);
 
-        for (int dx = -rInt; dx <= rInt; dx++) {
-            for (int dz = -rInt; dz <= rInt; dz++) {
-                float d2 = dx*dx + dz*dz;
-                if (d2 > outerRadius*outerRadius || d2 <= innerRadius*innerRadius) continue;
+        // Number of root anchors around the ring scales with radius.
+        int anchors = MathHelper.clamp(rOuter * 3, 12, 96);
 
-                int x = cx + dx;
-                int z = cz + dz;
+        // How far down we’re willing to search for ground below the base.
+        final int MAX_DOWN = 64;
 
-                // Find first solid below seam within window
-                below.set(x, seamY - 1, z);
-                int drop = 0;
-                int supportY = seamY;
-                while (drop < maxDrop) {
-                    if (!this.canReplace(world, below)) { // found support
-                        supportY = below.getY() + 1;
-                        break;
-                    }
-                    below.move(Direction.DOWN);
-                    drop++;
-                }
-                if (drop == maxDrop) {
-                    supportY = seamY - maxDrop + 1;
-                }
+        // 2) For each anchor around the ring, cast a vertical probe to see if the ground falls away.
+        for (int i = 0; i < anchors; i++) {
+            double theta = (2.0 * Math.PI * i) / anchors;
 
-                // Fill log columns down to support
-                for (int y = seamY; y >= supportY; y--) {
-                    m.set(x, y, z);
-                    if (this.canReplace(world, m)) {
-                        BlockState log = config.trunkProvider.get(random, m)
-                                .with(PillarBlock.AXIS, Direction.Axis.Y);
-                        replacer.accept(m, log);
-                    } else {
-                        break; // hit something mid-column
-                    }
-                }
-            }
+            int ax = cx + (int)Math.round(Math.cos(theta) * rOuter);
+            int az = cz + (int)Math.round(Math.sin(theta) * rOuter);
+            BlockPos anchor = new BlockPos(ax, baseY, az);
+
+            // Skip if our anchor isn't a log (rare, but robust).
+            if (!isPlacedTrunkLog(world, anchor)) continue;
+
+            // Find the first solid ground below this perimeter point.
+            int groundY = findGroundY(world, ax, baseY - 1, az, MAX_DOWN);
+            int destY   = groundY + 1; // target air cell to land in
+
+            // If there's no drop, no downward root needed here.
+            if (destY >= baseY) continue;
+
+            // 3) Grow a thin curling string root from anchor -> destY.
+            growCurlingStringRoot(world, replacer, random, anchor, new BlockPos(ax, destY, az),
+                    theta, rootThickness, config);
         }
     }
 
+    /**
+     * Create a slender, curling path from 'from' down to 'to', with slight horizontal drift
+     * and a gentle spiral component. Radius is 1–2; logs are axis-aligned to the dominant step.
+     */
+    private void growCurlingStringRoot(
+            TestableWorld world,
+            BiConsumer<BlockPos, BlockState> replacer,
+            Random random,
+            BlockPos from,
+            BlockPos to,
+            double outwardAngle,                 // angle pointing away from trunk center
+            int thickness,                       // 1–2
+            TreeFeatureConfig config
+    ) {
+        // Parametrize a meandering path with small horizontal velocity and damping,
+        // with a bias outward (away from trunk center) and a tangential curl.
+        double x = from.getX() + 0.5;
+        double y = from.getY() + 0.25;          // start just under the base slice
+        double z = from.getZ() + 0.5;
 
+        double vx = 0.0, vz = 0.0;
+
+        int drop = from.getY() - to.getY();
+        int steps = Math.max(8, drop * 3);      // extra samples to look "stringy"
+
+        // Unit vectors: outward and a perpendicular tangent for curl.
+        double ox = Math.cos(outwardAngle), oz = Math.sin(outwardAngle);
+        double tx = -oz, tz = ox;               // rotate 90° for tangential component
+        double phase = random.nextDouble() * Math.PI * 2.0;
+
+        for (int s = 0; s <= steps; s++) {
+            double t  = steps == 0 ? 1.0 : (s / (double)steps);
+            double dy = MathHelper.lerp(0.6, 0.9, random.nextDouble()); // per-step vertical descent
+
+            // Outward bias keeps roots drifting off the trunk wall.
+            double outwardPush = 0.06 + 0.05 * random.nextDouble();
+            vx += ox * outwardPush + (random.nextDouble() - 0.5) * 0.08;
+            vz += oz * outwardPush + (random.nextDouble() - 0.5) * 0.08;
+
+            // Gentle curl: sinusoidal push along tangent, slowly varying.
+            double curlMag = 0.05 + 0.03 * Math.sin(t * Math.PI * 2.0 + phase);
+            vx += tx * curlMag;
+            vz += tz * curlMag;
+
+            // Damp velocities so it doesn't drift too far.
+            vx *= 0.72;
+            vz *= 0.72;
+
+            // Advance
+            x += vx;
+            z += vz;
+            y -= dy;
+
+            // Clamp to final target height
+            if (y <= to.getY() + 0.25) y = to.getY() + 0.25;
+
+            BlockPos p = BlockPos.ofFloored(x, y, z);
+
+            // Choose axis by dominant motion; roots look better when axis follows path.
+            net.minecraft.util.math.Direction.Axis axis;
+            {
+                double adx = Math.abs(vx), ady = dy, adz = Math.abs(vz);
+                if (adx >= ady && adx >= adz) axis = net.minecraft.util.math.Direction.Axis.X;
+                else if (adz >= adx && adz >= ady) axis = net.minecraft.util.math.Direction.Axis.Z;
+                else axis = net.minecraft.util.math.Direction.Axis.Y;
+            }
+
+            // Place a 1–2 block cross-section (disk) per step, mostly 1.
+            int r = (s < 2 && thickness >= 2 && random.nextBoolean()) ? 2 : 1;
+            for (int oxi = -r; oxi <= r; oxi++) {
+                for (int ozi = -r; ozi <= r; ozi++) {
+                    if (oxi * oxi + ozi * ozi <= r * r) {
+                        BlockPos q = p.add(oxi, 0, ozi);
+                        if (canReplace(world, q)) {
+                            BlockState log = config.trunkProvider.get(random, q)
+                                    .with(PillarBlock.AXIS, axis);
+                            replacer.accept(q, log);
+                        }
+                    }
+                }
+            }
+
+            // Stop when we’ve reached target height.
+            if (p.getY() <= to.getY()) {
+                // Optionally bury the tip 1 block for a natural termination if air is underneath.
+                BlockPos tipBelow = p.down();
+                if (canReplace(world, tipBelow)) {
+                    BlockState log = config.trunkProvider.get(random, tipBelow)
+                            .with(PillarBlock.AXIS, net.minecraft.util.math.Direction.Axis.Y);
+                    replacer.accept(tipBelow, log);
+                }
+                break;
+            }
+        }
+    }
 
 
     private int findGroundY(TestableWorld world, int x, int startY, int z, int maxDown) {

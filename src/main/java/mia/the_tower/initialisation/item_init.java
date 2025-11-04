@@ -91,6 +91,8 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item CHOCOLATE_BAR;
     public static Item FRAYED_NOTE;
     public static Item DIVINING_ROD;
+    public static Item TOAST;
+    public static Item TOFFEE_APPLE;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -165,10 +167,11 @@ public class item_init { //this is the class that initialises items in the mod
                 .rarity(Rarity.UNCOMMON)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("pillar_of_salt")))));
 
-        DIVINING_ROD = register("divining_rod", new SeekingItem(block_init.GRAVESTONE, CustomParticles.STAVE_PARTICLE, new Item.Settings()
+        DIVINING_ROD = register("divining_rod", new SeekingItem(block_init.GRAVESTONE, CustomParticles.GOLD_ORB, new Item.Settings()
                 .maxCount(1)
                 .useCooldown(3)
                 .rarity(Rarity.UNCOMMON)
+                .maxDamage(10)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("divining_rod")))));
 
         PILE_OF_SALT = register("pile_of_salt", new Item(new Item.Settings().food(
@@ -405,6 +408,22 @@ public class item_init { //this is the class that initialises items in the mod
                                 .saturationModifier(0.2F)
                                 .build())
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chocolate_bar")))));
+
+        TOAST = register("toast", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(2)
+                                .saturationModifier(0.2F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("toast")))));
+
+        TOFFEE_APPLE = register("toffee_apple", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(4)
+                                .saturationModifier(0.3F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("toffee_apple")))));
 
         FRAYED_NOTE = register("frayed_note", new Item(
                 new Item.Settings()

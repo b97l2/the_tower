@@ -98,6 +98,7 @@ public class The_TowerClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.GLUH_PARTICLE, GluhParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.STAVE_PARTICLE, StaveParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.WHITE_INCENSE, WhiteIncense.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(CustomParticles.GOLD_ORB, GoldOrbParticle.Factory::new);
 
 
 		//this is for entities

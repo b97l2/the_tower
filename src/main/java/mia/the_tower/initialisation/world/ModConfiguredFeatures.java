@@ -88,13 +88,13 @@ public class ModConfiguredFeatures {
         //for tree
         register(context, GINKGO_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(block_init.GINKGO_LOG),
-                new GiantTrunkPlacer(5, 88, 95, 20, 3, 0.5f, 3, 0.3f, 3, 0.4f, 0.8f, 3.5f),
+                new GiantTrunkPlacer(5, 88, 95, 15, 3,0.5f,  0.3f, 3, 0.4f, 0.8f, 3.5f),
 
                 BlockStateProvider.of(block_init.GINKGO_LEAVES),
                 new GiantFoliagePlacer(        ConstantIntProvider.create(14),   // radius seed (big crowns)
                         ConstantIntProvider.create(0),    // offset seed
                         UniformIntProvider.create(18, 42),// max_droop: long hanging curtains
-                        0.9f,                            // strand_chance (per perimeter leaf)
+                        1f,                            //how round the top is, 0 is flat, 1 is very round (capped at 16 layers)
                         0.90f,                            // strand_continue_chance
                         0.30f,                            // drift_chance
                         0.70f,                            // vertical_taper (radius loss per layer)
