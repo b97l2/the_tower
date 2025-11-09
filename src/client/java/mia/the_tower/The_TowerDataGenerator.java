@@ -22,6 +22,7 @@ public class The_TowerDataGenerator implements DataGeneratorEntrypoint {
 		registryBuilder.addRegistry(RegistryKeys.BIOME, Shadowlands::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.BIOME, ThePit::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.BIOME, CeruleanCoast::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.BIOME, GoldenWeald::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, TheFrage::bootstrapType);
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);

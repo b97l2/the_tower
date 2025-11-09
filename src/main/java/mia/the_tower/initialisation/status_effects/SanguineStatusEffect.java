@@ -1,19 +1,26 @@
 package mia.the_tower.initialisation.status_effects;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.mob.Angerable;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Box;
+import net.minecraft.world.World;
 
 
 public class SanguineStatusEffect extends StatusEffect {
     public static final RegistryEntry<StatusEffect> SANGUINE = register(
             "sanguine",
-            new InstantMineEffect(StatusEffectCategory.BENEFICIAL, 0x420000)
+            new SanguineStatusEffect(StatusEffectCategory.BENEFICIAL, 0x420000)
                     .addAttributeModifier(
                             EntityAttributes.ATTACK_DAMAGE,
                             Identifier.of("the_tower", "effect.sanguine.attack_damage"),
@@ -111,6 +118,51 @@ public class SanguineStatusEffect extends StatusEffect {
                             EntityAttributeModifier.Operation.ADD_VALUE
                     )
     );
+
+    @Override
+    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+        //updates every 5 seconds
+        return duration % 20*5 == 0;
+    }
+
+
+    @Override
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+        if (!(entity instanceof PlayerEntity player)) return true;
+
+        // Don’t do AI work for client, spectators, or creative players
+        if (world.isClient() || player.isSpectator() || player.isCreative()) return true;
+
+        final double radius = 64.0;
+        final Box area = player.getBoundingBox().expand(radius);
+
+        ServerWorld sw = (ServerWorld) world;
+        // Pull all hostile mobs in a 64-block cube around the player
+        var mobs = sw.getEntitiesByClass(
+                HostileEntity.class,
+                area,
+                mob -> mob.isAlive() && mob.isAttackable()
+        );
+
+        for (HostileEntity mob : mobs) {
+            // Point them at the player
+            if (mob.getTarget() != player) {
+                mob.setTarget(player);
+            }
+            mob.setAttacking(true);
+
+            // Keep "anger"-based mobs (piglins, endermen, etc.) actually angry
+            if (mob instanceof Angerable angry) {
+                angry.setAngryAt(player.getUuid());
+                //refreshes to 60 seconds of anger time
+                angry.setAngerTime(20*60);
+            }
+
+            // Nudge their pathfinder so they start moving right away
+            mob.getNavigation().startMovingTo(player, 1.2D);
+        }
+        return true;
+    }
 
     public SanguineStatusEffect(StatusEffectCategory category, int color) {
         super(category, color);

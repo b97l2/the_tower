@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "the_tower:grotesque",
-    "the_tower:silver_lantern"
+    "the_tower:silver_lantern",
+    "the_tower:silver_thurible",
+    "the_tower:golden_thurible"
   ]
 }

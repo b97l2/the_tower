@@ -37,7 +37,13 @@
     "the_tower:silver_vein",
     "the_tower:gold_button",
     "the_tower:silver_lantern",
-    "the_tower:silver_block"
+    "the_tower:silver_block",
+    "the_tower:silver_thurible",
+    "the_tower:raw_silver_block",
+    "the_tower:emerald_stairs",
+    "the_tower:emerald_slab",
+    "the_tower:emerald_column",
+    "the_tower:emerald_wall"
   ]
 }
 

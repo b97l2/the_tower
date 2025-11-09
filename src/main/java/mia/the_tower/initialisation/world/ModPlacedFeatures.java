@@ -36,8 +36,8 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> CERULEAN_GRASS_PATCH_PLACED_KEY = registerKey("cerulean_grass_patch_placed");
     public static final RegistryKey<PlacedFeature> CERULEAN_COAST_FLOWERS_PATCH_PLACED_KEY = registerKey("cerulean_coast_flowers_patch_placed");
 
-    //other
-
+    //tree
+    public static final RegistryKey<PlacedFeature> GINKGO_PLACED_KEY = registerKey("ginkgo_placed");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -65,8 +65,6 @@ public class ModPlacedFeatures {
         //for ore then we go to gen/ModOreGeneration
 
         //vegetation
-
-
         PlacedFeatures.register(
                 context,
                 CERULEAN_GRASS_PATCH_PLACED_KEY,
@@ -88,7 +86,10 @@ public class ModPlacedFeatures {
                 BiomePlacementModifier.of()
         );
 
-        //other
+        //tree
+        register(context, GINKGO_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GINKGO_KEY),
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
+                        PlacedFeatures.createCountExtraModifier(1, 0.1f, 0),block_init.GINKGO_SAPLING));
 
 
         //for any feature then you go to the gen/ModXXXGeneration file, or create it.

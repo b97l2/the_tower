@@ -41,6 +41,18 @@
             "depth": 0,
             "offset": 0
           }
+        },
+        {
+          "biome": "the_tower:golden_weald",
+          "parameters": {
+            "temperature": 0.3,
+            "humidity": 0.1,
+            "continentalness": 0,
+            "erosion": 1.7,
+            "weirdness": 2,
+            "depth": 0,
+            "offset": 0
+          }
         }
       ]
     }

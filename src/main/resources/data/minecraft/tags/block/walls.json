@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "the_tower:gold_wall"
+    "the_tower:gold_wall",
+    "the_tower:emerald_wall"
   ]
 }

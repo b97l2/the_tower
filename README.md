@@ -10,7 +10,9 @@ armour, trees, and an interesting lore.
 
 I recommend that it be played with a 32x32 pixel resource pack for vanilla Minecraft blocks to compliment the experience.
 My personal favorite, and what I have taken a lot of inspiration from, being MYTHIC - A Pixel Art Journey by FishyMint.
-I test with BSL shaders personally, but I know that some shaders create unintended visual effects on some of my blocks. 
+If you use shaders, I also recommend turning off any shader water tint that ignores vanilla water tint colours and enabling vanilla skyboxes if possible. 
+This lets the intended colours of my custom biomes be visible that shaders would otherwise ignore. I test with BSL shaders personally, but I know that some shaders create 
+unintended visual effects on some of my blocks that are translucent.
 
 Note that some blocks in this mod may trigger seizures in people who have photosensitive epilepsy. If you would like an epilepsy friendly version of the mod,
 please reach out to me and I will provide a version with alternate textures for these blocks.
@@ -28,7 +30,7 @@ Credits:
 
 yourlocalbreadman (instagram) - Block of Gluh texture (comission) and Gluh concept
 
-zarakikenpachi (discord) - Various item icons (comission)
+zarakikenpachi (discord) - Various item textures (comission)
 
 Valerie-Vivegnis (freesound.org) - "Scream- woman- pain 1",
 "Scream- woman- pain 2",

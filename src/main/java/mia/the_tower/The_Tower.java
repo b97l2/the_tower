@@ -2,6 +2,7 @@ package mia.the_tower;
 
 import mia.the_tower.initialisation.*;
 import mia.the_tower.initialisation.biomes.CeruleanCoast;
+import mia.the_tower.initialisation.biomes.GoldenWeald;
 import mia.the_tower.initialisation.biomes.Shadowlands;
 import mia.the_tower.initialisation.biomes.ThePit;
 import mia.the_tower.initialisation.block.column_init;
@@ -86,6 +87,7 @@ public class The_Tower implements ModInitializer {
 		ModDeaths.init();
 		GiantTrunkPlacer.init();
 		GiantFoliagePlacer.init();
+		GoldenWeald.load();
 
 		//for flammable blocks
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);

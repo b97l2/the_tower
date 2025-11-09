@@ -62,6 +62,7 @@ public class CustomItemGroups {
                         entries.add(block_init.SILVER_ORE);
                         entries.add(block_init.SILVER_VEIN);
                         entries.add(block_init.SILVER_BLOCK);
+                        entries.add(block_init.RAW_SILVER_BLOCK);
                         entries.add(block_init.PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_PETRIFIED_STONE);
                         entries.add(block_init.EMBOSSED_PETRIFIED_STONE);
@@ -144,6 +145,7 @@ public class CustomItemGroups {
                         entries.add(block_init.ROD_OF_LUMINESCENCE);
                         entries.add(block_init.SIMPLE_COFFER);
                         entries.add(block_init.SILVER_LANTERN);
+                        entries.add(block_init.SILVER_THURIBLE);
                     }).build());
 
     public static final ItemGroup FUSION_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
@@ -194,7 +196,11 @@ public class CustomItemGroups {
                         entries.add(column_init.POLISHED_BLACKSTONE_BRICK_COLUMN);
                         entries.add(column_init.POLISHED_BLACKSTONE_COLUMN);
 
-
+                        //emerald
+                        entries.add(block_init.EMERALD_COLUMN);
+                        entries.add(block_init.EMERALD_SLAB);
+                        entries.add(block_init.EMERALD_STAIRS);
+                        entries.add(block_init.EMERALD_WALL);
 
 
                     }).build());

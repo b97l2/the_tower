@@ -10,6 +10,7 @@ import mia.the_tower.initialisation.fluid.BloodFluid;
 import mia.the_tower.initialisation.fluid.BloodFluidBlock;
 import mia.the_tower.initialisation.fluid.GunkFluid;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
+import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.sounds.CustomSounds;
 import mia.the_tower.initialisation.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
@@ -419,6 +420,11 @@ public class block_init {
                     .replaceable()
                     .mapColor(MapColor.DARK_RED)
                     .nonOpaque()
+                    .strength(100.0F)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .dropsNothing()
+                    .liquid()
+                    .sounds(BlockSoundGroup.INTENTIONALLY_EMPTY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("blood")))));
 
     public static final FlowableFluid STILL_GUNK = Registry.register(Registries.FLUID,
@@ -434,6 +440,12 @@ public class block_init {
             new GunkFluidBlock(STILL_GUNK, AbstractBlock.Settings.create()
                     .replaceable()
                     .mapColor(MapColor.BLACK)
+                    .nonOpaque()
+                    .strength(400.0F)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .dropsNothing()
+                    .liquid()
+                    .sounds(BlockSoundGroup.INTENTIONALLY_EMPTY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("gunk")))));
 
     public static final Block SALT = registerBlock("salt",
@@ -487,7 +499,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "blue_hostas")))));
 
     public static final Block GOLDEN_THURIBLE = registerBlock("golden_thurible",
-            new GoldThurible(AbstractBlock.Settings.create()
+            new ThuribleBlock(CustomParticles.GOLD_INCENSE, AbstractBlock.Settings.create()
                     .mapColor(MapColor.GOLD)
                     .solid()
                     .strength(3.5F)
@@ -555,14 +567,22 @@ public class block_init {
             new PillarBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.GOLD)
                     .burnable()
+                    .strength(2f)
+                    .sounds(BlockSoundGroup.WOOD)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_log")))));
 
     public static final Block GINKGO_LEAVES = registerBlock("ginkgo_leaves",
-            new Block(AbstractBlock.Settings.create()
+            new NonDecayingLeavesBlock(5, CustomParticles.GOLD_INCENSE, AbstractBlock.Settings.create()
                     .mapColor(MapColor.GOLD)
                     .sounds(BlockSoundGroup.GRASS)
                     .burnable()
+                    .strength(0.2F)
                     .nonOpaque()
+                    .allowsSpawning(Blocks::canSpawnOnLeaves)
+                    .suffocates(Blocks::never)
+                    .blockVision(Blocks::never)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .solidBlock(Blocks::never)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_leaves")))));
 
     public static final Block GINKGO_SAPLING = registerBlock("ginkgo_sapling",
@@ -769,6 +789,13 @@ public class block_init {
                     .sounds(BlockSoundGroup.STONE)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_vein")))));
 
+    public static final Block RAW_SILVER_BLOCK = registerBlock("raw_silver_block",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.GRAY)
+                    .strength(2.6F, 4.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "raw_silver_block")))));
+
     public static final Block SILVER_BLOCK = registerBlock("silver_block",
             new PillarBlock(AbstractBlock.Settings.create()
                     .requiresTool()
@@ -787,12 +814,58 @@ public class block_init {
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_lantern")))));
 
+    public static final Block SILVER_THURIBLE = registerBlock("silver_thurible",
+            new ThuribleBlock(CustomParticles.WHITE_INCENSE, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.LIGHT_GRAY)
+                    .solid()
+                    .strength(2.8F)
+                    .sounds(BlockSoundGroup.LANTERN)
+                    .nonOpaque()
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_thurible")))));
+
     public static final Block GRAVESTONE = registerBlock("gravestone",
             new StorageTemplateBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.GRAY)
                     .strength(1.3F, 50.0F)
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gravestone")))));
+
+    public static final Block EMERALD_WALL = registerBlock("emerald_wall",
+            new WallBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.EMERALD_GREEN)
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_wall")))));
+
+    public static final Block EMERALD_STAIRS = registerBlock("emerald_stairs",
+            new StairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.EMERALD_GREEN)
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_stairs")))));
+
+    public static final Block EMERALD_SLAB = registerBlock("emerald_slab",
+            new SlabBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.EMERALD_GREEN)
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_slab")))));
+
+    public static final Block EMERALD_COLUMN = registerBlock("emerald_column",
+            new column_init(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.EMERALD_GREEN)
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_column")))));
 
     public static Block registerBlock(String name, Block block) { //this is the method to load a new (non-item) block
         Identifier id = Identifier.of("the_tower", name);
@@ -897,6 +970,12 @@ public class block_init {
         registerBlockItem("silver_block", SILVER_BLOCK);
         registerBlockItem("old_soil", OLD_SOIL);
         registerBlockItem("old_meadow", OLD_MEADOW);
+        registerBlockItem("silver_thurible", SILVER_THURIBLE);
+        registerBlockItem("raw_silver_block", RAW_SILVER_BLOCK);
+        registerBlockItem("emerald_wall", EMERALD_WALL);
+        registerBlockItem("emerald_column", EMERALD_COLUMN);
+        registerBlockItem("emerald_slab", EMERALD_SLAB);
+        registerBlockItem("emerald_stairs", EMERALD_STAIRS);
     } //to load into game
 
 }

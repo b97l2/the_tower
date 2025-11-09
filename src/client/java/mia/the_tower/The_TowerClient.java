@@ -68,6 +68,31 @@ public class The_TowerClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GOLDEN_THURIBLE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SPIRITS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SAUERKRAUT, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GINKGO_LEAVES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GRAVESTONE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GROTESQUE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.STARLIGHT_LICHEN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GINKGO_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GOLD_LADDER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GOLD_BARS, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SIMPLE_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.WHITE_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.ORANGE_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.MAGENTA_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.LIGHT_BLUE_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.YELLOW_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.LIME_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLUE_BELL, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.PINK_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GREY_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.LIGHT_GREY_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.CYAN_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.PURPLE_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLUE_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BROWN_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GREEN_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.RED_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLACK_COFFER, RenderLayer.getCutout());
 
 		//this is for rendering fluids
 		FluidRenderHandlerRegistry.INSTANCE.register(

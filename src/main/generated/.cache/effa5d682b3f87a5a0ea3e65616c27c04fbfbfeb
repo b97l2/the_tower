@@ -1,6 +1,7 @@
 // 1.21.4	-999999999-01-01T00:00:00	The_Tower/World Gen
 b77c769cc30a3a3e0eab840484a4b249b04c73c4 data/the_tower/dimension_type/the_frage_type.json
 afbfe67684cbf7117b770c46030c4a3fe153fe28 data/the_tower/worldgen/biome/cerulean_coast.json
+465e9bca4043dfaedff219a658850e677d4e33cd data/the_tower/worldgen/biome/golden_weald.json
 b2b46539b9dc1e8f8fec864be9ffe8f465a934a1 data/the_tower/worldgen/biome/shadowlands.json
 8c81e32370708d7705c0b944864692fdad8f2980 data/the_tower/worldgen/biome/the_pit.json
 186558e91f15eabb61b188076d0277b7e8e97faf data/the_tower/worldgen/configured_feature/afhd.json
@@ -15,6 +16,7 @@ fbcda0cf7fda200eb7b43164fe244c0eeb2798d4 data/the_tower/worldgen/configured_feat
 7c838ee1693e625d4927f2ee330ef1af10126a31 data/the_tower/worldgen/placed_feature/cerulean_coast_flowers_patch_placed.json
 1a695d063a89c8686db0cabf621431c72c6a897a data/the_tower/worldgen/placed_feature/cerulean_grass_patch_placed.json
 28a4cec5d5efa4ee2e734b3e1192e0f1ed697880 data/the_tower/worldgen/placed_feature/dragons_eye_ore_placed.json
+a1308f612bc04de83738ccb7b9fd9a6b3dbd6937 data/the_tower/worldgen/placed_feature/ginkgo_placed.json
 4ff617a19290f9951faf0bd24a4268cd29b39e1e data/the_tower/worldgen/placed_feature/itore_placed.json
 dbd47ff086b0774e120bae223f81b985c596fe8a data/the_tower/worldgen/placed_feature/silver_ore_placed.json
 d6ba888700158d998927f55ccf0c61a3364c14cd data/the_tower/worldgen/placed_feature/silver_vein_placed.json

@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "ingredient": "minecraft:gold_block",
   "result": {
-    "count": 1,
+    "count": 2,
     "id": "the_tower:gold_column"
   }
 }
