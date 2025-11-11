@@ -11,6 +11,7 @@ import mia.the_tower.initialisation.blockentity.blockentity_init;
 import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.dimentions.TheFrage;
 import mia.the_tower.initialisation.entity.ModEntities;
+import mia.the_tower.initialisation.entity.custom.LampFlyEntity;
 import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
 import mia.the_tower.initialisation.items.util.CofferToKey;
@@ -24,6 +25,8 @@ import mia.the_tower.initialisation.world.gen.ModWorldGeneration;
 
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
+import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
+import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -86,8 +89,10 @@ public class The_Tower implements ModInitializer {
 		CofferToKey.load();
 		ModDeaths.init();
 		GiantTrunkPlacer.init();
+		MediumTrunkPlacer.init();
 		GiantFoliagePlacer.init();
 		GoldenWeald.load();
+		TripleAwareSimpleBlockFeature.init();
 
 		//for flammable blocks
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);
@@ -98,6 +103,8 @@ public class The_Tower implements ModInitializer {
 
 		//for entities
 		FabricDefaultAttributeRegistry.register(ModEntities.VOID_MOTH, VoidMothEntity.createAttributes());
+
+		FabricDefaultAttributeRegistry.register(ModEntities.LAMP_FLY, LampFlyEntity.createAttributes());
 
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			Iterator<Map.Entry<ServerPlayerEntity, GameMode>> iterator = spectatingPlayers.entrySet().iterator();

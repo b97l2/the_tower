@@ -223,6 +223,7 @@ public class block_init {
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .replaceable()
                     .nonOpaque()
+                    .emissiveLighting(Blocks::always)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cerulean_petals")))));
 
     public static final Block BLUE_BELL = registerBlock("blue_bell",
@@ -799,10 +800,46 @@ public class block_init {
     public static final Block SILVER_BLOCK = registerBlock("silver_block",
             new PillarBlock(AbstractBlock.Settings.create()
                     .requiresTool()
-                    .mapColor(MapColor.GRAY)
+                    .mapColor(MapColor.LIGHT_GRAY)
                     .strength(2.8F, 4.0F)
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_block")))));
+
+    public static final Block SILVER_WALL = registerBlock("silver_wall",
+            new WallBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.LIGHT_GRAY)
+                    .strength(2.8F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_wall")))));
+
+    public static final Block SILVER_STAIRS = registerBlock("silver_stairs",
+            new StairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.LIGHT_GRAY)
+                    .strength(2.8F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_stairs")))));
+
+    public static final Block SILVER_SLAB = registerBlock("silver_slab",
+            new SlabBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.LIGHT_GRAY)
+                    .strength(2.8F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_slab")))));
+
+    public static final Block SILVER_COLUMN = registerBlock("silver_column",
+            new column_init(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.LIGHT_GRAY)
+                    .strength(2.8F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_column")))));
 
     public static final Block SILVER_LANTERN = registerBlock("silver_lantern",
             new LanternBlock(AbstractBlock.Settings.create()
@@ -866,6 +903,15 @@ public class block_init {
                     .strength(5.0F, 6.0F)
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_column")))));
+
+    public static final Block KAOLIN = registerBlock("kaolin",
+            new Block(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.OFF_WHITE)
+                    .strength(1.1F, 1.0F)
+                    .sounds(BlockSoundGroup.MUD_BRICKS)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "kaolin")))));
+
+
 
     public static Block registerBlock(String name, Block block) { //this is the method to load a new (non-item) block
         Identifier id = Identifier.of("the_tower", name);
@@ -976,6 +1022,11 @@ public class block_init {
         registerBlockItem("emerald_column", EMERALD_COLUMN);
         registerBlockItem("emerald_slab", EMERALD_SLAB);
         registerBlockItem("emerald_stairs", EMERALD_STAIRS);
+        registerBlockItem("kaolin", KAOLIN);
+        registerBlockItem("silver_wall", SILVER_WALL);
+        registerBlockItem("silver_column", SILVER_COLUMN);
+        registerBlockItem("silver_slab", SILVER_SLAB);
+        registerBlockItem("silver_stairs", SILVER_STAIRS);
     } //to load into game
 
 }

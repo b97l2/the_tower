@@ -3,12 +3,14 @@ package mia.the_tower.initialisation.world.tree;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.block.BlockState;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
@@ -16,6 +18,8 @@ import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
+
+import java.util.function.BiConsumer;
 
 /**
  * Organic, drooping foliage for very large trees.
@@ -87,6 +91,8 @@ public class GiantFoliagePlacer extends FoliagePlacer {
         this.layerFuzz = layerFuzz;
     }
 
+    public static final ThreadLocal<ChunkPos> CURRENT_TREE_ORIGIN = new ThreadLocal<>(); //for chunk window
+
     @Override
     protected FoliagePlacerType<?> getType() {
         return ORGANIC_DROOP; // defined below
@@ -135,6 +141,24 @@ public class GiantFoliagePlacer extends FoliagePlacer {
         // Cache a droop length for this tree (or keep per-layer if you like)
         final int maxDroopLen = this.maxDroop.get(random);
 
+        //this is to place only in feature chunk
+        final ChunkPos originChunk =
+                java.util.Optional.ofNullable(CURRENT_TREE_ORIGIN.get())
+                        .orElseGet(() -> new ChunkPos(center));
+        final FoliagePlacer.BlockPlacer gatedPlacer = new FoliagePlacer.BlockPlacer() {
+            @Override
+            public void placeBlock(BlockPos pos, BlockState state) {
+                if (withinFeatureRegion(originChunk, pos)) {
+                    placer.placeBlock(pos, state);
+                }
+            }
+            @Override
+            public boolean hasPlacedBlock(BlockPos pos) {
+                return placer.hasPlacedBlock(pos); // preserve leaf-layer checks
+            }
+        };
+
+
         // IMPORTANT: one vertical shift path (yOff), no pre-shifted BlockPos
         for (int dy = -capLayers; dy < foliageHeight; dy++) {
             final int yOff = offset - dy;
@@ -164,14 +188,13 @@ public class GiantFoliagePlacer extends FoliagePlacer {
             if (layerRadius < 1) continue;  // nothing to place on this layer
 
             // Place the layer (single application of vertical offset).
-            generateSquare(world, placer, random, config, center, layerRadius, yOff, giantTrunk);
+            generateSquare(world, gatedPlacer, random, config, center, layerRadius, yOff, giantTrunk);
 
             // Start a strand from EVERY leaf cell in this layer, threading through leaves
             // (as you already implemented in spawnDroopingStrandsFromAllLeafCellsInLayer).
             BlockPos layerCenter = center.up(yOff);
-            spawnDroopingStrandsFromAllLeafCellsInLayer(
-                    world, placer, random, config, layerCenter, layerRadius, maxDroopLen
-            );
+            spawnDroopingStrandsFromAllLeafCellsInLayer(world, gatedPlacer, random, config, layerCenter, layerRadius, maxDroopLen);
+
         }
     }
 
@@ -269,6 +292,14 @@ public class GiantFoliagePlacer extends FoliagePlacer {
             cur.move(Direction.DOWN);
         }
     }
+
+
+    private static boolean withinFeatureRegion(ChunkPos origin, BlockPos p) { //this is to make leaves only generate in the feature chunk
+        int pcx = p.getX() >> 4;   // chunk X of placement
+        int pcz = p.getZ() >> 4;   // chunk Z of placement
+        return Math.abs(pcx - origin.x) <= 1 && Math.abs(pcz - origin.z) <= 1;
+    }
+
 
 //    // Reuse the base helper for placing leaves (handles persistence/waterlogging via TreeFeature.canReplace)
 //    private static boolean placeFoliageBlock(TestableWorld world, BlockPlacer placer, Random random, TreeFeatureConfig config, BlockPos pos) {

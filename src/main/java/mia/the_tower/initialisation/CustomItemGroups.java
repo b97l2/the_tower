@@ -62,6 +62,10 @@ public class CustomItemGroups {
                         entries.add(block_init.SILVER_ORE);
                         entries.add(block_init.SILVER_VEIN);
                         entries.add(block_init.SILVER_BLOCK);
+                        entries.add(block_init.SILVER_WALL);
+                        entries.add(block_init.SILVER_COLUMN);
+                        entries.add(block_init.SILVER_SLAB);
+                        entries.add(block_init.SILVER_STAIRS);
                         entries.add(block_init.RAW_SILVER_BLOCK);
                         entries.add(block_init.PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_PETRIFIED_STONE);
@@ -201,6 +205,10 @@ public class CustomItemGroups {
                         entries.add(block_init.EMERALD_SLAB);
                         entries.add(block_init.EMERALD_STAIRS);
                         entries.add(block_init.EMERALD_WALL);
+
+                        //porcelain
+                        entries.add(item_init.CHUNK_OF_KAOLIN);
+                        entries.add(block_init.KAOLIN);
 
 
                     }).build());

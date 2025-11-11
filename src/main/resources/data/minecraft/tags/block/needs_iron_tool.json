@@ -18,6 +18,10 @@
     "the_tower:emerald_stairs",
     "the_tower:emerald_slab",
     "the_tower:emerald_column",
-    "the_tower:emerald_wall"
+    "the_tower:emerald_wall",
+    "the_tower:silver_stairs",
+    "the_tower:silver_slab",
+    "the_tower:silver_column",
+    "the_tower:silver_wall"
   ]
 }

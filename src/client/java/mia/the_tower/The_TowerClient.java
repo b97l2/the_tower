@@ -1,5 +1,7 @@
 package mia.the_tower;
 
+import mia.the_tower.entity.lamp_fly.LampFlyModel;
+import mia.the_tower.entity.lamp_fly.LampFlyRenderer;
 import mia.the_tower.entity.plate.PlateRenderer;
 import mia.the_tower.entity.void_moth.VoidMothModel;
 import mia.the_tower.entity.void_moth.VoidMothRenderer;
@@ -129,6 +131,9 @@ public class The_TowerClient implements ClientModInitializer {
 		//this is for entities
 		EntityModelLayerRegistry.registerModelLayer(VoidMothModel.VOID_MOTH, VoidMothModel::getTexturedModelData);
 		EntityRendererRegistry.register(ModEntities.VOID_MOTH, VoidMothRenderer::new);
+
+		EntityModelLayerRegistry.registerModelLayer(LampFlyModel.LAMP_FLY, LampFlyModel::getTexturedModelData);
+		EntityRendererRegistry.register(ModEntities.LAMP_FLY, LampFlyRenderer::new);
 
 		EntityRendererRegistry.register(ModEntities.PLATE, PlateRenderer::new);
 		ModelLoadingPlugin.register(ctx -> {

@@ -4,6 +4,8 @@ import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.util.CustomTags;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
+import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
+import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
@@ -86,21 +88,36 @@ public class ModConfiguredFeatures {
         register(context, SILVER_VEIN_KEY, Feature.ORE, new OreFeatureConfig(frageSilverVeinOres, 9));
 
         //for tree
+        //this one for ginkgo tree looks good but is way to resource intensive for a feature, it will be used as a structure instead
+//        register(context, GINKGO_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
+//                BlockStateProvider.of(block_init.GINKGO_LOG),
+//                new GiantTrunkPlacer(5, 88, 95, 15, 3,0.5f,  0.3f, 3, 0.4f, 0.8f, 3.5f),
+//
+//                BlockStateProvider.of(block_init.GINKGO_LEAVES),
+//                new GiantFoliagePlacer(        ConstantIntProvider.create(14),   // radius seed (big crowns)
+//                        ConstantIntProvider.create(0),    // offset seed
+//                        UniformIntProvider.create(18, 42),// max_droop: long hanging curtains
+//                        1f,                            //how round the top is, 0 is flat, 1 is very round (capped at 16 layers)
+//                        0.90f,                            // strand_continue_chance
+//                        0.30f,                            // drift_chance
+//                        0.70f,                            // vertical_taper (radius loss per layer)
+//                        2                                 // layer_fuzz (+/-)
+//                        ),
+//                new TwoLayersFeatureSize(3, 0, 4)).build());
         register(context, GINKGO_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(block_init.GINKGO_LOG),
-                new GiantTrunkPlacer(5, 88, 95, 15, 3,0.5f,  0.3f, 3, 0.4f, 0.8f, 3.5f),
+                new MediumTrunkPlacer(16, 48, 35, 3, 1,0.5f,  0.3f, 2, 0.4f, 0.8f, 3.5f),
 
                 BlockStateProvider.of(block_init.GINKGO_LEAVES),
-                new GiantFoliagePlacer(        ConstantIntProvider.create(14),   // radius seed (big crowns)
+                new GiantFoliagePlacer(        ConstantIntProvider.create(4),   // radius seed (big crowns)
                         ConstantIntProvider.create(0),    // offset seed
-                        UniformIntProvider.create(18, 42),// max_droop: long hanging curtains
+                        UniformIntProvider.create(10, 20),// max_droop: long hanging curtains
                         1f,                            //how round the top is, 0 is flat, 1 is very round (capped at 16 layers)
                         0.90f,                            // strand_continue_chance
                         0.30f,                            // drift_chance
                         0.70f,                            // vertical_taper (radius loss per layer)
                         2                                 // layer_fuzz (+/-)
-                        ),
-
+                ),
                 new TwoLayersFeatureSize(3, 0, 4)).build());
 
         //for vegetation
@@ -127,7 +144,7 @@ public class ModConfiguredFeatures {
                         6,  // xz spread
                         2,  // y spread
                         PlacedFeatures.createEntry(
-                                Feature.SIMPLE_BLOCK,
+                                TripleAwareSimpleBlockFeature.TRIPLE_AWARE_SIMPLE_BLOCK,
                                 new SimpleBlockFeatureConfig(
                                         new WeightedBlockStateProvider(
                                                 DataPool.<BlockState>builder() //this gives weighted distribution within a single patch

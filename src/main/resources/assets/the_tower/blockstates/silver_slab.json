@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "the_tower:block/silver_slab"
+    },
+    "type=double": {
+      "model": "the_tower:block/silver_block"
+    },
+    "type=top": {
+      "model": "the_tower:block/silver_slab_top"
+    }
+  }
+}

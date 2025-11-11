@@ -1,6 +1,7 @@
 package mia.the_tower.initialisation.biomes;
 
 import mia.the_tower.initialisation.carver.ModCarvers;
+import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -33,7 +34,7 @@ public class CeruleanCoast {
 
     public static Biome createCeruleanCoast(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-        //spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PORCUPINE, 2, 3, 5)); //spawning mod entities
+        spawnBuilder.spawn(SpawnGroup.AMBIENT, new SpawnSettings.SpawnEntry(ModEntities.LAMP_FLY, 50, 6, 15)); //spawning mod entities
 
         //general
         var placedLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE); //?

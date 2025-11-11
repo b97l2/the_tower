@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEvents;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
@@ -60,28 +61,55 @@ public class ExtraTallFlower extends PlantBlock {
 
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        TripleBlockPart third = state.get(THIRD);
         if (!world.isClient) {
-            if (third == TripleBlockPart.UPPER) {
-                BlockPos middlePos = pos.down();
-                BlockPos lowerPos = pos.down(2);
-                world.breakBlock(middlePos, !player.isCreative());
-                world.breakBlock(lowerPos, !player.isCreative());
-            } else if (third == TripleBlockPart.MIDDLE) {
-                BlockPos lowerPos = pos.down();
-                BlockPos upperPos = pos.up();
-                world.breakBlock(lowerPos, !player.isCreative());
-                world.breakBlock(upperPos, !player.isCreative());
+            if (player.isCreative()) {
+                // Prevent drops and cleanly remove the whole stack like vanilla
+                onBreakInCreative(world, pos, state, player);
             } else {
-                BlockPos middlePos = pos.up();
-                BlockPos upperPos = pos.up(2);
-                world.breakBlock(middlePos, !player.isCreative());
-                world.breakBlock(upperPos, !player.isCreative());
+                // Your existing survival behavior (break the other parts with drops)
+                TripleBlockPart third = state.get(THIRD);
+                if (third == TripleBlockPart.UPPER) {
+                    world.breakBlock(pos.down(), true);
+                    world.breakBlock(pos.down(2), true);
+                } else if (third == TripleBlockPart.MIDDLE) {
+                    world.breakBlock(pos.down(), true);
+                    world.breakBlock(pos.up(),   true);
+                } else {
+                    world.breakBlock(pos.up(),   true);
+                    world.breakBlock(pos.up(2),  true);
+                }
             }
         }
-
         return super.onBreak(world, pos, state, player);
     }
+
+
+    private static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        TripleBlockPart part = state.get(THIRD);
+
+        // Resolve the full stack origin (lower/middle/upper -> lower)
+        BlockPos lower = switch (part) {
+            case LOWER -> pos;
+            case MIDDLE -> pos.down();
+            case UPPER -> pos.down(2);
+        };
+        BlockPos middle = lower.up();
+        BlockPos upper  = lower.up(2);
+
+        // Clear each section without drops and with a break animation
+        clearNoDrop(world, lower,  player);
+        clearNoDrop(world, middle, player);
+        clearNoDrop(world, upper,  player);
+    }
+
+    private static void clearNoDrop(World world, BlockPos p, PlayerEntity player) {
+        BlockState s = world.getBlockState(p);
+        if (s.getBlock() instanceof ExtraTallFlower) {
+            world.setBlockState(p, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL | Block.SKIP_DROPS);
+            world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, p, Block.getRawIdFromState(s));
+        }
+    }
+
 
     @Override
     protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
@@ -98,6 +126,24 @@ public class ExtraTallFlower extends PlantBlock {
             default:
                 return false;
         }
+    }
+
+    @Override //this is for when the block is placed via features, it places the top two parts itself
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        super.onBlockAdded(state, world, pos, oldState, notify);
+        if (world.isClient) return;
+
+        // Only bootstrap from the LOWER part
+        if (!state.isOf(this) || state.get(THIRD) != TripleBlockPart.LOWER) return;
+
+        // Y-bounds & simple replaceability checks (air is enough for vegetation patches)
+        if (pos.getY() + 2 > world.getTopYInclusive()) return;
+        BlockPos mid = pos.up();
+        BlockPos top = pos.up(2);
+        if (!world.getBlockState(mid).isAir() || !world.getBlockState(top).isAir()) return;
+
+        world.setBlockState(mid, this.getDefaultState().with(THIRD, TripleBlockPart.MIDDLE), Block.NOTIFY_ALL);
+        world.setBlockState(top, this.getDefaultState().with(THIRD, TripleBlockPart.UPPER),  Block.NOTIFY_ALL);
     }
 
     @Override

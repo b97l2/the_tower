@@ -89,8 +89,8 @@ public class ModPlacedFeatures {
         //tree
         register(context, GINKGO_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GINKGO_KEY),
                 VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-                        PlacedFeatures.createCountExtraModifier(1, 0.1f, 0),block_init.GINKGO_SAPLING));
-
+                        RarityFilterPlacementModifier.of(6), // ~1 attempt per 8 chunks
+                        block_init.GINKGO_SAPLING));
 
         //for any feature then you go to the gen/ModXXXGeneration file, or create it.
         //I am not sure if this is necessary for spawning in custom biomes, or if it is only for vanilla.

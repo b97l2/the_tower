@@ -1,6 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": "minecraft:gold_block",
+  "ingredient": "minecraft:emerald_block",
   "result": {
     "count": 1,
     "id": "the_tower:emerald_wall"

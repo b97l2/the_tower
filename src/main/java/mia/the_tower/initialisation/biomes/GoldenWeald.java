@@ -60,7 +60,7 @@ public class GoldenWeald {
 
         //vegetation
         biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.CERULEAN_GRASS_PATCH_PLACED_KEY);
-        //biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.GINKGO_PLACED_KEY);
+        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.GINKGO_PLACED_KEY);
 
         return new Biome.Builder()
                 .precipitation(true)

@@ -93,6 +93,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item DIVINING_ROD;
     public static Item TOAST;
     public static Item TOFFEE_APPLE;
+    public static Item CHUNK_OF_KAOLIN;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -428,6 +429,10 @@ public class item_init { //this is the class that initialises items in the mod
         FRAYED_NOTE = register("frayed_note", new Item(
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("frayed_note")))));
+
+        CHUNK_OF_KAOLIN = register("chunk_of_kaolin", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chunk_of_kaolin")))));
 
     }
 
