@@ -1,9 +1,6 @@
 package mia.the_tower.entity.lamp_fly;
 
-import mia.the_tower.entity.void_moth.VoidMothModel;
-import mia.the_tower.entity.void_moth.VoidMothRenderState;
 import mia.the_tower.initialisation.entity.custom.LampFlyEntity;
-import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;

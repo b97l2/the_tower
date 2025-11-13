@@ -3,11 +3,9 @@ package mia.the_tower.initialisation.world;
 import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.util.CustomTags;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
-import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
 import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -17,20 +15,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
-import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
-import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
-import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
-import net.minecraft.world.gen.foliage.SpruceFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.NoiseBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 import java.util.List;
 //relevant mc files to look at: VegetationConfiguredFeatures
@@ -157,7 +149,7 @@ public class ModConfiguredFeatures {
                                         )
                                 ),
                                 // Optional: add survival/ground predicates so every variant checks it can live
-                                BlockPredicate.wouldSurvive(block_init.BLUE_FOXGLOVE.getDefaultState(), BlockPos.ORIGIN)
+                                BlockPredicate.wouldSurvive(block_init.CERULEAN_WILDGRASS.getDefaultState(), BlockPos.ORIGIN)
                         )
                 )
         );

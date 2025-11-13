@@ -2,16 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "minecraft:stick"
+    "#": "the_tower:ginkgo_planks"
   },
   "pattern": [
-    "  #",
-    "## ",
-    " # "
+    "###"
   ],
   "result": {
-    "count": 1,
-    "id": "the_tower:divining_rod"
+    "count": 6,
+    "id": "the_tower:ginkgo_slab"
   },
   "show_notification": true
 }

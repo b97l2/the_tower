@@ -3,6 +3,11 @@
   "values": [
     "the_tower:cube_of_flesh",
     "the_tower:skin",
-    "the_tower:pulled_teeth"
+    "the_tower:pulled_teeth",
+    "the_tower:ginkgo_planks",
+    "the_tower:ginkgo_stairs",
+    "the_tower:ginkgo_slab",
+    "the_tower:ginkgo_trapdoor",
+    "the_tower:ginkgo_button"
   ]
 }

@@ -246,6 +246,7 @@ public class block_init {
                     .noCollision()
                     .breakInstantly()
                     .nonOpaque()
+                    .ticksRandomly()
                     .sounds(BlockSoundGroup.GRASS)
                     .offset(AbstractBlock.OffsetType.XZ)
                     .pistonBehavior(PistonBehavior.DESTROY)
@@ -563,6 +564,25 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_button")))));
 
+    public static final Block GOLD_BARS = registerBlock("gold_bars",
+            new PaneBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.METAL)
+                    .mapColor(MapColor.GOLD)
+                    .strength(5F, 6.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_bars")))));
+
+    public static final Block GOLD_LADDER = registerBlock("gold_ladder",
+            new LadderBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .nonOpaque()
+                    .noCollision()
+                    .sounds(BlockSoundGroup.METAL)
+                    .mapColor(MapColor.GOLD)
+                    .strength(3F, 6.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_ladder")))));
+
 
     public static final Block GINKGO_LOG = registerBlock("ginkgo_log",
             new PillarBlock(AbstractBlock.Settings.create()
@@ -571,6 +591,50 @@ public class block_init {
                     .strength(2f)
                     .sounds(BlockSoundGroup.WOOD)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_log")))));
+
+    public static final Block GINKGO_PLANKS = registerBlock("ginkgo_planks",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GOLD)
+                    .burnable()
+                    .strength(2f)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_planks")))));
+
+    public static final Block GINKGO_STAIRS = registerBlock("ginkgo_stairs",
+            new StairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_stairs")))));
+
+    public static final Block GINKGO_SLAB = registerBlock("ginkgo_slab",
+            new SlabBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_slab")))));
+
+    public static final Block GINKGO_TRAPDOOR = registerBlock("ginkgo_trapdoor",
+            new TrapdoorBlock(BlockSetType.OAK, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_trapdoor")))));
+
+    public static final Block GINKGO_BUTTON = registerBlock("ginkgo_button",
+            new ButtonBlock(BlockSetType.OAK, 10, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_button")))));
 
     public static final Block GINKGO_LEAVES = registerBlock("ginkgo_leaves",
             new NonDecayingLeavesBlock(5, CustomParticles.GOLD_INCENSE, AbstractBlock.Settings.create()
@@ -755,24 +819,7 @@ public class block_init {
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "simple_coffer")))));
 
-    public static final Block GOLD_BARS = registerBlock("gold_bars",
-            new PaneBlock(AbstractBlock.Settings.create()
-                    .requiresTool()
-                    .nonOpaque()
-                    .sounds(BlockSoundGroup.METAL)
-                    .mapColor(MapColor.GOLD)
-                    .strength(5F, 6.0F)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_bars")))));
 
-    public static final Block GOLD_LADDER = registerBlock("gold_ladder",
-            new LadderBlock(AbstractBlock.Settings.create()
-                    .requiresTool()
-                    .nonOpaque()
-                    .noCollision()
-                    .sounds(BlockSoundGroup.METAL)
-                    .mapColor(MapColor.GOLD)
-                    .strength(3F, 6.0F)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_ladder")))));
 
     public static final Block SILVER_ORE = registerBlock("silver_ore",
             new PillarBlock(AbstractBlock.Settings.create()
@@ -1027,6 +1074,11 @@ public class block_init {
         registerBlockItem("silver_column", SILVER_COLUMN);
         registerBlockItem("silver_slab", SILVER_SLAB);
         registerBlockItem("silver_stairs", SILVER_STAIRS);
+        registerBlockItem("ginkgo_planks", GINKGO_PLANKS);
+        registerBlockItem("ginkgo_stairs", GINKGO_STAIRS);
+        registerBlockItem("ginkgo_slab", GINKGO_SLAB);
+        registerBlockItem("ginkgo_trapdoor", GINKGO_TRAPDOOR);
+        registerBlockItem("ginkgo_button", GINKGO_BUTTON);
     } //to load into game
 
 }

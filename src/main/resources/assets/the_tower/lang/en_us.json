@@ -185,7 +185,12 @@
   "item.the_tower.emerald_wall": "Emerald Wall",
   "item.the_tower.emerald_column": "Emerald Column",
   "item.the_tower.emerald_stairs": "Emerald Stairs",
-  "item.the_tower.emerald_slab": "Emerald Slab"
+  "item.the_tower.emerald_slab": "Emerald Slab",
+  "item.the_tower.ginkgo_planks": "Ginkgo Planks",
+  "item.the_tower.ginkgo_slab": "Ginkgo Slab",
+  "item.the_tower.ginkgo_stairs": "Ginkgo Stairs",
+  "item.the_tower.ginkgo_trapdoor": "Ginkgo Trapdoor",
+  "item.the_tower.ginkgo_button": "Ginkgo Button"
 }
 
 

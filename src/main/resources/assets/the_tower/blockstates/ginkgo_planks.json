@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "the_tower:block/ginkgo_planks",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "the_tower:block/ginkgo_planks"
+    },
+    "axis=z": {
+      "model": "the_tower:block/ginkgo_planks",
+      "x": 90
+    }
+  }
+}

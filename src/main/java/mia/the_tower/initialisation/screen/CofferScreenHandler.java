@@ -11,7 +11,6 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.MathHelper;
 
 public class CofferScreenHandler  extends ScreenHandler {
     public static final int COLS = 9;

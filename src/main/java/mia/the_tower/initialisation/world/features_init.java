@@ -1,6 +1,5 @@
 package mia.the_tower.initialisation.world;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

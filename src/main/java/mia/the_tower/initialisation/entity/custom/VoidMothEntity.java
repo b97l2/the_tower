@@ -1,11 +1,9 @@
 package mia.the_tower.initialisation.entity.custom;
 
-import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.entity.goal.PerchGoal;
 import mia.the_tower.initialisation.item_init;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.brain.task.BreedTask;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.BirdNavigation;

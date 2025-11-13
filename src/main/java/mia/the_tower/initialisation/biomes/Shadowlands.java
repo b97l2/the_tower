@@ -2,7 +2,6 @@ package mia.the_tower.initialisation.biomes;
 
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.world.ModPlacedFeatures;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.*;
 import net.minecraft.util.Identifier;
@@ -12,8 +11,7 @@ import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.sound.BiomeMoodSound;;
 
 //to create a new biome, it needs one of these, it needs its own line in The_TowerDataGenerator, load() needs to be called, and it needs
 //to be mentioned in the frage class

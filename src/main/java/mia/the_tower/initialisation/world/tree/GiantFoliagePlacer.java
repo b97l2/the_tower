@@ -19,8 +19,6 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
-import java.util.function.BiConsumer;
-
 /**
  * Organic, drooping foliage for very large trees.
  * Shape:

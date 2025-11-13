@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "gold",
+  "ingredients": [
+    "the_tower:ginkgo_planks"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:ginkgo_button"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "the_tower:ginkgo_planks"
+  },
+  "pattern": [
+    "#",
+    "##",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "the_tower:ginkgo_stairs"
+  },
+  "show_notification": true
+}

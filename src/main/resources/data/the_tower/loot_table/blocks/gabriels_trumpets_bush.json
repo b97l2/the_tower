@@ -20,7 +20,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "the_tower:twintail_berries"
+          "name": "the_tower:twintail_berry"
         }
       ],
       "functions": [
@@ -58,7 +58,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "the_tower:twintail_berries"
+          "name": "the_tower:twintail_berry"
         }
       ],
       "functions": [

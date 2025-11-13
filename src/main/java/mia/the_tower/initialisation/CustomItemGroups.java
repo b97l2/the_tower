@@ -184,6 +184,11 @@ public class CustomItemGroups {
                         entries.add(item_init.GOLDEN_SEED);
                         entries.add(item_init.GINKGO_LEAF);
                         entries.add(block_init.GINKGO_LOG);
+                        entries.add(block_init.GINKGO_PLANKS);
+                        entries.add(block_init.GINKGO_SLAB);
+                        entries.add(block_init.GINKGO_STAIRS);
+                        entries.add(block_init.GINKGO_TRAPDOOR);
+                        entries.add(block_init.GINKGO_BUTTON);
                         entries.add(block_init.GINKGO_LEAVES);
                         entries.add(item_init.GINKGO_FRUIT);
 

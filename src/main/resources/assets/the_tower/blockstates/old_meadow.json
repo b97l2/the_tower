@@ -1,10 +1,10 @@
 {
   "variants": {
     "": [
-      { "model": "the_tower:block/old_meadow1" },
-      { "model": "the_tower:block/old_meadow1", "y": 0 },
-      { "model": "the_tower:block/old_meadow1", "y": 0 },
-      { "model": "the_tower:block/old_meadow1", "y": 0 },
+      { "model": "the_tower:block/old_meadow" },
+      { "model": "the_tower:block/old_meadow", "y": 0 },
+      { "model": "the_tower:block/old_meadow", "y": 0 },
+      { "model": "the_tower:block/old_meadow", "y": 0 },
       { "model": "the_tower:block/old_meadow2" },
       { "model": "the_tower:block/old_meadow2", "y": 0 },
       { "model": "the_tower:block/old_meadow2", "y": 0 },
