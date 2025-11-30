@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "the_tower:block/imperial_jade_lantern"
+    },
+    "hanging=true": {
+      "model": "the_tower:block/imperial_jade_lantern_hanging"
+    }
+  }
+}

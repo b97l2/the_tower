@@ -40,6 +40,7 @@ public class ModConfiguredFeatures {
 
     //tree
     public static final RegistryKey<ConfiguredFeature<?, ?>> GINKGO_KEY = registerKey("ginkgo");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VAULTS_STANCHION_KEY = registerKey("vaults_stanchion");
 
     //vegetation
     public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_GRASS_PATCH_KEY = registerKey("cerulean_grass_patch");
@@ -109,6 +110,22 @@ public class ModConfiguredFeatures {
                         0.30f,                            // drift_chance
                         0.70f,                            // vertical_taper (radius loss per layer)
                         2                                 // layer_fuzz (+/-)
+                ),
+                new TwoLayersFeatureSize(3, 0, 4)).build());
+
+        register(context, VAULTS_STANCHION_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(block_init.GINKGO_LOG),
+                new MediumTrunkPlacer(35, 55, 25, 2, 1,0.5f,  0.3f, 1, 0.7f, 0.8f, 5.5f),
+
+                BlockStateProvider.of(block_init.GINKGO_LEAVES),
+                new GiantFoliagePlacer(        ConstantIntProvider.create(3),   // radius seed (big crowns)
+                        ConstantIntProvider.create(0),    // offset seed
+                        UniformIntProvider.create(10, 20),// max_droop: long hanging curtains
+                        1f,                            //how round the top is, 0 is flat, 1 is very round (capped at 16 layers)
+                        0.90f,                            // strand_continue_chance
+                        0.05f,                            // drift_chance
+                        0.4f,                            // vertical_taper (radius loss per layer)
+                        1                                 // layer_fuzz (+/-)
                 ),
                 new TwoLayersFeatureSize(3, 0, 4)).build());
 

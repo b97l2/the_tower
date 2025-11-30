@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "the_tower:block/stripped_ginkgo_log_top",
+    "side": "the_tower:block/stripped_ginkgo_log_side"
+  }
+}

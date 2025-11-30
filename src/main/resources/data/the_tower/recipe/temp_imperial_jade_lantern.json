@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:emerald",
+    "!": "the_tower:heavens_light"
+  },
+  "pattern": [
+    "###",
+    "#!#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:imperial_jade_lantern"
+  },
+  "show_notification": true
+}

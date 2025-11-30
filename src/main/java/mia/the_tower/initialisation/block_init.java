@@ -592,6 +592,14 @@ public class block_init {
                     .sounds(BlockSoundGroup.WOOD)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_log")))));
 
+    public static final Block STRIPPED_GINKGO_LOG = registerBlock("stripped_ginkgo_log",
+            new PillarBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GOLD)
+                    .burnable()
+                    .strength(2f)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "stripped_ginkgo_log")))));
+
     public static final Block GINKGO_PLANKS = registerBlock("ginkgo_planks",
             new PillarBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.GOLD)
@@ -659,6 +667,16 @@ public class block_init {
                     .noCollision()
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_sapling")))));
+
+    public static final Block VAULTS_STANCHION_SAPLING = registerBlock("vaults_stanchion_sapling",
+            new SaplingBlock(ModSaplingGenerators.VAULTS_STANCHION, AbstractBlock.Settings.create()
+                    .mapColor(MapColor.TEAL)
+                    .sounds(BlockSoundGroup.GRASS)
+                    .burnable()
+                    .nonOpaque()
+                    .noCollision()
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "vaults_stanchion_sapling")))));
 
     public static final Block AFHD = registerBlock("afhd",
             new Block(AbstractBlock.Settings.create()
@@ -958,6 +976,14 @@ public class block_init {
                     .sounds(BlockSoundGroup.MUD_BRICKS)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "kaolin")))));
 
+    public static final Block IMPERIAL_JADE_LANTERN = registerBlock("imperial_jade_lantern",
+            new LanternBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.EMERALD_GREEN)
+                    .strength(5F, 10.0F)
+                    .luminance(state -> 15)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "imperial_jade_lantern")))));
 
 
     public static Block registerBlock(String name, Block block) { //this is the method to load a new (non-item) block
@@ -1079,6 +1105,9 @@ public class block_init {
         registerBlockItem("ginkgo_slab", GINKGO_SLAB);
         registerBlockItem("ginkgo_trapdoor", GINKGO_TRAPDOOR);
         registerBlockItem("ginkgo_button", GINKGO_BUTTON);
+        registerBlockItem("stripped_ginkgo_log", STRIPPED_GINKGO_LOG);
+        registerBlockItem("vaults_stanchion", VAULTS_STANCHION_SAPLING);
+        registerBlockItem("imperial_jade_lantern", IMPERIAL_JADE_LANTERN);
     } //to load into game
 
 }

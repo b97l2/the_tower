@@ -1,16 +1,15 @@
 {
   "variants": {
-    "axis=x": {
-      "model": "the_tower:block/ginkgo_planks",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y": {
-      "model": "the_tower:block/ginkgo_planks"
-    },
-    "axis=z": {
-      "model": "the_tower:block/ginkgo_planks",
-      "x": 90
-    }
+    "": [
+      { "model": "the_tower:block/ginkgo_planks" },
+      { "model": "the_tower:block/ginkgo_planks", "y": 0 },
+      { "model": "the_tower:block/ginkgo_planks", "y": 0 },
+      { "model": "the_tower:block/ginkgo_planks", "y": 0 },
+      { "model": "the_tower:block/ginkgo_planks2" },
+      { "model": "the_tower:block/ginkgo_planks2", "y": 0 },
+      { "model": "the_tower:block/ginkgo_planks2", "y": 0 },
+      { "model": "the_tower:block/ginkgo_planks2", "y": 0 }
+
+    ]
   }
 }

@@ -82,6 +82,7 @@ public class CustomItemGroups {
                         entries.add(block_init.SLATE);
 
                         //plants
+                        entries.add(item_init.SKYNUT);
                         entries.add(block_init.GLUH_VINE_STAGE0);
                         entries.add(block_init.GLUH_VINE_STAGE1);
                         entries.add(block_init.GLUH_VINE_STAGE2);
@@ -184,6 +185,7 @@ public class CustomItemGroups {
                         entries.add(item_init.GOLDEN_SEED);
                         entries.add(item_init.GINKGO_LEAF);
                         entries.add(block_init.GINKGO_LOG);
+                        entries.add(block_init.STRIPPED_GINKGO_LOG);
                         entries.add(block_init.GINKGO_PLANKS);
                         entries.add(block_init.GINKGO_SLAB);
                         entries.add(block_init.GINKGO_STAIRS);
@@ -210,6 +212,7 @@ public class CustomItemGroups {
                         entries.add(block_init.EMERALD_SLAB);
                         entries.add(block_init.EMERALD_STAIRS);
                         entries.add(block_init.EMERALD_WALL);
+                        entries.add(block_init.IMPERIAL_JADE_LANTERN);
 
                         //porcelain
                         entries.add(item_init.CHUNK_OF_KAOLIN);

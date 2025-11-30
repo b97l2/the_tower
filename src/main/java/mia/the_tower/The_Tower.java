@@ -96,10 +96,11 @@ public class The_Tower implements ModInitializer {
 
 		//for flammable blocks
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(block_init.STRIPPED_GINKGO_LOG, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LEAVES, 40, 60);
 
 		//for strippable blocks
-		//StrippableBlockRegistry.register(block_init.GINKGO_LOG, block_init.STRIPPED_GINKGO_LOG);
+		StrippableBlockRegistry.register(block_init.GINKGO_LOG, block_init.STRIPPED_GINKGO_LOG);
 
 		//for entities
 		FabricDefaultAttributeRegistry.register(ModEntities.VOID_MOTH, VoidMothEntity.createAttributes());

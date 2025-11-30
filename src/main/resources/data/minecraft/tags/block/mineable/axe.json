@@ -8,6 +8,7 @@
     "the_tower:ginkgo_stairs",
     "the_tower:ginkgo_slab",
     "the_tower:ginkgo_trapdoor",
-    "the_tower:ginkgo_button"
+    "the_tower:ginkgo_button",
+    "the_tower:stripped_ginkgo_log"
   ]
 }

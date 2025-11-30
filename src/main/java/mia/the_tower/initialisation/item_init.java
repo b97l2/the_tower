@@ -94,6 +94,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item TOAST;
     public static Item TOFFEE_APPLE;
     public static Item CHUNK_OF_KAOLIN;
+    public static Item SKYNUT;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -260,6 +261,12 @@ public class item_init { //this is the class that initialises items in the mod
                                 .build())
                 .useRemainder(GOLDEN_SEED)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("ginkgo_fruit")))));
+
+        SKYNUT = register("skynut", new BlockItem(
+                VAULTS_STANCHION_SAPLING, //change
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("skynut")))));
+
 
         CIRCLET_OF_GLUT = register("circlet_of_glut", new CircletOfGlutItem(new Item.Settings()
                 //.equippable(EquipmentSlot.HEAD)
