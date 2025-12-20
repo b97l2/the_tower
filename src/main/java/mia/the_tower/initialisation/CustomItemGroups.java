@@ -25,6 +25,9 @@ public class CustomItemGroups {
                         entries.add(block_init.ITORE);
                         entries.add(block_init.GRAVESTONE);
 
+                        //plants
+                        entries.add(block_init.VEINS);
+
                         //items
                         entries.add(item_init.KLAEN);
                         entries.add(item_init.FINGER);
@@ -109,6 +112,7 @@ public class CustomItemGroups {
                         entries.add(item_init.HORNWORM);
                         entries.add(item_init.DRAGONS_EYE);
                         entries.add(item_init.MY_FUEL);
+                        entries.add(item_init.FATIGUE);
                         entries.add(item_init.PILE_OF_SALT);
                         entries.add(item_init.PILLAR_OF_SALT);
                         entries.add(item_init.GABRIELS_TRUMPET);

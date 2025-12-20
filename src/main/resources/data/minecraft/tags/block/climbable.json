@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "the_tower:gold_ladder"
+    "the_tower:gold_ladder",
+    "the_tower:veins"
   ]
 }

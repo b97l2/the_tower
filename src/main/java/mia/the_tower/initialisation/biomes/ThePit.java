@@ -1,6 +1,7 @@
 package mia.the_tower.initialisation.biomes;
 
 
+import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -10,6 +11,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.gen.GenerationStep;
 
 
 public class ThePit {
@@ -36,6 +38,8 @@ public class ThePit {
 //                RegistryKey.of(RegistryKeys.CONFIGURED_CARVER, Identifier.of("the_tower", "pit_carver"));
 //
 //        biomeBuilder.carver(PIT_CARVER_KEY);
+
+        biomeBuilder.feature(GenerationStep.Feature.LAKES, ModPlacedFeatures.DECORATED_PIT_PLACED_KEY);
 
         return new Biome.Builder()
                 .precipitation(true)

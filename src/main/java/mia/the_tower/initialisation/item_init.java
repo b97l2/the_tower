@@ -95,6 +95,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item TOFFEE_APPLE;
     public static Item CHUNK_OF_KAOLIN;
     public static Item SKYNUT;
+    public static Item FATIGUE;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -440,6 +441,10 @@ public class item_init { //this is the class that initialises items in the mod
         CHUNK_OF_KAOLIN = register("chunk_of_kaolin", new Item(
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chunk_of_kaolin")))));
+
+        FATIGUE = register("fatigue", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("fatigue")))));
 
     }
 

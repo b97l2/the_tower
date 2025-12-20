@@ -2,10 +2,13 @@ package mia.the_tower.initialisation.world;
 
 import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.util.CustomTags;
+import mia.the_tower.initialisation.world.misc.DecoratedPitPlacer;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
 import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -14,6 +17,7 @@ import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
@@ -47,9 +51,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_COAST_FLOWERS_PATCH_KEY = registerKey("cerulean_coast_flowers_patch_key");
 
     //other
-    public static final RegistryKey<ConfiguredFeature<?, ?>> BLAJ_KEY = registerKey("blaj");
-
-
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DECORATED_PIT_KEY = registerKey("decorated_pit_key");
 
 
 
@@ -173,13 +175,28 @@ public class ModConfiguredFeatures {
         //add one here for cerulean petals, also with randomised direction and amount (not sure how to do. look at vanilla)
 
         //other
-        register(context, BLAJ_KEY, features_init.BLAJ_FEATURE, DefaultFeatureConfig.INSTANCE);
+        BlockStateProvider pitSurfaceProvider = new WeightedBlockStateProvider(
+                DataPool.<BlockState>builder()
+                        .add(block_init.VEINS.getDefaultState(), 5)   // weight 5
+                        .add(Blocks.AIR.getDefaultState(), 3)
+                        .build()
+        );
+        register(
+                context,
+                DECORATED_PIT_KEY,
+                DecoratedPitPlacer.DECORATED_PIT,   // Feature<DecoratedPitPlacer.Config>
+                new DecoratedPitPlacer.Config(
+                        UniformIntProvider.create(4, 12),   // radius range
+                        UniformIntProvider.create(50, 170),   // depth range
+                        pitSurfaceProvider                 // weighted inner-surface blocks
+                )
+        );
+
 
 
         //for features you want naturally generated in the world (incl ore), then we go into ModPlacedFeatures
 
     }
-
 
 
 

@@ -16,7 +16,12 @@
     "water_color": 4654084,
     "water_fog_color": 4654084
   },
-  "features": [],
+  "features": [
+    [],
+    [
+      "the_tower:decorated_pit_placed"
+    ]
+  ],
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {

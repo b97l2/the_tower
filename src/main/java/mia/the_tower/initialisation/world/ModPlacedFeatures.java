@@ -30,6 +30,9 @@ public class ModPlacedFeatures {
     //tree
     public static final RegistryKey<PlacedFeature> GINKGO_PLACED_KEY = registerKey("ginkgo_placed");
 
+    //other
+    public static final RegistryKey<PlacedFeature> DECORATED_PIT_PLACED_KEY = registerKey("decorated_pit_placed");
+
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
@@ -80,8 +83,22 @@ public class ModPlacedFeatures {
         //tree
         register(context, GINKGO_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GINKGO_KEY),
                 VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-                        RarityFilterPlacementModifier.of(6), // ~1 attempt per 8 chunks
+                        RarityFilterPlacementModifier.of(6), // ~1 attempt per 6 chunks
                         block_init.GINKGO_SAPLING));
+
+        //other
+        register(
+                context,
+                DECORATED_PIT_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.DECORATED_PIT_KEY),
+                RarityFilterPlacementModifier.of(7),
+                // spread attempts in the chunk
+                SquarePlacementModifier.of(),
+                // pick the Y from the motion-blocking heightmap (surface)
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                // only in allowed biomes
+                BiomePlacementModifier.of()
+        );
 
         //for any feature then you go to the gen/ModXXXGeneration file, or create it.
         //I am not sure if this is necessary for spawning in custom biomes, or if it is only for vanilla.

@@ -66,11 +66,22 @@ public class block_init {
     public static final Block CUBE_OF_FLESH = registerBlock("cube_of_flesh",
             new Block(AbstractBlock.Settings.create()
                     .strength(0.8F, 6.0F)
+                    .mapColor(MapColor.RED)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh")))));
+
+    public static final Block VEINS = registerBlock("veins",
+            new GlowLichenBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.RED)
+                    .noCollision()
+                    .strength(0.2F)
+                    .sounds(BlockSoundGroup.SLIME)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "veins")))));
 
     public static final Block STITCHED_FLESH = registerBlock("stitched_flesh",
             new Block(AbstractBlock.Settings.create()
                     .strength(0.8F, 6.0F)
+                    .mapColor(MapColor.RED)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "stitched_flesh")))));
 
     public static final Block CUBE_OF_PERCEIVING = registerBlock("cube_of_perceiving",
@@ -1108,6 +1119,7 @@ public class block_init {
         registerBlockItem("stripped_ginkgo_log", STRIPPED_GINKGO_LOG);
         registerBlockItem("vaults_stanchion", VAULTS_STANCHION_SAPLING);
         registerBlockItem("imperial_jade_lantern", IMPERIAL_JADE_LANTERN);
+        registerBlockItem("veins", VEINS);
     } //to load into game
 
 }

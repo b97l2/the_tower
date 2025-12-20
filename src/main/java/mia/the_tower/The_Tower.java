@@ -21,8 +21,10 @@ import mia.the_tower.initialisation.screen.screen_init;
 import mia.the_tower.initialisation.sounds.CustomSounds;
 import mia.the_tower.initialisation.status_effects.*;
 import mia.the_tower.initialisation.util.CustomTags;
+import mia.the_tower.initialisation.world.features_init;
 import mia.the_tower.initialisation.world.gen.ModWorldGeneration;
 
+import mia.the_tower.initialisation.world.misc.DecoratedPitPlacer;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
@@ -93,6 +95,8 @@ public class The_Tower implements ModInitializer {
 		GiantFoliagePlacer.init();
 		GoldenWeald.load();
 		TripleAwareSimpleBlockFeature.init();
+		features_init.load();
+		DecoratedPitPlacer.init();
 
 		//for flammable blocks
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);
