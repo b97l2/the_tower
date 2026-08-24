@@ -52,6 +52,10 @@ public class GoldenWeald {
                 GenerationStep.Feature.UNDERGROUND_ORES,
                 placedLookup.getOrThrow(ModPlacedFeatures.SILVER_ORE_PLACED_KEY)
         );
+        biomeBuilder.feature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                placedLookup.getOrThrow(ModPlacedFeatures.KAOLIN_SHEET_ORE_PLACED_KEY)
+        );
 
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld
         //DefaultBiomeFeatures.addMossyRocks(biomeBuilder);

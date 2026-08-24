@@ -1,0 +1,6 @@
+{
+  "parent": "the_tower:block/pile",
+  "textures": {
+    "pile": "the_tower:block/pile_of_meat"
+  }
+}

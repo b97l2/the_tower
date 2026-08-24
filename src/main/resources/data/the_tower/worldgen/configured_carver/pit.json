@@ -1,7 +1,7 @@
 {
   "type": "the_tower:pit_carver",
   "config": {
-    "probability": 0.08,
+    "probability": 0.035,
 
     "y": {
       "type": "uniform",
@@ -11,14 +11,14 @@
 
     "yScale": 1.0,
     "lava_level": { "absolute": -56 },
-    "debugConfig": { "debug_mode": false },
+    "debug_settings": { "debug_mode": false },
     "replaceable": "#minecraft:overworld_carver_replaceables",
 
-    "radius": { "type": "uniform", "min_inclusive": 3,  "max_inclusive": 8 },
-    "depth":  { "type": "uniform", "min_inclusive": 90, "max_inclusive": 180 },
-    "taper_height": { "type": "uniform", "min_inclusive": 10, "max_inclusive": 22 },
-    "radius_jitter": { "type": "uniform", "min_inclusive": 0, "max_inclusive": 3 },
+    "radius": { "type": "uniform", "min_inclusive": 20, "max_inclusive": 40 },
+    "depth":  { "type": "uniform", "min_inclusive": 300, "max_inclusive": 500 },
+    "taper_height": { "type": "uniform", "min_inclusive": 12, "max_inclusive": 28 },
+    "radius_jitter": { "type": "constant", "value": 0 },
 
-    "horizontal_jitter_per_y": { "type": "uniform", "min_inclusive": 0.0, "max_exclusive": 0.6 }
+    "horizontal_jitter_per_y": { "type": "uniform", "min_inclusive": 0.0, "max_exclusive": 0.25 }
   }
 }

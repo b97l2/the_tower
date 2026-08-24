@@ -1,3 +1,6 @@
 {
-  "parent": "the_tower:block/spirits"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_tower:item/spirits"
+  }
 }

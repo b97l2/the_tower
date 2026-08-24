@@ -1,5 +1,5 @@
 {
-  "carvers": [],
+  "carvers": "the_tower:pit",
   "downfall": 0.4,
   "effects": {
     "fog_color": 4654084,
@@ -16,12 +16,7 @@
     "water_color": 4654084,
     "water_fog_color": 4654084
   },
-  "features": [
-    [],
-    [
-      "the_tower:decorated_pit_placed"
-    ]
-  ],
+  "features": [],
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {

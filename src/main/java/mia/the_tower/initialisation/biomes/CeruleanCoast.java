@@ -1,6 +1,5 @@
 package mia.the_tower.initialisation.biomes;
 
-import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.minecraft.entity.SpawnGroup;
@@ -59,6 +58,10 @@ public class CeruleanCoast {
         biomeBuilder.feature(
                 GenerationStep.Feature.UNDERGROUND_ORES,
                 placedLookup.getOrThrow(ModPlacedFeatures.SILVER_ORE_PLACED_KEY)
+        );
+        biomeBuilder.feature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                placedLookup.getOrThrow(ModPlacedFeatures.SLATE_SHEET_ORE_PLACED_KEY)
         );
 
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld

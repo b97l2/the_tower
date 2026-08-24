@@ -10,10 +10,12 @@ import mia.the_tower.initialisation.block.stake_init;
 import mia.the_tower.initialisation.blockentity.blockentity_init;
 import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.dimentions.TheFrage;
+import mia.the_tower.initialisation.entity.LampFlySpawner;
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.entity.custom.LampFlyEntity;
 import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
+import mia.the_tower.initialisation.fluid.fluid_init;
 import mia.the_tower.initialisation.items.util.CofferToKey;
 import mia.the_tower.initialisation.misc.ModDeaths;
 import mia.the_tower.initialisation.particle.CustomParticles;
@@ -25,6 +27,7 @@ import mia.the_tower.initialisation.world.features_init;
 import mia.the_tower.initialisation.world.gen.ModWorldGeneration;
 
 import mia.the_tower.initialisation.world.misc.DecoratedPitPlacer;
+import mia.the_tower.initialisation.world.ore.SheetOreFeature;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
@@ -65,6 +68,7 @@ public class The_Tower implements ModInitializer {
 		// Proceed with mild caution.
 
 	 //this loads all items inside the file item_init into minecraft
+		fluid_init.load();
 		item_init.load();
 		block_init.load();
 		blockentity_init.load();
@@ -87,6 +91,7 @@ public class The_Tower implements ModInitializer {
 		ModWorldGeneration.generateModWorldGen();
 		CustomTags.load();
 		ModEntities.load();
+		LampFlySpawner.init();
 		screen_init.load();
 		CofferToKey.load();
 		ModDeaths.init();
@@ -97,6 +102,7 @@ public class The_Tower implements ModInitializer {
 		TripleAwareSimpleBlockFeature.init();
 		features_init.load();
 		DecoratedPitPlacer.init();
+		SheetOreFeature.init();
 
 		//for flammable blocks
 		FlammableBlockRegistry.getDefaultInstance().add(block_init.GINKGO_LOG, 5, 5);

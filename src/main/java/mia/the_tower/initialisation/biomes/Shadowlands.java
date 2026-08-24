@@ -33,7 +33,6 @@ public class Shadowlands {
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
 
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld
-        DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
         biomeBuilder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ITORE_PLACED_KEY);
 
         return new Biome.Builder()

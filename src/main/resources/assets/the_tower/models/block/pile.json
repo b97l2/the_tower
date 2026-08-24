@@ -1,0 +1,61 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#pile"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 0],
+			"to": [18, 0, 16],
+			"rotation": {"angle": 45, "axis": "z", "origin": [2, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 8], "rotation": 270, "texture": "#pile"},
+				"east": {"uv": [0, 0, 0, 8], "rotation": 90, "texture": "#pile"},
+				"south": {"uv": [0, 0, 0, 8], "rotation": 90, "texture": "#pile"},
+				"west": {"uv": [0, 0, 0, 8], "rotation": 90, "texture": "#pile"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#pile"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#pile"}
+			}
+		},
+		{
+			"from": [14, 0, 0],
+			"to": [14, 16, 16],
+			"rotation": {"angle": 45, "axis": "z", "origin": [14, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 8], "texture": "#pile"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#pile"},
+				"south": {"uv": [0, 0, 0, 8], "texture": "#pile"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#pile"},
+				"up": {"uv": [0, 0, 0, 8], "texture": "#pile"},
+				"down": {"uv": [0, 0, 0, 8], "texture": "#pile"}
+			}
+		},
+		{
+			"from": [0, 0, 14],
+			"to": [16, 16, 14],
+			"rotation": {"angle": -45, "axis": "x", "origin": [0, 0, 14]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#pile"},
+				"east": {"uv": [0, 0, 0, 8], "texture": "#pile"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#pile"},
+				"west": {"uv": [0, 0, 0, 8], "texture": "#pile"},
+				"up": {"uv": [0, 0, 8, 0], "texture": "#pile"},
+				"down": {"uv": [0, 0, 8, 0], "texture": "#pile"}
+			}
+		},
+		{
+			"from": [0, 0, 2],
+			"to": [16, 16, 2],
+			"rotation": {"angle": 45, "axis": "x", "origin": [0, 0, 2]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#pile"},
+				"east": {"uv": [0, 0, 0, 8], "texture": "#pile"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#pile"},
+				"west": {"uv": [0, 0, 0, 8], "texture": "#pile"},
+				"up": {"uv": [0, 0, 8, 0], "texture": "#pile"},
+				"down": {"uv": [0, 0, 8, 0], "texture": "#pile"}
+			}
+		}
+	],
+	"display": {}
+}

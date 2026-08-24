@@ -100,6 +100,22 @@
   "item.the_tower.tiled_petrified_stone": "Tiled Petrified Stone",
   "item.the_tower.cracked_tiled_petrified_stone": "Cracked Tiled Petrified Stone",
   "item.the_tower.adorned_petrified_stone": "Adorned Petrified Stone",
+  "item.the_tower.petrified_stone_stairs": "Petrified Stone Stairs",
+  "item.the_tower.petrified_stone_wall": "Petrified Stone Wall",
+  "item.the_tower.petrified_stone_column": "Petrified Stone Column",
+  "item.the_tower.petrified_stone_slab": "Petrified Stone Slab",
+  "item.the_tower.embossed_petrified_stone_stairs": "Embossed Petrified Stone Stairs",
+  "item.the_tower.embossed_petrified_stone_wall": "Embossed Petrified Stone Wall",
+  "item.the_tower.embossed_petrified_stone_column": "Embossed Petrified Stone Column",
+  "item.the_tower.embossed_petrified_stone_slab": "Embossed Petrified Stone Slab",
+  "item.the_tower.tiled_petrified_stone_stairs": "Tiled Petrified Stone Stairs",
+  "item.the_tower.tiled_petrified_stone_wall": "Tiled Petrified Stone Wall",
+  "item.the_tower.tiled_petrified_stone_column": "Tiled Petrified Stone Column",
+  "item.the_tower.tiled_petrified_stone_slab": "Tiled Petrified Stone Slab",
+  "item.the_tower.adorned_petrified_stone_stairs": "Adorned Petrified Stone Stairs",
+  "item.the_tower.adorned_petrified_stone_wall": "Adorned Petrified Stone Wall",
+  "item.the_tower.adorned_petrified_stone_column": "Adorned Petrified Stone Column",
+  "item.the_tower.adorned_petrified_stone_slab": "Adorned Petrified Stone Slab",
   "item.the_tower.dragons_eye_ore": "Dragon's Eye Ore",
   "item.the_tower.filth": "Filth",
   "item.the_tower.shepherds_staff": "Shepherd's Staff",
@@ -194,7 +210,14 @@
   "item.the_tower.stripped_ginkgo_log": "Stripped Ginkgo Log",
   "item.the_tower.imperial_jade_lantern": "Imperial Jade Lantern",
   "item.the_tower.veins": "Veins",
-  "item.the_tower.fatigue": "Fatigue"
+  "item.the_tower.fatigue": "Fatigue",
+  "item.the_tower.chanterelle": "Chanterelle",
+  "item.the_tower.lavaliere_of_the_golden_sun": "Lavaliere of the Golden Sun",
+  "item.the_tower.redstone_lantern": "Redstone Lantern",
+  "item.the_tower.redstone_chain": "Redstone Chain",
+  "item.the_tower.pile_of_meat": "Pile of Meat",
+  "item.the_tower.porcelain": "Porcelain",
+  "item.the_tower.imperial_jade_block": "Imperial Jade Block"
 }
 
 

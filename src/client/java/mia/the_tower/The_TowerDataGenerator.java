@@ -1,6 +1,7 @@
 package mia.the_tower;
 
 import mia.the_tower.initialisation.biomes.*;
+import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.datagen.ModWorldGenerator;
 import mia.the_tower.initialisation.dimentions.TheFrage;
 import mia.the_tower.initialisation.world.ModConfiguredFeatures;
@@ -26,5 +27,6 @@ public class The_TowerDataGenerator implements DataGeneratorEntrypoint {
 		registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, TheFrage::bootstrapType);
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_CARVER, ModCarvers::bootstrap);
 	}
 }

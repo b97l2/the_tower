@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "the_tower:infested_rock",
+    "the_tower:old_soil",
+    "the_tower:old_meadow",
+    "the_tower:filth",
+    "the_tower:cube_of_flesh"
+  ]
+}

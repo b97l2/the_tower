@@ -26,6 +26,22 @@
     "the_tower:dragons_eye_ore",
     "the_tower:cracked_tiled_petrified_stone",
     "the_tower:tiled_petrified_stone",
+    "the_tower:petrified_stone_stairs",
+    "the_tower:petrified_stone_wall",
+    "the_tower:petrified_stone_column",
+    "the_tower:petrified_stone_slab",
+    "the_tower:embossed_petrified_stone_stairs",
+    "the_tower:embossed_petrified_stone_wall",
+    "the_tower:embossed_petrified_stone_column",
+    "the_tower:embossed_petrified_stone_slab",
+    "the_tower:tiled_petrified_stone_stairs",
+    "the_tower:tiled_petrified_stone_wall",
+    "the_tower:tiled_petrified_stone_column",
+    "the_tower:tiled_petrified_stone_slab",
+    "the_tower:adorned_petrified_stone_stairs",
+    "the_tower:adorned_petrified_stone_wall",
+    "the_tower:adorned_petrified_stone_column",
+    "the_tower:adorned_petrified_stone_slab",
     "the_tower:golden_thurible",
     "the_tower:gold_bars",
     "the_tower:grotesque",
@@ -49,7 +65,8 @@
     "the_tower:silver_slab",
     "the_tower:silver_column",
     "the_tower:silver_wall",
-    "the_tower:imperial_jade_lantern"
+    "the_tower:imperial_jade_lantern",
+    "the_tower:imperial_jade_block"
   ]
 }
 

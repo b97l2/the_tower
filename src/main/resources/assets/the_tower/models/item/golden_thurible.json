@@ -1,3 +1,6 @@
 {
-  "parent": "the_tower:block/golden_thurible"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_tower:item/golden_thurible"
+  }
 }

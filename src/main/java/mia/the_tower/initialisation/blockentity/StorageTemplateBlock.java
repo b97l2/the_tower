@@ -2,11 +2,14 @@ package mia.the_tower.initialisation.blockentity;
 
 
 import com.mojang.serialization.MapCodec;
+import mia.the_tower.initialisation.block.ModFluidLoggable;
+import mia.the_tower.initialisation.fluid.FluidLogging;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.ScreenHandler;
@@ -27,10 +30,12 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
 
-public class StorageTemplateBlock extends BlockWithEntity {
+public class StorageTemplateBlock extends BlockWithEntity implements ModFluidLoggable {
     public static final MapCodec<StorageTemplateBlock> CODEC = createCodec(StorageTemplateBlock::new);
     public static final EnumProperty<Direction> FACING = Properties.FACING;
     public static final BooleanProperty OPEN = Properties.OPEN;
@@ -42,7 +47,7 @@ public class StorageTemplateBlock extends BlockWithEntity {
 
     public StorageTemplateBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false));
+        this.setDefaultState(FluidLogging.withDefaultFluid(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false)));
     }
 
     @Override
@@ -98,6 +103,7 @@ public class StorageTemplateBlock extends BlockWithEntity {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, OPEN);
+        FluidLogging.appendProperty(builder);
     }
 
     @Override
@@ -106,7 +112,27 @@ public class StorageTemplateBlock extends BlockWithEntity {
         Direction dir = ctx.getSide().getAxis().isHorizontal()
                 ? ctx.getSide()
                 : ctx.getHorizontalPlayerFacing().getOpposite();
-        return this.getDefaultState().with(FACING, dir);
+        return FluidLogging.withPlacementFluid(this.getDefaultState().with(FACING, dir), ctx);
+    }
+
+    @Override
+    protected BlockState getStateForNeighborUpdate(
+            BlockState state,
+            WorldView world,
+            ScheduledTickView tickView,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighborPos,
+            BlockState neighborState,
+            Random random
+    ) {
+        FluidLogging.scheduleFluidTick(state, tickView, world, pos);
+        return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+    }
+
+    @Override
+    protected FluidState getFluidState(BlockState state) {
+        return FluidLogging.getFluidState(state, super.getFluidState(state));
     }
 
     @Override

@@ -96,6 +96,8 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item CHUNK_OF_KAOLIN;
     public static Item SKYNUT;
     public static Item FATIGUE;
+    public static Item LAVALIERE_OF_THE_GOLDEN_SUN;
+    public static Item PORCELAIN;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -141,21 +143,21 @@ public class item_init { //this is the class that initialises items in the mod
 
         CHALICE_OF_BLOOD = Registry.register(Registries.ITEM,
                 RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chalice_of_blood")),
-                new BucketItem(STILL_BLOOD, new Item.Settings()
+                new FluidloggingBucketItem(STILL_BLOOD, new Item.Settings()
                         .recipeRemainder(net.minecraft.item.Items.BUCKET)
                         .maxCount(1)
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chalice_of_blood")))));
 
         CUP_OF_GUNK = Registry.register(Registries.ITEM,
                 RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("cup_of_gunk")),
-                new BucketItem(STILL_GUNK, new Item.Settings()
+                new FluidloggingBucketItem(STILL_GUNK, new Item.Settings()
                         .recipeRemainder(net.minecraft.item.Items.BUCKET)
                         .maxCount(1)
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("cup_of_gunk")))));
 
         BUCKET_OF_BILE = Registry.register(Registries.ITEM,
                 RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("bucket_of_bile")),
-                new BucketItem(STILL_GUNK, new Item.Settings()
+                new FluidloggingBucketItem(STILL_GUNK, new Item.Settings()
                         .recipeRemainder(net.minecraft.item.Items.BUCKET)
                         .maxCount(1)
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("bucket_of_bile")))));
@@ -310,7 +312,33 @@ public class item_init { //this is the class that initialises items in the mod
                 )
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("circlet_of_glut")))));
 
-        PLATE = register("plate", new ItemFrameItem(ModEntities.PLATE,
+        LAVALIERE_OF_THE_GOLDEN_SUN = register("lavaliere_of_the_golden_sun", new CircletOfGlutItem(new Item.Settings()
+                //.equippable(EquipmentSlot.HEAD)
+                .rarity(Rarity.UNCOMMON)
+                .maxCount(1)
+//                .component(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.builder()
+//                        .add(
+//                                EntityAttributes.GRAVITY,
+//                                new EntityAttributeModifier(
+//                                        Identifier.of("the_tower","lavaliere_of_the_golden_sun"),
+//                                        -3000,
+//                                        EntityAttributeModifier.Operation.ADD_VALUE),
+//                                AttributeModifierSlot.BODY
+//                        )
+//                        .build()
+//                )
+                .component(
+                        DataComponentTypes.EQUIPPABLE,
+                        EquippableComponent.builder(EquipmentSlot.CHEST)
+                                .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_CHAIN)
+                                .model(CustomEquipmentAssets.LAVALIERE_OF_THE_GOLDEN_SUN)
+                                .damageOnHurt(false)
+                                .build()
+                )
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("lavaliere_of_the_golden_sun")))));
+
+
+        PLATE = register("plate", new PlateItem(
                 new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("plate")))));
 
@@ -441,6 +469,10 @@ public class item_init { //this is the class that initialises items in the mod
         CHUNK_OF_KAOLIN = register("chunk_of_kaolin", new Item(
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chunk_of_kaolin")))));
+
+        PORCELAIN = register("porcelain", new Item(
+                new Item.Settings()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("porcelain")))));
 
         FATIGUE = register("fatigue", new Item(
                 new Item.Settings()

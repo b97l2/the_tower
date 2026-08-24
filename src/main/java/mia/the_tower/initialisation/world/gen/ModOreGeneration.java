@@ -1,11 +1,11 @@
 package mia.the_tower.initialisation.world.gen;
 
 import mia.the_tower.initialisation.biomes.CeruleanCoast;
+import mia.the_tower.initialisation.biomes.GoldenWeald;
 import mia.the_tower.initialisation.biomes.Shadowlands;
 import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 
 public class ModOreGeneration {
@@ -21,7 +21,11 @@ public class ModOreGeneration {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(CeruleanCoast.CERULEAN_COAST), GenerationStep.Feature.UNDERGROUND_ORES,
                 ModPlacedFeatures.SILVER_ORE_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(CeruleanCoast.CERULEAN_COAST), GenerationStep.Feature.UNDERGROUND_ORES,
-                ModPlacedFeatures.SILVER_VEIN_PLACED_KEY);
+                ModPlacedFeatures.SLATE_SHEET_ORE_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(CeruleanCoast.CERULEAN_COAST), GenerationStep.Feature.UNDERGROUND_ORES,
+                ModPlacedFeatures.SLATE_SHEET_ORE_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(GoldenWeald.GOLDEN_WEALD), GenerationStep.Feature.UNDERGROUND_ORES,
+                ModPlacedFeatures.KAOLIN_SHEET_ORE_PLACED_KEY);
 
         //then last of all, go to the biome class and include the ore there
     }

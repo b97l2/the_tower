@@ -1,0 +1,27 @@
+{
+  "type": "the_tower:sheet_ore",
+  "config": {
+    "density": 1.0,
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 2
+    },
+    "targets": [
+      {
+        "state": {
+          "Name": "the_tower:kaolin"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "the_tower:golden_weald_replaceable"
+        }
+      }
+    ],
+    "width": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 40,
+      "min_inclusive": 30
+    }
+  }
+}

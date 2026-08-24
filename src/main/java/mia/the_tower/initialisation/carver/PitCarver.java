@@ -2,6 +2,7 @@ package mia.the_tower.initialisation.carver;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FluidBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -14,8 +15,6 @@ import net.minecraft.world.gen.carver.CarverContext;
 import net.minecraft.world.gen.carver.CarvingMask;
 import net.minecraft.world.gen.chunk.AquiferSampler;
 import net.minecraft.registry.entry.RegistryEntry;
-
-import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.util.function.Function;
 
@@ -41,70 +40,52 @@ public class PitCarver extends Carver<PitCarverConfig> {
             ChunkPos chunkPos,
             CarvingMask mask
     ) {
-        if (!shouldCarve(cfg, random)) return false;
-
-        // Choose a center somewhere inside this chunk
+        // Choose a center somewhere inside the source chunk.
         int xCenter = chunkPos.getStartX() + random.nextInt(16);
         int zCenter = chunkPos.getStartZ() + random.nextInt(16);
-        int lx = xCenter & 15;
-        int lz = zCenter & 15;
+        ChunkPos carvingChunkPos = chunk.getPos();
 
-        // Anchor the rim near the surface at this column
-        int surfaceY = chunk.getHeightmap(Heightmap.Type.WORLD_SURFACE_WG).get(lx, lz);
-
-        // Sample a start Y from the config, then clamp near the surface so the opening is visible
-        int startY = MathHelper.clamp(cfg.y.get(random, context), surfaceY - 7, surfaceY + 4);
-
-        int depth = Math.max(1, cfg.depth.get(random));
-        int baseRadius = Math.max(1, cfg.radius.get(random));
-        int taper = Math.max(1, cfg.taperHeight.get(random));
-        int bottomY = Math.max(context.getMinY() + 1, startY - depth);
+        int requestedDepth = Math.max(1, cfg.depth.get(random));
+        int pitRadius = Math.max(1, cfg.radius.get(random));
+        int minimumBottomY = context.getMinY() + 5;
+        int depth = Math.max(20, requestedDepth);
+        int flareHeight = MathHelper.clamp(cfg.taperHeight.get(random), 1, Math.max(1, depth - 1));
+        float flareRadius = pitRadius * 2.5f;
+        float bottomRadius = Math.max(2.0f, pitRadius * 0.12f);
 
         boolean carvedAny = false;
 
-        // Small horizontal wobble so the shaft isn't perfectly straight
-        float driftX = 0f, driftZ = 0f;
-
         BlockPos.Mutable pos = new BlockPos.Mutable();
-        BlockPos.Mutable tmp = new BlockPos.Mutable();
-        MutableBoolean replacedGrassy = new MutableBoolean(false);
 
-        for (int y = startY; y >= bottomY; --y) {
-            int dy = startY - y;
+        int rInt = MathHelper.ceil(flareRadius);
+        float flareRadiusSquared = flareRadius * flareRadius;
 
-            // Smoothly grow radius over the first `taper` layers (sloped rim)
-            float t = MathHelper.clamp(dy / (float) taper, 0f, 1f);
-            float smooth = t * t * (3f - 2f * t); // smoothstep
+        int minX = Math.max(xCenter - rInt, carvingChunkPos.getStartX());
+        int maxX = Math.min(xCenter + rInt, carvingChunkPos.getEndX());
+        int minZ = Math.max(zCenter - rInt, carvingChunkPos.getStartZ());
+        int maxZ = Math.min(zCenter + rInt, carvingChunkPos.getEndZ());
 
-            int layerJitter = cfg.radiusJitter.get(random);
-            float radiusAtY = Math.max(0f, smooth * (baseRadius + layerJitter));
-            int rInt = MathHelper.floor(radiusAtY);
+        for (int xx = minX; xx <= maxX; xx++) {
+            int dx = xx - xCenter;
+            int localX = xx - carvingChunkPos.getStartX();
 
-            driftX += (random.nextFloat() - 0.5f) * cfg.horizontalJitterPerY.get(random);
-            driftZ += (random.nextFloat() - 0.5f) * cfg.horizontalJitterPerY.get(random);
+            for (int zz = minZ; zz <= maxZ; zz++) {
+                int dz = zz - zCenter;
+                float distanceSquared = dx * dx + dz * dz;
+                if (distanceSquared > flareRadiusSquared) continue;
 
-            int x0 = MathHelper.floor(xCenter + driftX);
-            int z0 = MathHelper.floor(zCenter + driftZ);
-            int r2 = rInt * rInt;
+                int localZ = zz - carvingChunkPos.getStartZ();
+                int surfaceY = chunk.getHeightmap(Heightmap.Type.WORLD_SURFACE_WG).get(localX, localZ);
+                int availableDepth = surfaceY - minimumBottomY;
+                if (availableDepth < 1) continue;
 
-            for (int dx = -rInt; dx <= rInt; dx++) {
-                int xx = x0 + dx;
-                int llx = xx & 15;
-                for (int dz = -rInt; dz <= rInt; dz++) {
-                    if (dx*dx + dz*dz > r2) continue;
+                float distance = MathHelper.sqrt(distanceSquared);
+                int columnDepth = Math.min(getColumnDepth(distance, pitRadius, flareRadius, bottomRadius, flareHeight, depth), availableDepth);
+                if (columnDepth <= 0) continue;
 
-                    int zz = z0 + dz;
-                    int llz = zz & 15;
-                    pos.set(xx, y, zz);
-
-                    // skip if this local voxel was carved already
-                    if (mask.get(llx, y, llz)) continue;
-
-                    // Hand off to base logic: handles replaceables
-                    if (this.carveAtPoint(context, cfg, chunk, posToBiome, mask, pos, tmp, aquiferSampler, replacedGrassy)) {
-                        chunk.setBlockState(pos, Blocks.CAVE_AIR.getDefaultState(), false);
-                        carvedAny = true;
-                    }
+                int bottomY = surfaceY - columnDepth;
+                for (int y = surfaceY; y >= bottomY; y--) {
+                    carvedAny |= carveGroundBlock(cfg, chunk, mask, pos, xx, y, zz, localX, localZ);
                 }
             }
         }
@@ -112,5 +93,43 @@ public class PitCarver extends Carver<PitCarverConfig> {
         return carvedAny;
     }
 
+    private boolean carveGroundBlock(
+            PitCarverConfig cfg,
+            Chunk chunk,
+            CarvingMask mask,
+            BlockPos.Mutable pos,
+            int x,
+            int y,
+            int z,
+            int localX,
+            int localZ
+    ) {
+        pos.set(x, y, z);
+        BlockState state = chunk.getBlockState(pos);
+        if (state.isAir() || !this.canAlwaysCarveBlock(cfg, state) && !(state.getBlock() instanceof FluidBlock)) return false;
+
+        mask.set(localX, y, localZ);
+        chunk.setBlockState(pos, Blocks.CAVE_AIR.getDefaultState(), false);
+        return true;
+    }
+
+    private static int getColumnDepth(float distance, int pitRadius, float flareRadius, float bottomRadius, int flareHeight, int depth) {
+        if (distance <= bottomRadius) {
+            return depth;
+        }
+
+        if (distance <= pitRadius) {
+            float progress = (pitRadius - distance) / Math.max(1.0f, pitRadius - bottomRadius);
+            return flareHeight + MathHelper.floor(smoothStep(progress) * (depth - flareHeight));
+        }
+
+        float progress = (flareRadius - distance) / Math.max(1.0f, flareRadius - pitRadius);
+        return 1 + MathHelper.floor(smoothStep(progress) * (flareHeight - 1));
+    }
+
+    private static float smoothStep(float value) {
+        float clamped = MathHelper.clamp(value, 0.0f, 1.0f);
+        return clamped * clamped * (3f - 2f * clamped);
+    }
 
 }

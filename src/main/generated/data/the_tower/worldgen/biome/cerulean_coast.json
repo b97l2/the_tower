@@ -1,0 +1,54 @@
+{
+  "carvers": [],
+  "downfall": 0.7,
+  "effects": {
+    "fog_color": 4611197,
+    "foliage_color": 1326456,
+    "grass_color": 1326456,
+    "music_volume": 1.0,
+    "sky_color": 2110804,
+    "water_color": 795202,
+    "water_fog_color": 2110804
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "the_tower:afhd_placed",
+      "the_tower:dragons_eye_ore_placed",
+      "the_tower:silver_vein_placed",
+      "the_tower:silver_ore_placed",
+      "the_tower:slate_sheet_ore_placed"
+    ],
+    [],
+    [],
+    [
+      "the_tower:cerulean_grass_patch_placed",
+      "the_tower:cerulean_coast_flowers_patch_placed"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [
+      {
+        "type": "the_tower:lamp_fly",
+        "maxCount": 15,
+        "minCount": 6,
+        "weight": 50
+      }
+    ],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.7
+}

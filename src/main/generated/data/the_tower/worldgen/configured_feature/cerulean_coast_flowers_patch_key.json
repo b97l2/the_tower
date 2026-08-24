@@ -1,0 +1,80 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "the_tower:triple_aware_simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "the_tower:sapphire_rose"
+                },
+                "weight": 2
+              },
+              {
+                "data": {
+                  "Name": "the_tower:blue_bell"
+                },
+                "weight": 3
+              },
+              {
+                "data": {
+                  "Name": "the_tower:blue_foxglove",
+                  "Properties": {
+                    "third": "lower"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "the_tower:blue_hostas"
+                },
+                "weight": 4
+              },
+              {
+                "data": {
+                  "Name": "the_tower:cerulean_petals",
+                  "Properties": {
+                    "facing": "north",
+                    "flower_amount": "1"
+                  }
+                },
+                "weight": 7
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              },
+              {
+                "type": "minecraft:would_survive",
+                "state": {
+                  "Name": "the_tower:cerulean_wildgrass",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 64,
+    "xz_spread": 6,
+    "y_spread": 2
+  }
+}

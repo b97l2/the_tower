@@ -1,6 +1,5 @@
 package mia.the_tower.initialisation.fluid;
 
-import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.item_init;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import net.minecraft.block.BlockState;
@@ -17,11 +16,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 public abstract class BloodFluid extends BaseFluid {
-    @Override public Fluid getStill() { return block_init.STILL_BLOOD; }
-    @Override public Fluid getFlowing() { return block_init.FLOWING_BLOOD; }
+    @Override public Fluid getStill() { return fluid_init.STILL_BLOOD; }
+    @Override public Fluid getFlowing() { return fluid_init.FLOWING_BLOOD; }
     @Override public Item getBucketItem() { return item_init.CHALICE_OF_BLOOD; }
     @Override protected BlockState toBlockState(FluidState state) {
-        return block_init.BLOOD.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(state));
+        return fluid_init.BLOOD.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(state));
     }
 
     public static class Flowing extends BloodFluid {

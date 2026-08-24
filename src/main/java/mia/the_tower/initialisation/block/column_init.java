@@ -1,23 +1,39 @@
 package mia.the_tower.initialisation.block;
 
+import mia.the_tower.initialisation.fluid.FluidLogging;
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.state.StateManager;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 import static mia.the_tower.initialisation.block_init.registerBlock;
 import static mia.the_tower.initialisation.block_init.registerBlockItem;
 
-public class column_init extends PillarBlock{
+public class column_init extends PillarBlock implements ModFluidLoggable {
 
     public column_init(Settings settings) {
         super(settings);
+        this.setDefaultState(FluidLogging.withDefaultFluid(this.getDefaultState()));
     }
 
     public static Block STONE_COLUMN = registerBlock("stone_column",
@@ -111,6 +127,59 @@ public class column_init extends PillarBlock{
                 return VoxelShapes.cuboid(0.25F, 0.25F, 0.0F, 0.75F, 0.75F, 1.0F);
         }
 
+    }
+
+    @Nullable
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return FluidLogging.withPlacementFluid(super.getPlacementState(ctx), ctx);
+    }
+
+    @Override
+    protected BlockState getStateForNeighborUpdate(
+            BlockState state,
+            WorldView world,
+            ScheduledTickView tickView,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighborPos,
+            BlockState neighborState,
+            Random random
+    ) {
+        FluidLogging.scheduleFluidTick(state, tickView, world, pos);
+
+        return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+    }
+
+    @Override
+    protected FluidState getFluidState(BlockState state) {
+        return FluidLogging.getFluidState(state, super.getFluidState(state));
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        FluidLogging.appendProperty(builder);
+    }
+
+    @Override
+    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+        return ModFluidLoggable.super.canFillWithFluid(player, world, pos, state, fluid);
+    }
+
+    @Override
+    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
+        return ModFluidLoggable.super.tryFillWithFluid(world, pos, state, fluidState);
+    }
+
+    @Override
+    public ItemStack tryDrainFluid(@Nullable PlayerEntity player, WorldAccess world, BlockPos pos, BlockState state) {
+        return ModFluidLoggable.super.tryDrainFluid(player, world, pos, state);
+    }
+
+    @Override
+    public Optional<SoundEvent> getBucketFillSound() {
+        return ModFluidLoggable.super.getBucketFillSound();
     }
 
     public static void load() {

@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "the_tower:block/petrified_stone_top",
+    "top": "the_tower:block/petrified_stone_top",
+    "side": "the_tower:block/adorned_petrified_stone"
+  }
+}

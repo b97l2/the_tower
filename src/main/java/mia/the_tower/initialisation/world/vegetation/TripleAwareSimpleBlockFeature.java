@@ -49,6 +49,7 @@ public class TripleAwareSimpleBlockFeature extends Feature<SimpleBlockFeatureCon
         }
 
         // Fallback: behave like SIMPLE_BLOCK
+        if (!world.getBlockState(pos).isAir()) return false;
         if (!state.canPlaceAt(world, pos)) return false;
         return world.setBlockState(pos, state, Block.NOTIFY_ALL);
     }

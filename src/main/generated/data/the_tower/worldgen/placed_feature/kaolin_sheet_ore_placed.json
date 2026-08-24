@@ -1,0 +1,28 @@
+{
+  "feature": "the_tower:kaolin_sheet_ore",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 4
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "MOTION_BLOCKING_NO_LEAVES"
+    },
+    {
+      "type": "minecraft:random_offset",
+      "xz_spread": 0,
+      "y_spread": {
+        "type": "minecraft:uniform",
+        "max_inclusive": -2,
+        "min_inclusive": -7
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

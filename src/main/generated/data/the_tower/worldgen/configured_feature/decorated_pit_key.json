@@ -1,0 +1,41 @@
+{
+  "type": "the_tower:decorated_pit",
+  "config": {
+    "depth": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 170,
+      "min_inclusive": 50
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 12,
+      "min_inclusive": 4
+    },
+    "surface_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "the_tower:veins",
+            "Properties": {
+              "down": "false",
+              "east": "false",
+              "north": "false",
+              "south": "false",
+              "up": "false",
+              "waterlogged": "false",
+              "west": "false"
+            }
+          },
+          "weight": 5
+        },
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 3
+        }
+      ]
+    }
+  }
+}

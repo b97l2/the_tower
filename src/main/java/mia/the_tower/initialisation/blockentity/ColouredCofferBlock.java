@@ -1,6 +1,8 @@
 package mia.the_tower.initialisation.blockentity;
 
 import com.mojang.serialization.MapCodec;
+import mia.the_tower.initialisation.block.ModFluidLoggable;
+import mia.the_tower.initialisation.fluid.FluidLogging;
 import mia.the_tower.initialisation.blockentity.util.ColouredInventory;
 import mia.the_tower.initialisation.items.KeyItem;
 import net.minecraft.block.Block;
@@ -11,6 +13,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -23,11 +26,14 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 
 import java.util.List;
 
-public class ColouredCofferBlock extends BlockWithEntity {
+public class ColouredCofferBlock extends BlockWithEntity implements ModFluidLoggable {
 
     private final MapCodec<ColouredCofferBlock> codec;
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
@@ -37,7 +43,7 @@ public class ColouredCofferBlock extends BlockWithEntity {
         super(settings);
         this.color = color;
         this.codec = Block.createCodec(s -> new ColouredCofferBlock(color, s));
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false));
+        this.setDefaultState(FluidLogging.withDefaultFluid(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false)));
     }
 
     @Override
@@ -75,6 +81,7 @@ public class ColouredCofferBlock extends BlockWithEntity {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, OPEN);
+        FluidLogging.appendProperty(builder);
     }
 
     @Override
@@ -83,7 +90,27 @@ public class ColouredCofferBlock extends BlockWithEntity {
         Direction dir = ctx.getSide().getAxis().isHorizontal()
                 ? ctx.getSide()
                 : ctx.getHorizontalPlayerFacing().getOpposite();
-        return this.getDefaultState().with(FACING, dir);
+        return FluidLogging.withPlacementFluid(this.getDefaultState().with(FACING, dir), ctx);
+    }
+
+    @Override
+    protected BlockState getStateForNeighborUpdate(
+            BlockState state,
+            WorldView world,
+            ScheduledTickView tickView,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighborPos,
+            BlockState neighborState,
+            Random random
+    ) {
+        FluidLogging.scheduleFluidTick(state, tickView, world, pos);
+        return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+    }
+
+    @Override
+    protected FluidState getFluidState(BlockState state) {
+        return FluidLogging.getFluidState(state, super.getFluidState(state));
     }
 
     @Override

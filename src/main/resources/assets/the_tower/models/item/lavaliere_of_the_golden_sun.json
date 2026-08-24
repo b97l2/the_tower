@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "the_tower:item/lavaliere_of_the_golden_sun"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "the_tower:embossed_petrified_stone"
+  },
+  "pattern": [
+    "#",
+    "##",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "the_tower:embossed_petrified_stone_stairs"
+  },
+  "show_notification": true
+}

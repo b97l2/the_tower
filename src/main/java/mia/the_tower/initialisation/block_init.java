@@ -10,8 +10,10 @@ import mia.the_tower.initialisation.fluid.BloodFluid;
 import mia.the_tower.initialisation.fluid.BloodFluidBlock;
 import mia.the_tower.initialisation.fluid.GunkFluid;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
+import mia.the_tower.initialisation.fluid.fluid_init;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.sounds.CustomSounds;
+import mia.the_tower.initialisation.world.ModConfiguredFeatures;
 import mia.the_tower.initialisation.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -70,13 +72,23 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh")))));
 
     public static final Block VEINS = registerBlock("veins",
-            new GlowLichenBlock(AbstractBlock.Settings.create()
+            new FluidloggableGlowLichenBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.RED)
                     .noCollision()
                     .strength(0.2F)
                     .sounds(BlockSoundGroup.SLIME)
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "veins")))));
+
+    public static final Block PILE_OF_MEAT = registerBlock("pile_of_meat",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(1F, 6.0F)
+                    .mapColor(MapColor.RED)
+                    .noCollision()
+                    .sounds(BlockSoundGroup.SLIME)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .offset(AbstractBlock.OffsetType.XZ)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "pile_of_meat")))));
 
     public static final Block STITCHED_FLESH = registerBlock("stitched_flesh",
             new Block(AbstractBlock.Settings.create()
@@ -287,7 +299,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cerulean_shortgrass")))));
 
     public static final Block STARLIGHT_LICHEN = registerBlock("starlight_lichen", //!*texture
-            new GlowLichenBlock(AbstractBlock.Settings.create()
+            new FluidloggableGlowLichenBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.CYAN)
                     .noCollision()
                     .strength(0.2F)
@@ -398,6 +410,102 @@ public class block_init {
                     .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone")))));
 
+    public static final Block PETRIFIED_STONE_STAIRS = registerBlock("petrified_stone_stairs",
+            new FluidloggableStairsBlock(PETRIFIED_STONE.getDefaultState(), AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone_stairs")))));
+
+    public static final Block PETRIFIED_STONE_WALL = registerBlock("petrified_stone_wall",
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone_wall")))));
+
+    public static final Block PETRIFIED_STONE_COLUMN = registerBlock("petrified_stone_column",
+            new column_init(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone_column")))));
+
+    public static final Block PETRIFIED_STONE_SLAB = registerBlock("petrified_stone_slab",
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone_slab")))));
+
+    public static final Block EMBOSSED_PETRIFIED_STONE_STAIRS = registerBlock("embossed_petrified_stone_stairs",
+            new FluidloggableStairsBlock(EMBOSSED_PETRIFIED_STONE.getDefaultState(), AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone_stairs")))));
+
+    public static final Block EMBOSSED_PETRIFIED_STONE_WALL = registerBlock("embossed_petrified_stone_wall",
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone_wall")))));
+
+    public static final Block EMBOSSED_PETRIFIED_STONE_COLUMN = registerBlock("embossed_petrified_stone_column",
+            new column_init(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone_column")))));
+
+    public static final Block EMBOSSED_PETRIFIED_STONE_SLAB = registerBlock("embossed_petrified_stone_slab",
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone_slab")))));
+
+    public static final Block TILED_PETRIFIED_STONE_STAIRS = registerBlock("tiled_petrified_stone_stairs",
+            new FluidloggableStairsBlock(TILED_PETRIFIED_STONE.getDefaultState(), AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone_stairs")))));
+
+    public static final Block TILED_PETRIFIED_STONE_WALL = registerBlock("tiled_petrified_stone_wall",
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone_wall")))));
+
+    public static final Block TILED_PETRIFIED_STONE_COLUMN = registerBlock("tiled_petrified_stone_column",
+            new column_init(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone_column")))));
+
+    public static final Block TILED_PETRIFIED_STONE_SLAB = registerBlock("tiled_petrified_stone_slab",
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone_slab")))));
+
+    public static final Block ADORNED_PETRIFIED_STONE_STAIRS = registerBlock("adorned_petrified_stone_stairs",
+            new FluidloggableStairsBlock(ADORNED_PETRIFIED_STONE.getDefaultState(), AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone_stairs")))));
+
+    public static final Block ADORNED_PETRIFIED_STONE_WALL = registerBlock("adorned_petrified_stone_wall",
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone_wall")))));
+
+    public static final Block ADORNED_PETRIFIED_STONE_COLUMN = registerBlock("adorned_petrified_stone_column",
+            new column_init(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone_column")))));
+
+    public static final Block ADORNED_PETRIFIED_STONE_SLAB = registerBlock("adorned_petrified_stone_slab",
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone_slab")))));
+
     public static final Block GROTESQUE = registerBlock("grotesque",
             new CustomHorisontalFacingBlock(AbstractBlock.Settings.create()
                     .strength(3.3F, 20.0F)
@@ -419,47 +527,12 @@ public class block_init {
                     .slipperiness(0.1F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "can_of_retardation")))));
 
-    public static final FlowableFluid STILL_BLOOD = Registry.register(Registries.FLUID,
-            RegistryKey.of(RegistryKeys.FLUID, The_Tower.id("blood")),
-            new BloodFluid.Still());
-
-    public static final FlowableFluid FLOWING_BLOOD = Registry.register(Registries.FLUID,
-            RegistryKey.of(RegistryKeys.FLUID, The_Tower.id("flowing_blood")),
-            new BloodFluid.Flowing());
-
-    public static final Block BLOOD = Registry.register(Registries.BLOCK,
-            RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("blood")),
-            new BloodFluidBlock(STILL_BLOOD, AbstractBlock.Settings.create()
-                    .replaceable()
-                    .mapColor(MapColor.DARK_RED)
-                    .nonOpaque()
-                    .strength(100.0F)
-                    .pistonBehavior(PistonBehavior.DESTROY)
-                    .dropsNothing()
-                    .liquid()
-                    .sounds(BlockSoundGroup.INTENTIONALLY_EMPTY)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("blood")))));
-
-    public static final FlowableFluid STILL_GUNK = Registry.register(Registries.FLUID,
-            RegistryKey.of(RegistryKeys.FLUID, The_Tower.id("gunk")),
-            new GunkFluid.Still());
-
-    public static final FlowableFluid FLOWING_GUNK = Registry.register(Registries.FLUID,
-            RegistryKey.of(RegistryKeys.FLUID, The_Tower.id("flowing_gunk")),
-            new GunkFluid.Flowing());
-
-    public static final Block GUNK = Registry.register(Registries.BLOCK,
-            RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("gunk")),
-            new GunkFluidBlock(STILL_GUNK, AbstractBlock.Settings.create()
-                    .replaceable()
-                    .mapColor(MapColor.BLACK)
-                    .nonOpaque()
-                    .strength(400.0F)
-                    .pistonBehavior(PistonBehavior.DESTROY)
-                    .dropsNothing()
-                    .liquid()
-                    .sounds(BlockSoundGroup.INTENTIONALLY_EMPTY)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, The_Tower.id("gunk")))));
+    public static final FlowableFluid STILL_BLOOD = fluid_init.STILL_BLOOD;
+    public static final FlowableFluid FLOWING_BLOOD = fluid_init.FLOWING_BLOOD;
+    public static final Block BLOOD = fluid_init.BLOOD;
+    public static final FlowableFluid STILL_GUNK = fluid_init.STILL_GUNK;
+    public static final FlowableFluid FLOWING_GUNK = fluid_init.FLOWING_GUNK;
+    public static final Block GUNK = fluid_init.GUNK;
 
     public static final Block SALT = registerBlock("salt",
             new Block(AbstractBlock.Settings.create()
@@ -522,7 +595,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "golden_thurible")))));
 
     public static final Block GOLD_WALL = registerBlock("gold_wall",
-            new WallBlock(AbstractBlock.Settings.create()
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.GOLD)
@@ -531,7 +604,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_wall")))));
 
     public static final Block GOLD_STAIRS = registerBlock("gold_stairs",
-            new StairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
+            new FluidloggableStairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.GOLD)
@@ -540,7 +613,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_stairs")))));
 
     public static final Block GOLD_SLAB = registerBlock("gold_slab",
-            new SlabBlock(AbstractBlock.Settings.create()
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.GOLD)
@@ -558,7 +631,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_column")))));
 
     public static final Block GOLD_TRAPDOOR = registerBlock("gold_trapdoor",
-            new TrapdoorBlock(BlockSetType.COPPER, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
+            new FluidloggableTrapdoorBlock(BlockSetType.COPPER, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.GOLD)
@@ -585,7 +658,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_bars")))));
 
     public static final Block GOLD_LADDER = registerBlock("gold_ladder",
-            new LadderBlock(AbstractBlock.Settings.create()
+            new FluidloggableLadderBlock(AbstractBlock.Settings.create()
                     .requiresTool()
                     .nonOpaque()
                     .noCollision()
@@ -620,7 +693,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_planks")))));
 
     public static final Block GINKGO_STAIRS = registerBlock("ginkgo_stairs",
-            new StairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
+            new FluidloggableStairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.GOLD)
@@ -629,7 +702,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_stairs")))));
 
     public static final Block GINKGO_SLAB = registerBlock("ginkgo_slab",
-            new SlabBlock(AbstractBlock.Settings.create()
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.GOLD)
@@ -638,7 +711,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_slab")))));
 
     public static final Block GINKGO_TRAPDOOR = registerBlock("ginkgo_trapdoor",
-            new TrapdoorBlock(BlockSetType.OAK, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
+            new FluidloggableTrapdoorBlock(BlockSetType.OAK, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.GOLD)
@@ -678,6 +751,18 @@ public class block_init {
                     .noCollision()
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_sapling")))));
+
+    public static final Block CHANTERELLE = registerBlock("chanterelle",
+            new MushroomPlantBlock(ModConfiguredFeatures.GINKGO_KEY, AbstractBlock.Settings.create() //make large mushroom variant!
+                    .mapColor(MapColor.ORANGE)
+                    .noCollision()
+                    .ticksRandomly()
+                    .breakInstantly()
+                    .sounds(BlockSoundGroup.GRASS)
+                    .postProcess(Blocks::always)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "chanterelle")))));
+
 
     public static final Block VAULTS_STANCHION_SAPLING = registerBlock("vaults_stanchion_sapling",
             new SaplingBlock(ModSaplingGenerators.VAULTS_STANCHION, AbstractBlock.Settings.create()
@@ -882,7 +967,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_block")))));
 
     public static final Block SILVER_WALL = registerBlock("silver_wall",
-            new WallBlock(AbstractBlock.Settings.create()
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.LIGHT_GRAY)
@@ -891,7 +976,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_wall")))));
 
     public static final Block SILVER_STAIRS = registerBlock("silver_stairs",
-            new StairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
+            new FluidloggableStairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.LIGHT_GRAY)
@@ -900,7 +985,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_stairs")))));
 
     public static final Block SILVER_SLAB = registerBlock("silver_slab",
-            new SlabBlock(AbstractBlock.Settings.create()
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.LIGHT_GRAY)
@@ -918,7 +1003,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_column")))));
 
     public static final Block SILVER_LANTERN = registerBlock("silver_lantern",
-            new LanternBlock(AbstractBlock.Settings.create()
+            new FluidloggableLanternBlock(AbstractBlock.Settings.create()
                     .requiresTool()
                     .mapColor(MapColor.LIGHT_GRAY)
                     .strength(2.8F, 4.0F)
@@ -944,8 +1029,27 @@ public class block_init {
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gravestone")))));
 
+    public static final Block REDSTONE_LANTERN = registerBlock("redstone_lantern",
+            new FluidloggableLanternBlock(AbstractBlock.Settings.create()
+                    .requiresTool()
+                    .mapColor(MapColor.DARK_RED)
+                    .strength(2.8F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .luminance(state -> 15)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "redstone_lantern")))));
+
+    public static final Block REDSTONE_CHAIN = registerBlock("redstone_chain",
+            new ChainBlock(AbstractBlock.Settings.create()
+                    .solid()
+                    .requiresTool()
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.CHAIN)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "redstone_chain")))));
+
     public static final Block EMERALD_WALL = registerBlock("emerald_wall",
-            new WallBlock(AbstractBlock.Settings.create()
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.EMERALD_GREEN)
@@ -954,7 +1058,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_wall")))));
 
     public static final Block EMERALD_STAIRS = registerBlock("emerald_stairs",
-            new StairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
+            new FluidloggableStairsBlock(Blocks.ANDESITE_WALL.getDefaultState(), AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.EMERALD_GREEN)
@@ -963,7 +1067,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_stairs")))));
 
     public static final Block EMERALD_SLAB = registerBlock("emerald_slab",
-            new SlabBlock(AbstractBlock.Settings.create()
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
                     .nonOpaque()
                     .requiresTool()
                     .mapColor(MapColor.EMERALD_GREEN)
@@ -987,8 +1091,14 @@ public class block_init {
                     .sounds(BlockSoundGroup.MUD_BRICKS)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "kaolin")))));
 
+    public static final Block IMPERIAL_JADE_BLOCK = registerBlock("imperial_jade_block",
+            new Block(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.EMERALD_GREEN)
+                    .strength(4F, 10.0F)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "imperial_jade_block")))));
+
     public static final Block IMPERIAL_JADE_LANTERN = registerBlock("imperial_jade_lantern",
-            new LanternBlock(AbstractBlock.Settings.create()
+            new FluidloggableLanternBlock(AbstractBlock.Settings.create()
                     .requiresTool()
                     .mapColor(MapColor.EMERALD_GREEN)
                     .strength(5F, 10.0F)
@@ -1008,7 +1118,6 @@ public class block_init {
         BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
         item_init.register(name, blockItem);
     }
-
 
     public static void load() {
         registerBlockItem("darkness",DARKNESS);
@@ -1047,6 +1156,22 @@ public class block_init {
         registerBlockItem("adorned_petrified_stone", ADORNED_PETRIFIED_STONE);
         registerBlockItem("tiled_petrified_stone", TILED_PETRIFIED_STONE);
         registerBlockItem("cracked_tiled_petrified_stone", CRACKED_TILED_PETRIFIED_STONE);
+        registerBlockItem("petrified_stone_stairs", PETRIFIED_STONE_STAIRS);
+        registerBlockItem("petrified_stone_wall", PETRIFIED_STONE_WALL);
+        registerBlockItem("petrified_stone_column", PETRIFIED_STONE_COLUMN);
+        registerBlockItem("petrified_stone_slab", PETRIFIED_STONE_SLAB);
+        registerBlockItem("embossed_petrified_stone_stairs", EMBOSSED_PETRIFIED_STONE_STAIRS);
+        registerBlockItem("embossed_petrified_stone_wall", EMBOSSED_PETRIFIED_STONE_WALL);
+        registerBlockItem("embossed_petrified_stone_column", EMBOSSED_PETRIFIED_STONE_COLUMN);
+        registerBlockItem("embossed_petrified_stone_slab", EMBOSSED_PETRIFIED_STONE_SLAB);
+        registerBlockItem("tiled_petrified_stone_stairs", TILED_PETRIFIED_STONE_STAIRS);
+        registerBlockItem("tiled_petrified_stone_wall", TILED_PETRIFIED_STONE_WALL);
+        registerBlockItem("tiled_petrified_stone_column", TILED_PETRIFIED_STONE_COLUMN);
+        registerBlockItem("tiled_petrified_stone_slab", TILED_PETRIFIED_STONE_SLAB);
+        registerBlockItem("adorned_petrified_stone_stairs", ADORNED_PETRIFIED_STONE_STAIRS);
+        registerBlockItem("adorned_petrified_stone_wall", ADORNED_PETRIFIED_STONE_WALL);
+        registerBlockItem("adorned_petrified_stone_column", ADORNED_PETRIFIED_STONE_COLUMN);
+        registerBlockItem("adorned_petrified_stone_slab", ADORNED_PETRIFIED_STONE_SLAB);
         registerBlockItem("cerulean_shortgrass", CERULEAN_SHORTGRASS);
         registerBlockItem("rod_of_luminescence", ROD_OF_LUMINESCENCE);
         registerBlockItem("can_of_retardation", CAN_OF_RETARDATION);
@@ -1118,8 +1243,13 @@ public class block_init {
         registerBlockItem("ginkgo_button", GINKGO_BUTTON);
         registerBlockItem("stripped_ginkgo_log", STRIPPED_GINKGO_LOG);
         registerBlockItem("vaults_stanchion", VAULTS_STANCHION_SAPLING);
+        registerBlockItem("imperial_jade_block", IMPERIAL_JADE_BLOCK);
         registerBlockItem("imperial_jade_lantern", IMPERIAL_JADE_LANTERN);
         registerBlockItem("veins", VEINS);
+        registerBlockItem("chanterelle", CHANTERELLE);
+        registerBlockItem("redstone_lantern", REDSTONE_LANTERN);
+        registerBlockItem("redstone_chain", REDSTONE_CHAIN);
+        registerBlockItem("pile_of_meat", PILE_OF_MEAT);
     } //to load into game
 
 }

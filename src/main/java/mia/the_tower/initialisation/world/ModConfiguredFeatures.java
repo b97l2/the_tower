@@ -3,12 +3,12 @@ package mia.the_tower.initialisation.world;
 import mia.the_tower.initialisation.block_init;
 import mia.the_tower.initialisation.util.CustomTags;
 import mia.the_tower.initialisation.world.misc.DecoratedPitPlacer;
+import mia.the_tower.initialisation.world.ore.SheetOreFeature;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
 import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -17,7 +17,6 @@ import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
@@ -39,7 +38,9 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> AFHD_KEY = registerKey("afhd");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DRAGONS_EYE_ORE_KEY = registerKey("dragons_eye_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ITORE_KEY = registerKey("itore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> KAOLIN_SHEET_ORE_KEY = registerKey("kaolin_sheet_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SILVER_ORE_KEY = registerKey("silver_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SLATE_SHEET_ORE_KEY = registerKey("slate_sheet_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SILVER_VEIN_KEY = registerKey("silver_vein");
 
     //tree
@@ -60,6 +61,7 @@ public class ModConfiguredFeatures {
         //ore
         //this dictates which blocks the ore can replace
         RuleTest ceruleanCoastReplaceables = new TagMatchRuleTest(CustomTags.Blocks.CERULEAN_COAST_REPLACEABLE);
+        RuleTest goldenWealdReplaceables = new TagMatchRuleTest(CustomTags.Blocks.GOLDEN_WEALD_REPLACEABLE);
         RuleTest shadowlandsReplaceables = new TagMatchRuleTest(CustomTags.Blocks.SHADOWLANDS_REPLACEABLE);
         //This is where each type of ore is defined
         List<OreFeatureConfig.Target> frageAfhdOres =
@@ -71,15 +73,25 @@ public class ModConfiguredFeatures {
                 List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.DRAGONS_EYE_ORE.getDefaultState()));
         List<OreFeatureConfig.Target> frageSilverOres =
                 List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.SILVER_ORE.getDefaultState()));
+        List<OreFeatureConfig.Target> frageSlateSheetOres =
+                List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.SLATE.getDefaultState()));
         List<OreFeatureConfig.Target> frageSilverVeinOres =
                 List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.SILVER_VEIN.getDefaultState()));
         List<OreFeatureConfig.Target> frageItoreOres =
                 List.of(OreFeatureConfig.createTarget(shadowlandsReplaceables, block_init.ITORE.getDefaultState()));
+        List<OreFeatureConfig.Target> frageKaolinSheetOres =
+                List.of(OreFeatureConfig.createTarget(goldenWealdReplaceables, block_init.KAOLIN.getDefaultState()));
         //this defines how big the vein is with the size parameter
         register(context, AFHD_KEY, Feature.ORE, new OreFeatureConfig(frageAfhdOres, 40));
         register(context, DRAGONS_EYE_ORE_KEY, Feature.ORE, new OreFeatureConfig(frageDragonsEyeOres, 9));
         register(context, ITORE_KEY, Feature.ORE, new OreFeatureConfig(frageItoreOres, 3));
+        register(context, KAOLIN_SHEET_ORE_KEY, SheetOreFeature.SHEET_ORE,
+                new SheetOreFeature.Config(frageKaolinSheetOres, UniformIntProvider.create(30, 40),
+                        UniformIntProvider.create(2, 5), 1.0F, 0.0F));
         register(context, SILVER_ORE_KEY, Feature.ORE, new OreFeatureConfig(frageSilverOres, 25));
+        register(context, SLATE_SHEET_ORE_KEY, SheetOreFeature.SHEET_ORE,
+                new SheetOreFeature.Config(frageSlateSheetOres, UniformIntProvider.create(20, 32),
+                        UniformIntProvider.create(1, 3), 0.9F, 0.0F));
         register(context, SILVER_VEIN_KEY, Feature.ORE, new OreFeatureConfig(frageSilverVeinOres, 9));
 
         //for tree
@@ -168,7 +180,10 @@ public class ModConfiguredFeatures {
                                         )
                                 ),
                                 // Optional: add survival/ground predicates so every variant checks it can live
-                                BlockPredicate.wouldSurvive(block_init.CERULEAN_WILDGRASS.getDefaultState(), BlockPos.ORIGIN)
+                                BlockPredicate.allOf(
+                                        BlockPredicate.IS_AIR,
+                                        BlockPredicate.wouldSurvive(block_init.CERULEAN_WILDGRASS.getDefaultState(), BlockPos.ORIGIN)
+                                )
                         )
                 )
         );

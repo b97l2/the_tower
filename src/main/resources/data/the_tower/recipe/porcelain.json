@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 500,
+  "experience": 0,
+  "ingredient": "the_tower:chunk_of_kaolin",
+  "result": {
+    "id": "the_tower:porcelain"
+  }
+}

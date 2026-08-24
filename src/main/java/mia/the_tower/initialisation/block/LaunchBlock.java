@@ -1,29 +1,34 @@
 package mia.the_tower.initialisation.block;
 
+import mia.the_tower.initialisation.fluid.FluidLogging;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
-public class LaunchBlock extends Block {
+public class LaunchBlock extends Block implements ModFluidLoggable {
 
     public LaunchBlock(Settings settings) {
         super(settings);
-        setDefaultState(getDefaultState()
+        setDefaultState(FluidLogging.withDefaultFluid(getDefaultState()
                 .with(NORTH, false)
                 .with(EAST, false)
                 .with(SOUTH, false)
-                .with(WEST, false));
+                .with(WEST, false)));
     }
 
     @Override
@@ -45,6 +50,7 @@ public class LaunchBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, SOUTH, WEST);
+        FluidLogging.appendProperty(builder);
     }
 
     @Override
@@ -52,11 +58,31 @@ public class LaunchBlock extends Block {
         WorldAccess world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
 
-        return this.getDefaultState()
+        return FluidLogging.withPlacementFluid(this.getDefaultState()
                 .with(NORTH, connectsTo(world, pos.north()))
                 .with(EAST,  connectsTo(world, pos.east()))
                 .with(SOUTH, connectsTo(world, pos.south()))
-                .with(WEST,  connectsTo(world, pos.west()));
+                .with(WEST,  connectsTo(world, pos.west())), ctx);
+    }
+
+    @Override
+    protected BlockState getStateForNeighborUpdate(
+            BlockState state,
+            WorldView world,
+            ScheduledTickView tickView,
+            BlockPos pos,
+            Direction direction,
+            BlockPos neighborPos,
+            BlockState neighborState,
+            Random random
+    ) {
+        FluidLogging.scheduleFluidTick(state, tickView, world, pos);
+        return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+    }
+
+    @Override
+    protected FluidState getFluidState(BlockState state) {
+        return FluidLogging.getFluidState(state, super.getFluidState(state));
     }
 
     @Override
@@ -87,7 +113,9 @@ public class LaunchBlock extends Block {
     }
 
     private BlockState getUpdatedState(WorldAccess world, BlockPos pos) {
-        return this.getDefaultState()
+        BlockState currentState = world.getBlockState(pos);
+        BlockState state = currentState.isOf(this) ? currentState : this.getDefaultState();
+        return state
                 .with(NORTH, connectsTo(world, pos.north()))
                 .with(EAST,  connectsTo(world, pos.east()))
                 .with(SOUTH, connectsTo(world, pos.south()))

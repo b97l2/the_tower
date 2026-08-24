@@ -1,0 +1,29 @@
+{
+  "type": "the_tower:sheet_ore",
+  "config": {
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 1
+    },
+    "targets": [
+      {
+        "state": {
+          "Name": "the_tower:slate",
+          "Properties": {
+            "axis": "y"
+          }
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "the_tower:cerulean_coast_replaceable"
+        }
+      }
+    ],
+    "width": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 32,
+      "min_inclusive": 20
+    }
+  }
+}

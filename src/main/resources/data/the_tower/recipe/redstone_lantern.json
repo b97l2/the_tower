@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:redstone",
+    "!": "minecraft:torch"
+  },
+  "pattern": [
+    "###",
+    "#!#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:redstone_lantern"
+  },
+  "show_notification": true
+}

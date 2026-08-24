@@ -1,7 +1,7 @@
 package mia.the_tower.entity.plate;
 
-import mia.the_tower.The_Tower;
 import mia.the_tower.initialisation.entity.custom.PlateEntity;
+import net.fabricmc.fabric.api.client.model.loading.v1.FabricBakedModelManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -14,20 +14,14 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.BlockRenderManager;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.model.BakedModelManager;
-import net.minecraft.client.render.model.BlockStatesLoader;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.type.MapIdComponent;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ModelTransformationMode;
 import net.minecraft.item.map.MapState;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 
@@ -38,8 +32,7 @@ public class PlateRenderer<T extends PlateEntity> extends EntityRenderer<T, Plat
     private final MapRenderer mapRenderer;
     private final BlockRenderManager blockRenderManager;
 
-    private static final ModelIdentifier PLATE_MODEL =
-            new ModelIdentifier(Identifier.of("the_tower", "block/plate"), "");
+    private static final Identifier PLATE_MODEL = Identifier.of("the_tower", "block/plate");
 
     public PlateRenderer(EntityRendererFactory.Context context) {
         super(context);
@@ -50,52 +43,25 @@ public class PlateRenderer<T extends PlateEntity> extends EntityRenderer<T, Plat
 
 
 
-    private static ModelIdentifier pickModel(PlateRenderState s) {
-        return (s.mapId != null) ? BlockStatesLoader.MAP_ITEM_FRAME_MODEL_ID : PLATE_MODEL;
-    }
-
     public void render(PlateRenderState plateRenderState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         super.render(plateRenderState, matrixStack, vertexConsumerProvider, i);
         matrixStack.push();
-        Direction direction = plateRenderState.facing;
-        Vec3d vec3d = this.getPositionOffset(plateRenderState);
-        matrixStack.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
-        double d = (double)0.46875F;
-        matrixStack.translate((double)direction.getOffsetX() * (double)0.46875F, (double)direction.getOffsetY() * (double)0.46875F, (double)direction.getOffsetZ() * (double)0.46875F);
-        float f;
-        float g;
-        if (direction.getAxis().isHorizontal()) {
-            f = 0.0F;
-            g = 180.0F - direction.getPositiveHorizontalDegrees();
-        } else {
-            f = (float)(-90 * direction.getDirection().offset());
-            g = 180.0F;
-        }
-
-        matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(f));
-        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(g));
         if (!plateRenderState.invisible) {
-            var baked = blockRenderManager.getModels().getModelManager().getModel(pickModel(plateRenderState));
             matrixStack.push();
-            matrixStack.translate(-0.5F, -0.5F, -0.5F);
-            this.blockRenderManager.getModelRenderer().render(matrixStack.peek(), vertexConsumerProvider.getBuffer(RenderLayer.getEntitySolidZOffsetForward(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE)), (BlockState)null, baked, 1.0F, 1.0F, 1.0F, i, OverlayTexture.DEFAULT_UV);
+            matrixStack.translate(-0.5F, -0.03125F, -0.5F);
+            var baked = ((FabricBakedModelManager)blockRenderManager.getModels().getModelManager()).getModel(PLATE_MODEL);
+            this.blockRenderManager.getModelRenderer().render(matrixStack.peek(), vertexConsumerProvider.getBuffer(RenderLayer.getEntityCutout(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE)), (BlockState)null, baked, 1.0F, 1.0F, 1.0F, i, OverlayTexture.DEFAULT_UV);
             matrixStack.pop();
         }
 
-        if (plateRenderState.invisible) {
-            matrixStack.translate(0.0F, 0.0F, 0.5F);
-        } else {
-            matrixStack.translate(0.0F, 0.0F, 0.4375F);
-        }
+        matrixStack.translate(0.0F, 0.0F, 0.0F);
+        matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
 
         if (plateRenderState.mapId != null) {
             int j = plateRenderState.rotation % 4 * 2;
             matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float)j * 360.0F / 8.0F));
-            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180.0F));
-            float h = 0.0078125F;
             matrixStack.scale(0.0078125F, 0.0078125F, 0.0078125F);
             matrixStack.translate(-64.0F, -64.0F, 0.0F);
-            matrixStack.translate(0.0F, 0.0F, -1.0F);
             int k = this.getLight(plateRenderState.glow, 15728850, i);
             this.mapRenderer.draw(plateRenderState.mapRenderState, matrixStack, vertexConsumerProvider, true, k);
         } else if (!plateRenderState.itemRenderState.isEmpty()) {
@@ -113,7 +79,7 @@ public class PlateRenderer<T extends PlateEntity> extends EntityRenderer<T, Plat
     }
 
     public Vec3d getPositionOffset(PlateRenderState plateRenderState) {
-        return new Vec3d((double)((float)plateRenderState.facing.getOffsetX() * 0.3F), (double)-0.25F, (double)((float)plateRenderState.facing.getOffsetZ() * 0.3F));
+        return Vec3d.ZERO;
     }
 
     protected boolean hasLabel(T itemFrameEntity, double d) {
@@ -134,7 +100,7 @@ public class PlateRenderer<T extends PlateEntity> extends EntityRenderer<T, Plat
         ItemStack itemStack = itemFrameEntity.getHeldItemStack();
         this.itemModelManager.updateForNonLivingEntity(plateRenderState.itemRenderState, itemStack, ModelTransformationMode.FIXED, itemFrameEntity);
         plateRenderState.rotation = itemFrameEntity.getRotation();
-        plateRenderState.glow = itemFrameEntity.getType() == EntityType.GLOW_ITEM_FRAME;
+        plateRenderState.glow = false;
         plateRenderState.mapId = null;
         if (!itemStack.isEmpty()) {
             MapIdComponent mapIdComponent = itemFrameEntity.getMapId(itemStack);

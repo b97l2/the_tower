@@ -6,6 +6,8 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.*;
@@ -20,7 +22,9 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> AFHD_PLACED_KEY = registerKey("afhd_placed");
     public static final RegistryKey<PlacedFeature> DRAGONS_EYE_ORE_PLACED_KEY = registerKey("dragons_eye_ore_placed");
     public static final RegistryKey<PlacedFeature> ITORE_PLACED_KEY = registerKey("itore_placed");
+    public static final RegistryKey<PlacedFeature> KAOLIN_SHEET_ORE_PLACED_KEY = registerKey("kaolin_sheet_ore_placed");
     public static final RegistryKey<PlacedFeature> SILVER_ORE_PLACED_KEY = registerKey("silver_ore_placed");
+    public static final RegistryKey<PlacedFeature> SLATE_SHEET_ORE_PLACED_KEY = registerKey("slate_sheet_ore_placed");
     public static final RegistryKey<PlacedFeature> SILVER_VEIN_PLACED_KEY = registerKey("silver_vein_placed");
 
     //vegetation
@@ -50,8 +54,17 @@ public class ModPlacedFeatures {
         register(context, ITORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ITORE_KEY),
                 ModOrePlacement.modifiersWithCount(5,
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-140), YOffset.fixed(60))));
+        register(context, KAOLIN_SHEET_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.KAOLIN_SHEET_ORE_KEY),
+                RarityFilterPlacementModifier.of(4),
+                SquarePlacementModifier.of(),
+                HeightmapPlacementModifier.of(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES),
+                RandomOffsetPlacementModifier.vertically(UniformIntProvider.create(-7, -2)),
+                BiomePlacementModifier.of());
         register(context, SILVER_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_ORE_KEY),
                 ModOrePlacement.modifiersWithCount(5, //veins per chunk
+                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(-120), YOffset.fixed(50))));
+        register(context, SLATE_SHEET_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SLATE_SHEET_ORE_KEY),
+                ModOrePlacement.modifiersWithRarity(4,
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-120), YOffset.fixed(0))));
         register(context, SILVER_VEIN_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SILVER_VEIN_KEY),
                 ModOrePlacement.modifiersWithCount(2, //veins per chunk

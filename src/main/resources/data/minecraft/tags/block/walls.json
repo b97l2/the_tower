@@ -3,6 +3,10 @@
   "values": [
     "the_tower:gold_wall",
     "the_tower:emerald_wall",
-    "the_tower:silver_wall"
+    "the_tower:silver_wall",
+    "the_tower:petrified_stone_wall",
+    "the_tower:embossed_petrified_stone_wall",
+    "the_tower:tiled_petrified_stone_wall",
+    "the_tower:adorned_petrified_stone_wall"
   ]
 }

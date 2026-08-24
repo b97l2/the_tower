@@ -6,14 +6,13 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LanternBlock;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class ThuribleBlock extends LanternBlock {
+public class ThuribleBlock extends FluidloggableLanternBlock {
 
     public static final MapCodec<ThuribleBlock> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(

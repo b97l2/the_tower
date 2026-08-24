@@ -95,6 +95,12 @@ public class The_TowerClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GREEN_COFFER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.RED_COFFER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.BLACK_COFFER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.VEINS, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.REDSTONE_CHAIN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.REDSTONE_LANTERN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.IMPERIAL_JADE_LANTERN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SILVER_LANTERN, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.PILE_OF_MEAT, RenderLayer.getCutout());
 
 		//this is for rendering fluids
 		FluidRenderHandlerRegistry.INSTANCE.register(

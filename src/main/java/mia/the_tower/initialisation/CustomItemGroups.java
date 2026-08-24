@@ -27,6 +27,7 @@ public class CustomItemGroups {
 
                         //plants
                         entries.add(block_init.VEINS);
+                        entries.add(block_init.PILE_OF_MEAT);
 
                         //items
                         entries.add(item_init.KLAEN);
@@ -77,6 +78,22 @@ public class CustomItemGroups {
                         entries.add(block_init.TILED_PETRIFIED_STONE);
                         entries.add(block_init.CRACKED_TILED_PETRIFIED_STONE);
                         entries.add(block_init.ADORNED_PETRIFIED_STONE);
+                        entries.add(block_init.PETRIFIED_STONE_STAIRS);
+                        entries.add(block_init.PETRIFIED_STONE_WALL);
+                        entries.add(block_init.PETRIFIED_STONE_COLUMN);
+                        entries.add(block_init.PETRIFIED_STONE_SLAB);
+                        entries.add(block_init.EMBOSSED_PETRIFIED_STONE_STAIRS);
+                        entries.add(block_init.EMBOSSED_PETRIFIED_STONE_WALL);
+                        entries.add(block_init.EMBOSSED_PETRIFIED_STONE_COLUMN);
+                        entries.add(block_init.EMBOSSED_PETRIFIED_STONE_SLAB);
+                        entries.add(block_init.TILED_PETRIFIED_STONE_STAIRS);
+                        entries.add(block_init.TILED_PETRIFIED_STONE_WALL);
+                        entries.add(block_init.TILED_PETRIFIED_STONE_COLUMN);
+                        entries.add(block_init.TILED_PETRIFIED_STONE_SLAB);
+                        entries.add(block_init.ADORNED_PETRIFIED_STONE_STAIRS);
+                        entries.add(block_init.ADORNED_PETRIFIED_STONE_WALL);
+                        entries.add(block_init.ADORNED_PETRIFIED_STONE_COLUMN);
+                        entries.add(block_init.ADORNED_PETRIFIED_STONE_SLAB);
                         entries.add(block_init.GROTESQUE);
                         entries.add(block_init.OLD_SOIL);
                         entries.add(block_init.OLD_MEADOW);
@@ -175,6 +192,7 @@ public class CustomItemGroups {
                         entries.add(block_init.TANKARD);
                         entries.add(block_init.SPIRITS);
                         entries.add(block_init.SAUERKRAUT);
+                        entries.add(item_init.PLATE);
 
                         //golden
                         entries.add(block_init.GOLDEN_THURIBLE);
@@ -197,6 +215,8 @@ public class CustomItemGroups {
                         entries.add(block_init.GINKGO_BUTTON);
                         entries.add(block_init.GINKGO_LEAVES);
                         entries.add(item_init.GINKGO_FRUIT);
+                        entries.add(block_init.CHANTERELLE);
+                        entries.add(item_init.LAVALIERE_OF_THE_GOLDEN_SUN);
 
                         //stone
                         entries.add(column_init.STONE_COLUMN);
@@ -211,16 +231,24 @@ public class CustomItemGroups {
                         entries.add(column_init.POLISHED_BLACKSTONE_BRICK_COLUMN);
                         entries.add(column_init.POLISHED_BLACKSTONE_COLUMN);
 
+                        //jade
+                        entries.add(block_init.IMPERIAL_JADE_BLOCK);
+                        entries.add(block_init.IMPERIAL_JADE_LANTERN);
+
                         //emerald
                         entries.add(block_init.EMERALD_COLUMN);
                         entries.add(block_init.EMERALD_SLAB);
                         entries.add(block_init.EMERALD_STAIRS);
                         entries.add(block_init.EMERALD_WALL);
-                        entries.add(block_init.IMPERIAL_JADE_LANTERN);
 
                         //porcelain
                         entries.add(item_init.CHUNK_OF_KAOLIN);
                         entries.add(block_init.KAOLIN);
+                        entries.add(item_init.PORCELAIN);
+
+                        //redstone
+                        entries.add(block_init.REDSTONE_LANTERN);
+                        entries.add(block_init.REDSTONE_CHAIN);
 
 
                     }).build());

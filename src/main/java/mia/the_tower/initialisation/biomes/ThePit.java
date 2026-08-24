@@ -1,6 +1,7 @@
 package mia.the_tower.initialisation.biomes;
 
 
+import mia.the_tower.initialisation.carver.ModCarvers;
 import mia.the_tower.initialisation.world.ModPlacedFeatures;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -33,13 +34,9 @@ public class ThePit {
         GenerationSettings.LookupBackedBuilder biomeBuilder =
                 new GenerationSettings.LookupBackedBuilder(placedLookup, carverLookup);
 
-//        //for carver
-//        RegistryKey<ConfiguredCarver<?>> PIT_CARVER_KEY =
-//                RegistryKey.of(RegistryKeys.CONFIGURED_CARVER, Identifier.of("the_tower", "pit_carver"));
-//
-//        biomeBuilder.carver(PIT_CARVER_KEY);
+        biomeBuilder.carver(ModCarvers.PIT_CARVER_KEY);
 
-        biomeBuilder.feature(GenerationStep.Feature.LAKES, ModPlacedFeatures.DECORATED_PIT_PLACED_KEY);
+        //biomeBuilder.feature(GenerationStep.Feature.LAKES, ModPlacedFeatures.DECORATED_PIT_PLACED_KEY);
 
         return new Biome.Builder()
                 .precipitation(true)

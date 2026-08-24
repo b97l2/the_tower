@@ -1,9 +1,10 @@
 package mia.the_tower.initialisation.entity.custom;
 
+import mia.the_tower.initialisation.item_init;
 import mia.the_tower.initialisation.entity.ModEntities;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.decoration.AbstractDecorationEntity;
 import net.minecraft.entity.decoration.ItemFrameEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -16,7 +17,18 @@ public class PlateEntity extends ItemFrameEntity {
         super(ModEntities.PLATE, world, pos, side); // your registry constant
     }
 
-    // Optional: change physical size in pixels if you want a different footprint
-    // @Override public int getWidthPixels() { return 16; }
-    // @Override public int getHeightPixels() { return 16; }
+    @Override
+    protected void setFacing(Direction facing) {
+        super.setFacing(Direction.UP);
+    }
+
+    @Override
+    public boolean canStayAttached() {
+        return this.getHorizontalFacing() == Direction.UP && super.canStayAttached();
+    }
+
+    @Override
+    protected ItemStack getAsItemStack() {
+        return new ItemStack(item_init.PLATE);
+    }
 }
