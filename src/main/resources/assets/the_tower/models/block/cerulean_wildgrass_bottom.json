@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "the_tower:block/full_crop_tall",
   "textures": {
-    "cross": "the_tower:block/cerulean_wildgrass_bottom"
+    "full_crop_tall": "the_tower:block/cerulean_wildgrass"
   }
 }

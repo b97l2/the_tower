@@ -36,7 +36,7 @@ public class Shadowlands {
         biomeBuilder.feature(GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.ITORE_PLACED_KEY);
 
         return new Biome.Builder()
-                .precipitation(true)
+                .precipitation(false)
                 .downfall(0.4f)
                 .temperature(0.7f)
                 .generationSettings(biomeBuilder.build())

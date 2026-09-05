@@ -39,6 +39,7 @@ public class CustomItemGroups {
                         entries.add(item_init.CONTRACT);
                         entries.add(item_init.TOOTH);
                         entries.add(item_init.MY_RAGE);
+                        entries.add(item_init.INTESTINE);
 
 
                         //fluids
@@ -127,6 +128,7 @@ public class CustomItemGroups {
                         entries.add(item_init.YUMP);
                         entries.add(item_init.BLAJ);
                         entries.add(item_init.HORNWORM);
+                        entries.add(item_init.LAMP_FLY_IN_A_BOTTLE);
                         entries.add(item_init.DRAGONS_EYE);
                         entries.add(item_init.MY_FUEL);
                         entries.add(item_init.FATIGUE);
@@ -138,6 +140,7 @@ public class CustomItemGroups {
                         entries.add(item_init.CIRCLET_OF_GLUT);
                         entries.add(item_init.DIVINING_ROD);
                         entries.add(item_init.VOID_MOTH_SPAWN_EGG);
+                        entries.add(item_init.LAMP_FLY_SPAWN_EGG);
                         entries.add(item_init.KEY);
                         entries.add(item_init.WHITE_KEY);
                         entries.add(item_init.ORANGE_KEY);
@@ -183,6 +186,8 @@ public class CustomItemGroups {
                         entries.add(item_init.GLOOP);
                         entries.add(item_init.CHOCOLATE_BAR);
                         entries.add(item_init.TOAST);
+                        entries.add(item_init.SAUSAGE);
+                        entries.add(item_init.FULL_BREAKFAST);
                         entries.add(item_init.TOFFEE_APPLE);
 
                         entries.add(block_init.CAN_OF_RETARDATION);

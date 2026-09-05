@@ -31,7 +31,7 @@
       "the_tower:cerulean_coast_flowers_patch_placed"
     ]
   ],
-  "has_precipitation": true,
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [

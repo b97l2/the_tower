@@ -1,0 +1,6 @@
+{
+  "type": "the_tower:large_ginkgo_tree",
+  "biomes": "#the_tower:has_structure/large_ginkgo_tree",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

@@ -354,12 +354,23 @@ public class GiantTrunkPlacer extends TrunkPlacer {
 
                 // Place only if air/replaceable
                 if (this.canReplace(world, plantPos)) {
-                    BlockState plant = block_init.CERULEAN_SHORTGRASS.getDefaultState();
+                    BlockState plant = pickInteriorFloorPlant(random);
                     replacer.accept(plantPos, plant);
                 }
             }
         }
 
+    }
+
+    private BlockState pickInteriorFloorPlant(Random random) {
+        int choice = random.nextInt(10);
+        if (choice < 4) {
+            return block_init.CERULEAN_SHORTGRASS.getDefaultState();
+        }
+        if (choice < 7) {
+            return block_init.CERULEAN_WILDGRASS.getDefaultState();
+        }
+        return block_init.CHANTERELLE.getDefaultState();
     }
 
     private void drawBranch(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random,

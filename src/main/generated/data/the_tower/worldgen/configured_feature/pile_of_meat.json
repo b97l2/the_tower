@@ -1,0 +1,51 @@
+{
+  "type": "the_tower:surface_decorative_block",
+  "config": {
+    "min_y": 0,
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "the_tower:pile_of_meat",
+            "Properties": {
+              "facing": "north",
+              "fluid": "none"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "the_tower:pile_of_meat",
+            "Properties": {
+              "facing": "east",
+              "fluid": "none"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "the_tower:pile_of_meat",
+            "Properties": {
+              "facing": "south",
+              "fluid": "none"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "the_tower:pile_of_meat",
+            "Properties": {
+              "facing": "west",
+              "fluid": "none"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

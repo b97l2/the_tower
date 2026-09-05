@@ -34,6 +34,12 @@ public class CustomSounds {
 
     public static final SoundEvent SHEPHERDS_STAFF_USE = registerSoundEvent("shepherds_staff_use");
 
+    public static final SoundEvent BLOOD_SPLASH = registerSoundEvent("blood_splash");
+    public static final SoundEvent BLOOD_SPLASH_HIGH_SPEED = registerSoundEvent("blood_splash_high_speed");
+    public static final SoundEvent BLOOD_SWIM = registerSoundEvent("blood_swim");
+    public static final SoundEvent GUNK_SPLASH = registerSoundEvent("gunk_splash");
+    public static final SoundEvent GUNK_SPLASH_HIGH_SPEED = registerSoundEvent("gunk_splash_high_speed");
+    public static final SoundEvent GUNK_SWIM = registerSoundEvent("gunk_swim");
 
 
 

@@ -35,6 +35,42 @@
       "the_tower:shepherds_staff_use3",
       "the_tower:shepherds_staff_use4"
     ]
+  },
+  "blood_splash": {
+    "subtitle": "sounds.the_tower.blood_splash",
+    "sounds": [
+      "the_tower:blood_splash"
+    ]
+  },
+  "blood_splash_high_speed": {
+    "subtitle": "sounds.the_tower.blood_splash_high_speed",
+    "sounds": [
+      "the_tower:blood_splash_high_speed"
+    ]
+  },
+  "blood_swim": {
+    "subtitle": "sounds.the_tower.blood_swim",
+    "sounds": [
+      "the_tower:blood_swim"
+    ]
+  },
+  "gunk_splash": {
+    "subtitle": "sounds.the_tower.gunk_splash",
+    "sounds": [
+      "the_tower:gunk_splash"
+    ]
+  },
+  "gunk_splash_high_speed": {
+    "subtitle": "sounds.the_tower.gunk_splash_high_speed",
+    "sounds": [
+      "the_tower:gunk_splash_high_speed"
+    ]
+  },
+  "gunk_swim": {
+    "subtitle": "sounds.the_tower.gunk_swim",
+    "sounds": [
+      "the_tower:gunk_swim"
+    ]
   }
 }
 

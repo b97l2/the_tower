@@ -10,6 +10,7 @@ import mia.the_tower.initialisation.block.stake_init;
 import mia.the_tower.initialisation.entity.ModEntities;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.screen.screen_init;
+import mia.the_tower.initialisation.weather.FrageWeatherClient;
 import mia.the_tower.particle.*;
 import mia.the_tower.screen.ColouredCofferScreen;
 import net.fabricmc.api.ClientModInitializer;
@@ -62,6 +63,12 @@ public class The_TowerClient implements ClientModInitializer {
 				RenderLayer.getTranslucent(),
 				block_init.STILL_BLOOD,
 				block_init.FLOWING_BLOOD
+		);
+		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GUNK, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putFluids(
+				RenderLayer.getTranslucent(),
+				block_init.STILL_GUNK,
+				block_init.FLOWING_GUNK
 		);
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.GABRIELS_TRUMPETS_BUSH, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SHADOW, RenderLayer.getTranslucent());
@@ -150,6 +157,7 @@ public class The_TowerClient implements ClientModInitializer {
 
 		//this is for screens
 		HandledScreens.register(screen_init.COFFER, ColouredCofferScreen::new);
+		FrageWeatherClient.init();
 
 
 	}

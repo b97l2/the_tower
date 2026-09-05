@@ -45,6 +45,7 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item DRAGONS_EYE;
     public static Item PEARL_OF_BLOOD;
     public static Item HORNWORM;
+    public static Item LAMP_FLY_IN_A_BOTTLE;
     public static Item SANGUINE_FLASK;
     public static Item BUCKET_OF_BILE;
     public static Item FINGER;
@@ -98,6 +99,10 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item FATIGUE;
     public static Item LAVALIERE_OF_THE_GOLDEN_SUN;
     public static Item PORCELAIN;
+    public static Item LAMP_FLY_SPAWN_EGG;
+    public static Item FULL_BREAKFAST;
+    public static Item SAUSAGE;
+    public static Item INTESTINE;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -202,6 +207,11 @@ public class item_init { //this is the class that initialises items in the mod
         HORNWORM = register("hornworm", new Item(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("hornworm")))));
 
+        LAMP_FLY_IN_A_BOTTLE = register("lamp_fly_in_a_bottle", new LampFlyInABottleItem(new Item.Settings()
+                .recipeRemainder(Items.GLASS_BOTTLE)
+                .maxCount(1)
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("lamp_fly_in_a_bottle")))));
+
         SANGUINE_FLASK = register("sanguine_flask", new Item(new Item.Settings().food(
                         new FoodComponent.Builder()
                                 .alwaysEdible()
@@ -245,6 +255,9 @@ public class item_init { //this is the class that initialises items in the mod
 
         VOID_MOTH_SPAWN_EGG = register("void_moth_spawn_egg", new SpawnEggItem(ModEntities.VOID_MOTH, new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("void_moth_spawn_egg")))));
+
+        LAMP_FLY_SPAWN_EGG = register("lamp_fly_spawn_egg", new SpawnEggItem(ModEntities.LAMP_FLY, new Item.Settings()
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("lamp_fly_spawn_egg")))));
 
         GINKGO_LEAF = register("ginkgo_leaf", new Item(new Item.Settings()
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("ginkgo_leaf")))));
@@ -442,7 +455,7 @@ public class item_init { //this is the class that initialises items in the mod
                 .food(
                         new FoodComponent.Builder()
                                 .nutrition(6)
-                                .saturationModifier(0.2F)
+                                .saturationModifier(0.1F)
                                 .build())
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chocolate_bar")))));
 
@@ -453,6 +466,30 @@ public class item_init { //this is the class that initialises items in the mod
                                 .saturationModifier(0.2F)
                                 .build())
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("toast")))));
+
+        SAUSAGE = register("sausage", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(3)
+                                .saturationModifier(0.3F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("sausage")))));
+
+        INTESTINE = register("intestine", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(1)
+                                .saturationModifier(0.0F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("intestine")))));
+
+        FULL_BREAKFAST = register("full_breakfast", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(8)
+                                .saturationModifier(0.5F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("full_breakfast")))));
 
         TOFFEE_APPLE = register("toffee_apple", new Item(new Item.Settings()
                 .food(

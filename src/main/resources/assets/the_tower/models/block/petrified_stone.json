@@ -1,7 +1,6 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "end": "the_tower:block/petrified_stone_top",
-    "side": "the_tower:block/petrified_stone"
+    "all": "the_tower:block/petrified_stone"
   }
 }

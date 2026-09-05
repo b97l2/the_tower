@@ -90,6 +90,7 @@ public class GiantFoliagePlacer extends FoliagePlacer {
     }
 
     public static final ThreadLocal<ChunkPos> CURRENT_TREE_ORIGIN = new ThreadLocal<>(); //for chunk window
+    public static final ThreadLocal<Boolean> DISABLE_FEATURE_REGION_LIMIT = ThreadLocal.withInitial(() -> false);
 
     @Override
     protected FoliagePlacerType<?> getType() {
@@ -143,7 +144,7 @@ public class GiantFoliagePlacer extends FoliagePlacer {
         final ChunkPos originChunk =
                 java.util.Optional.ofNullable(CURRENT_TREE_ORIGIN.get())
                         .orElseGet(() -> new ChunkPos(center));
-        final FoliagePlacer.BlockPlacer gatedPlacer = new FoliagePlacer.BlockPlacer() {
+        final FoliagePlacer.BlockPlacer gatedPlacer = Boolean.TRUE.equals(DISABLE_FEATURE_REGION_LIMIT.get()) ? placer : new FoliagePlacer.BlockPlacer() {
             @Override
             public void placeBlock(BlockPos pos, BlockState state) {
                 if (withinFeatureRegion(originChunk, pos)) {

@@ -72,25 +72,11 @@ public class VoidMothModel extends EntityModel<VoidMothRenderState>{
     @Override
     public void setAngles(VoidMothRenderState state) {
         super.setAngles(state);
-        this.setHeadAngles(state.yawDegrees, state.pitch);
-
+        this.resetTransforms();
         this.setHeadAngles(state.yawDegrees, state.pitch);
 
         if (state.perched) {
-            // Pose the whole model for the attachment
-            switch (state.perchFace) {
-                case UP -> { // hanging from ceiling
-                    this.root.pitch = (float)Math.PI; // flip upside down
-                }
-                case NORTH, SOUTH, EAST, WEST -> {
-                    // yaw the body to face out from the wall
-                    float yawOut = state.perchFace.getPositiveHorizontalDegrees(); // maps dir -> degrees
-                    this.root.yaw = (float)Math.toRadians(yawOut + 180f); // face away from wall
-                    // optional: slight pitch toward the wall
-                    this.root.pitch = 0.2f;
-                }
-                default -> {}
-            }
+            this.setPerchRotation(state.perchFace);
             this.animate(state.idleAnimationState, VoidMothAnimations.IDLE, state.age, 1.0f);
             return;
         }
@@ -109,6 +95,17 @@ public class VoidMothModel extends EntityModel<VoidMothRenderState>{
             );
         }
         this.animate(state.idleAnimationState, VoidMothAnimations.IDLE, state.age, 1f);
+    }
+
+    private void setPerchRotation(net.minecraft.util.math.Direction perchFace) {
+        switch (perchFace) {
+            case UP -> this.void_moth.pitch = (float)Math.PI;
+            case NORTH, SOUTH, EAST, WEST -> {
+                this.void_moth.pitch = -(float)Math.PI / 2.0F;
+                this.void_moth.yaw = (float)Math.PI;
+            }
+            default -> {}
+        }
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

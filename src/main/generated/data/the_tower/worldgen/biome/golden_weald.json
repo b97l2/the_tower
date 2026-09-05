@@ -30,7 +30,7 @@
       "the_tower:ginkgo_placed"
     ]
   ],
-  "has_precipitation": true,
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

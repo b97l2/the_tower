@@ -67,7 +67,7 @@ public class GoldenWeald {
         biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.GINKGO_PLACED_KEY);
 
         return new Biome.Builder()
-                .precipitation(true)
+                .precipitation(false)
                 .downfall(0f)
                 .temperature(0.3f)
                 .generationSettings(biomeBuilder.build())

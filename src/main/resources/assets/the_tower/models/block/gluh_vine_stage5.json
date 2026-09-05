@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "the_tower:block/full_crop",
   "textures": {
-    "cross": "the_tower:block/gluh_vine_stage5"
+    "full_crop": "the_tower:block/gluh_vine_stage5"
   }
 }

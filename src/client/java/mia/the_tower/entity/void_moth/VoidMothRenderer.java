@@ -6,9 +6,11 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 
 public class VoidMothRenderer extends MobEntityRenderer<VoidMothEntity, VoidMothRenderState, VoidMothModel>{
     //displays the mob
+    private static final double WALL_PERCH_RENDER_INSET = 0.64D;
 
     //for variants
     /*
@@ -35,6 +37,15 @@ public class VoidMothRenderer extends MobEntityRenderer<VoidMothEntity, VoidMoth
     @Override
     public void render(VoidMothRenderState state, MatrixStack matrixStack,
                        VertexConsumerProvider vertexConsumerProvider, int i) {
+        if (state.perched && state.perchFace.getAxis().isHorizontal()) {
+            Direction face = state.perchFace;
+            matrixStack.translate(
+                    face.getOffsetX() * WALL_PERCH_RENDER_INSET,
+                    0.0D,
+                    face.getOffsetZ() * WALL_PERCH_RENDER_INSET
+            );
+        }
+
         if(state.baby) {
             matrixStack.scale(0.3f, 0.3f, 0.3f);
         } else {

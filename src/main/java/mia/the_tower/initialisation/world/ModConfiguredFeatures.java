@@ -6,17 +6,20 @@ import mia.the_tower.initialisation.world.misc.DecoratedPitPlacer;
 import mia.the_tower.initialisation.world.ore.SheetOreFeature;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
+import mia.the_tower.initialisation.world.vegetation.SurfaceDecorativeBlockFeature;
 import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.state.property.Properties;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
@@ -50,6 +53,7 @@ public class ModConfiguredFeatures {
     //vegetation
     public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_GRASS_PATCH_KEY = registerKey("cerulean_grass_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_COAST_FLOWERS_PATCH_KEY = registerKey("cerulean_coast_flowers_patch_key");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PILE_OF_MEAT_KEY = registerKey("pile_of_meat");
 
     //other
     public static final RegistryKey<ConfiguredFeature<?, ?>> DECORATED_PIT_KEY = registerKey("decorated_pit_key");
@@ -188,6 +192,23 @@ public class ModConfiguredFeatures {
                 )
         );
         //add one here for cerulean petals, also with randomised direction and amount (not sure how to do. look at vanilla)
+
+        BlockState pileOfMeat = block_init.PILE_OF_MEAT.getDefaultState();
+        register(
+                context,
+                PILE_OF_MEAT_KEY,
+                SurfaceDecorativeBlockFeature.SURFACE_DECORATIVE_BLOCK,
+                new SurfaceDecorativeBlockFeature.Config(
+                        new WeightedBlockStateProvider(
+                                DataPool.<BlockState>builder()
+                                        .add(pileOfMeat.with(Properties.HORIZONTAL_FACING, Direction.NORTH), 1)
+                                        .add(pileOfMeat.with(Properties.HORIZONTAL_FACING, Direction.EAST), 1)
+                                        .add(pileOfMeat.with(Properties.HORIZONTAL_FACING, Direction.SOUTH), 1)
+                                        .add(pileOfMeat.with(Properties.HORIZONTAL_FACING, Direction.WEST), 1)
+                        ),
+                        0
+                )
+        );
 
         //other
         BlockStateProvider pitSurfaceProvider = new WeightedBlockStateProvider(

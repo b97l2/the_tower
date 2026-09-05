@@ -36,10 +36,11 @@ public class ThePit {
 
         biomeBuilder.carver(ModCarvers.PIT_CARVER_KEY);
 
+        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.PILE_OF_MEAT_PLACED_KEY);
         //biomeBuilder.feature(GenerationStep.Feature.LAKES, ModPlacedFeatures.DECORATED_PIT_PLACED_KEY);
 
         return new Biome.Builder()
-                .precipitation(true)
+                .precipitation(false)
                 .downfall(0.4f)
                 .temperature(0.7f)
                 .generationSettings(biomeBuilder.build())

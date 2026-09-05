@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 19402154,
+    "separation": 9,
+    "spacing": 11
+  },
+  "structures": [
+    {
+      "structure": "the_tower:large_ginkgo_tree",
+      "weight": 1
+    }
+  ]
+}

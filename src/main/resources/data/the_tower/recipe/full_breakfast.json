@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    "minecraft:egg",
+    "the_tower:toast",
+    "the_tower:sausage"
+  ],
+  "result": {
+    "count": 1,
+    "id": "the_tower:full_breakfast"
+  }
+}

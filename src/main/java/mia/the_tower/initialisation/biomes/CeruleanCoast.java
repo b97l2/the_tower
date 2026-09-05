@@ -74,7 +74,7 @@ public class CeruleanCoast {
         biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.CERULEAN_COAST_FLOWERS_PATCH_PLACED_KEY);
 
         return new Biome.Builder()
-                .precipitation(true)
+                .precipitation(false)
                 .downfall(0.7f)
                 .temperature(0.7f)
                 .generationSettings(biomeBuilder.build())

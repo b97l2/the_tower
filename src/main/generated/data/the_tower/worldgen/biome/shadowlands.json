@@ -27,7 +27,7 @@
       "the_tower:itore_placed"
     ]
   ],
-  "has_precipitation": true,
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

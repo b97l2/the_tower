@@ -81,14 +81,13 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "veins")))));
 
     public static final Block PILE_OF_MEAT = registerBlock("pile_of_meat",
-            new Block(AbstractBlock.Settings.create()
+            new SmallDecorativeBlock(AbstractBlock.Settings.create()
                     .strength(1F, 6.0F)
                     .mapColor(MapColor.RED)
-                    .noCollision()
                     .sounds(BlockSoundGroup.SLIME)
                     .pistonBehavior(PistonBehavior.DESTROY)
-                    .offset(AbstractBlock.OffsetType.XZ)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "pile_of_meat")))));
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "pile_of_meat"))),
+                    Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 4.0, 15.0)));
 
     public static final Block STITCHED_FLESH = registerBlock("stitched_flesh",
             new Block(AbstractBlock.Settings.create()
@@ -346,11 +345,15 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "jesters_hat")))));
 
     public static Block LOAF = registerBlock("loaf",
-            new loaf_init(AbstractBlock.Settings.create()
+            new SmallDecorativeBlock(AbstractBlock.Settings.create()
                     .sounds(BlockSoundGroup.GRASS)
                     .strength(0.5F, 1.0F)
                     .nonOpaque()
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "loaf")))));
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "loaf"))),
+                    Block.createCuboidShape(5.0, 0.0, 2.0, 11.0, 7.0, 14.0),
+                    Block.createCuboidShape(5.0, 0.0, 2.0, 11.0, 7.0, 14.0),
+                    Block.createCuboidShape(2.0, 0.0, 5.0, 14.0, 7.0, 11.0),
+                    Block.createCuboidShape(2.0, 0.0, 5.0, 14.0, 7.0, 11.0)));
 
     public static final Block INFESTED_ROCK = registerBlock("infested_rock",
             new CustomDirt(AbstractBlock.Settings.create()
@@ -376,7 +379,7 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "dragons_eye_ore")))));
 
     public static final Block PETRIFIED_STONE = registerBlock("petrified_stone",
-            new PillarBlock(AbstractBlock.Settings.create()
+            new Block(AbstractBlock.Settings.create()
                     .strength(3.3F, 20.0F)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone")))));
 
@@ -798,21 +801,27 @@ public class block_init {
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "itore")))));
 
     public static final Block TANKARD = registerBlock("tankard",
-            new TankardBlock(AbstractBlock.Settings.create()
+            new SmallDecorativeBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.BROWN)
                     .strength(0.3F, 1.0F)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tankard")))));
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tankard"))),
+                    Block.createCuboidShape(4.0, 0.0, 5.0, 11.0, 7.0, 10.0),
+                    Block.createCuboidShape(5.0, 0.0, 6.0, 12.0, 7.0, 11.0),
+                    Block.createCuboidShape(6.0, 0.0, 4.0, 11.0, 7.0, 11.0),
+                    Block.createCuboidShape(5.0, 0.0, 5.0, 10.0, 7.0, 12.0)));
 
     public static final Block SPIRITS = registerBlock("spirits",
-            new SpiritsBlock(AbstractBlock.Settings.create()
+            new SmallDecorativeBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.WHITE)
                     .strength(0.3F, 1.0F)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "spirits")))));
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "spirits"))),
+                    Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 13.0, 10.0)));
 
     public static final Block SAUERKRAUT = registerBlock("sauerkraut",
-            new SauerkrautBlock(AbstractBlock.Settings.create()
+            new SmallDecorativeBlock(AbstractBlock.Settings.create()
                     .strength(0.3F, 1.0F)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "sauerkraut")))));
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "sauerkraut"))),
+                    Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 6.5, 10.0)));
 
     public static final Block WHITE_COFFER = registerBlock("white_coffer",
             new ColouredCofferBlock(DyeColor.WHITE, AbstractBlock.Settings.create()

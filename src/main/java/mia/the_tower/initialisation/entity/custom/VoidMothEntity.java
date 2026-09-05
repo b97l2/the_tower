@@ -22,16 +22,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class VoidMothEntity extends AnimalEntity implements Flutterer {
+    private static final double PERCH_SURFACE_GAP = 0.01D;
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     public final AnimationState flyAnimationState = new AnimationState();
+
+    private static final TrackedData<Boolean> PERCHED =
+            DataTracker.registerData(VoidMothEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Direction> PERCH_FACE =
+            DataTracker.registerData(VoidMothEntity.class, TrackedDataHandlerRegistry.FACING);
 
     public VoidMothEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -39,43 +46,73 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
         this.setNoGravity(true);
     }
 
-    // fields (VoidMothEntity.java)
-    private static final TrackedData<Boolean> PERCHED =
-            DataTracker.registerData(VoidMothEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final TrackedData<Direction> PERCH_FACE =
-            DataTracker.registerData(VoidMothEntity.class, TrackedDataHandlerRegistry.FACING);
-
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(PERCHED, false);
-        builder.add(PERCH_FACE, Direction.UP); // default to ceiling
+        builder.add(PERCH_FACE, Direction.DOWN);
     }
 
-    public boolean isPerched() { return this.dataTracker.get(PERCHED); }
-    public Direction getPerchFace() { return this.dataTracker.get(PERCH_FACE); }
+    public boolean isPerched() {
+        return this.dataTracker.get(PERCHED);
+    }
+
+    public Direction getPerchFace() {
+        return this.dataTracker.get(PERCH_FACE);
+    }
 
     public void perchAt(BlockPos anchor, Direction face) {
-        // Anchor is the block you’re attaching to, 'face' is the face you cling to (UP=ceiling, NORTH/EAST/SOUTH/WEST=wall)
         this.dataTracker.set(PERCHED, true);
         this.dataTracker.set(PERCH_FACE, face);
-        this.navigation.stop();         // stop pathing
-        this.setVelocity(Vec3d.ZERO);   // freeze motion
+        this.navigation.stop();
+        this.setVelocity(Vec3d.ZERO);
         this.setNoGravity(true);
 
-        // Snap position flush against face so it looks attached
-        Vec3i n = face.getVector(); // offset of the face
-        double off = 0.48; // how “deep” to press into the face (tweak)
-        double x = anchor.getX() + 0.5 - n.getX() * off;
-        double y = anchor.getY() + 0.5 - n.getY() * off;
-        double z = anchor.getZ() + 0.5 - n.getZ() * off;
-        this.refreshPositionAndAngles(x, y, z, this.getYaw(), 0);
+        Vec3d perchPos = this.getPerchPosition(anchor, face);
+        float yaw = this.getPerchYaw(face);
+        this.refreshPositionAndAngles(perchPos.x, perchPos.y, perchPos.z, yaw, 0.0F);
+        this.setYaw(yaw);
+        this.setHeadYaw(yaw);
+        this.setBodyYaw(yaw);
+    }
+
+    public Vec3d getPerchPosition(BlockPos anchor, Direction face) {
+        double halfWidth = this.getWidth() / 2.0D;
+        double height = this.getHeight();
+        double x = anchor.getX() + 0.5D;
+        double y = anchor.getY() + 0.5D - height / 2.0D;
+        double z = anchor.getZ() + 0.5D;
+
+        if (face == Direction.UP) {
+            y = anchor.getY() - height - PERCH_SURFACE_GAP;
+        } else if (face == Direction.DOWN) {
+            y = anchor.getY() + 1.0D + PERCH_SURFACE_GAP;
+        } else {
+            double offset = 0.5D + halfWidth + PERCH_SURFACE_GAP;
+            x -= face.getOffsetX() * offset;
+            z -= face.getOffsetZ() * offset;
+        }
+
+        return new Vec3d(x, y, z);
+    }
+
+    public Box getPerchBox(BlockPos anchor, Direction face) {
+        Vec3d pos = this.getPerchPosition(anchor, face);
+        double halfWidth = this.getWidth() / 2.0D;
+        return new Box(
+                pos.x - halfWidth,
+                pos.y,
+                pos.z - halfWidth,
+                pos.x + halfWidth,
+                pos.y + this.getHeight(),
+                pos.z + halfWidth
+        ).contract(1.0E-6D);
     }
 
     public void unperch() {
         if (!this.isPerched()) return;
         this.dataTracker.set(PERCHED, false);
-        this.setNoGravity(false);
+        this.setNoGravity(true);
     }
 
     @Override
@@ -91,7 +128,6 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
         this.unperch();
     }
 
-
     @Override
     protected EntityNavigation createNavigation(World world) {
         BirdNavigation nav = new BirdNavigation(this, world);
@@ -102,7 +138,7 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
 
     @Override
     public boolean isInAir() {
-        return !this.isOnGround();
+        return !this.isPerched() && !this.isOnGround();
     }
 
     @Override
@@ -112,16 +148,13 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
 
     @Override
     protected void initGoals() {
-        //this.goalSelector.add(0, new PerchGoal(this, 20));
+        this.goalSelector.add(0, new PerchGoal(this, 20));
         this.goalSelector.add(1, new AvoidSunlightGoal(this));
-
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.15D));
-
         this.goalSelector.add(2, new TemptGoal(this, 1.25D, Ingredient.ofItems(item_init.SHEPHERDS_STAFF), false));
         this.goalSelector.add(5, new FlyGoal(this, 1.15D));
         this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
         this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
-
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -130,9 +163,12 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
                 .add(EntityAttributes.MOVEMENT_SPEED, 0.7)
                 .add(EntityAttributes.FLYING_SPEED, 0.8)
                 .add(EntityAttributes.FOLLOW_RANGE, 40)
-                .add(EntityAttributes.TEMPT_RANGE, 10)
-                ;
+                .add(EntityAttributes.TEMPT_RANGE, 10);
+    }
 
+    @Override
+    protected int getExperienceToDrop(ServerWorld world) {
+        return 1;
     }
 
     private void setupAnimationStates() {
@@ -150,7 +186,6 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
         } else {
             this.flyAnimationState.stop();
         }
-
     }
 
     @Override
@@ -165,10 +200,9 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
     @Override
     public void tickMovement() {
         if (this.isPerched()) {
-            // Stay frozen and clear unwanted velocity
             this.setVelocity(Vec3d.ZERO);
             this.fallDistance = 0.0f;
-            super.tickMovement(); // still do status effects etc.
+            super.tickMovement();
             return;
         }
         super.tickMovement();
@@ -183,5 +217,12 @@ public class VoidMothEntity extends AnimalEntity implements Flutterer {
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
         return ModEntities.VOID_MOTH.create(world, SpawnReason.BREEDING);
+    }
+
+    private float getPerchYaw(Direction face) {
+        return switch (face) {
+            case NORTH, SOUTH, EAST, WEST -> face.getOpposite().getPositiveHorizontalDegrees();
+            default -> this.getYaw();
+        };
     }
 }

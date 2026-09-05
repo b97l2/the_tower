@@ -47,7 +47,7 @@ public class PitCarver extends Carver<PitCarverConfig> {
 
         int requestedDepth = Math.max(1, cfg.depth.get(random));
         int pitRadius = Math.max(1, cfg.radius.get(random));
-        int minimumBottomY = context.getMinY() + 5;
+        int minimumBottomY = context.getMinY() + 8;
         int depth = Math.max(20, requestedDepth);
         int flareHeight = MathHelper.clamp(cfg.taperHeight.get(random), 1, Math.max(1, depth - 1));
         float flareRadius = pitRadius * 2.5f;
