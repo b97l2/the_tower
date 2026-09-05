@@ -5,23 +5,17 @@ This mod introduces a new dimension called the Frage. The Frage is a world set u
 judgement day. Its rivers run red with blood and all manner of beasts roam the lands. 
 
 Within the Frage you can currently encounter a multitude of new blocks, ores, plants, status effects, liquids, particles,
-items, and food. In the future you will also be able to encounter new mobs (including bosses), crafting (distilling) system, weapons, 
-armour, trees, and an interesting lore. 
+items, food, wearable items, trees, weather, and mobs. In the future you will also be able to encounter new hostile mobs (including bosses), crafting (distilling) system, weapons, 
+armour, and an interesting lore. 
 
 I recommend that it be played with a 32x32 pixel resource pack for vanilla Minecraft blocks to compliment the experience.
 My personal favorite, and what I have taken a lot of inspiration from, being MYTHIC - A Pixel Art Journey by FishyMint.
-If you use shaders, I also recommend turning off any shader water tint that ignores vanilla water tint colours and enabling vanilla skyboxes if possible. 
-This lets the intended colours of my custom biomes be visible that shaders would otherwise ignore. I test with BSL shaders personally, but I know that some shaders create 
-unintended visual effects on some of my blocks that are translucent.
+I have a custom modified version of BSL shader for this mod. Contact me if you would like it. Other shaders can add unintended visual effects to my mod blocks. 
 
 Note that some blocks in this mod may trigger seizures in people who have photosensitive epilepsy. If you would like an epilepsy friendly version of the mod,
 please reach out to me and I will provide a version with alternate textures for these blocks.
 __________________________________________________________________________________
-As this is the first time I am using Java, I am using a tutorial (Modding by Kaupenjoe on YouTube) 
-and LLM to help me with some of the code while learning from it.
-I of course have a long way to go, but I hope to one day say that Minecraft taught me Java. 
-
-So if you see anything stupid in my code, I hope you recognise it was due to my inexperience with the language and not my own stupidity. Although some people might argue that that is the same thing. 
+This is the first time I am using Java. Mistakes are due to my inexperience with the language and not my own stupidity. 
 
 All textures are made by me unless otherwise stated.
 
