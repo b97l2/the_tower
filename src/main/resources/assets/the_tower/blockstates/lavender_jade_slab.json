@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "the_tower:block/lavender_jade_slab"
+    },
+    "type=double": {
+      "model": "the_tower:block/lavender_jade_block"
+    },
+    "type=top": {
+      "model": "the_tower:block/lavender_jade_slab_top"
+    }
+  }
+}

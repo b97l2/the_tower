@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "the_tower:block/heavenly_dew_jade_block",
+    "top": "the_tower:block/heavenly_dew_jade_block",
+    "side": "the_tower:block/heavenly_dew_jade_block"
+  }
+}

@@ -1100,11 +1100,133 @@ public class block_init {
                     .sounds(BlockSoundGroup.MUD_BRICKS)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "kaolin")))));
 
+    private static AbstractBlock.Settings jadeSettings(String name) {
+        return AbstractBlock.Settings.create()
+                .mapColor(MapColor.EMERALD_GREEN)
+                .strength(4F, 10.0F)
+                .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", name)));
+    }
+
+    private static AbstractBlock.Settings jadeVariantSettings(String name) {
+        return jadeSettings(name).nonOpaque();
+    }
+
     public static final Block IMPERIAL_JADE_BLOCK = registerBlock("imperial_jade_block",
-            new Block(AbstractBlock.Settings.create()
-                    .mapColor(MapColor.EMERALD_GREEN)
-                    .strength(4F, 10.0F)
-                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "imperial_jade_block")))));
+            new Block(jadeSettings("imperial_jade_block")));
+    public static final Block IMPERIAL_JADE_WALL = registerBlock("imperial_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("imperial_jade_wall")));
+    public static final Block IMPERIAL_JADE_STAIRS = registerBlock("imperial_jade_stairs",
+            new FluidloggableStairsBlock(IMPERIAL_JADE_BLOCK.getDefaultState(), jadeVariantSettings("imperial_jade_stairs")));
+    public static final Block IMPERIAL_JADE_SLAB = registerBlock("imperial_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("imperial_jade_slab")));
+    public static final Block IMPERIAL_JADE_VERTICAL_SLAB = registerBlock("imperial_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("imperial_jade_vertical_slab")));
+    public static final Block IMPERIAL_JADE_COLUMN = registerBlock("imperial_jade_column",
+            new column_init(jadeVariantSettings("imperial_jade_column")));
+
+    public static final Block BLOOD_JADE_BLOCK = registerBlock("blood_jade_block",
+            new Block(jadeSettings("blood_jade_block")));
+    public static final Block BLOOD_JADE_WALL = registerBlock("blood_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("blood_jade_wall")));
+    public static final Block BLOOD_JADE_STAIRS = registerBlock("blood_jade_stairs",
+            new FluidloggableStairsBlock(BLOOD_JADE_BLOCK.getDefaultState(), jadeVariantSettings("blood_jade_stairs")));
+    public static final Block BLOOD_JADE_SLAB = registerBlock("blood_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("blood_jade_slab")));
+    public static final Block BLOOD_JADE_VERTICAL_SLAB = registerBlock("blood_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("blood_jade_vertical_slab")));
+    public static final Block BLOOD_JADE_COLUMN = registerBlock("blood_jade_column",
+            new column_init(jadeVariantSettings("blood_jade_column")));
+
+    public static final Block JADEITE_BLOCK = registerBlock("jadeite_block",
+            new Block(jadeSettings("jadeite_block")));
+    public static final Block JADEITE_WALL = registerBlock("jadeite_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("jadeite_wall")));
+    public static final Block JADEITE_STAIRS = registerBlock("jadeite_stairs",
+            new FluidloggableStairsBlock(JADEITE_BLOCK.getDefaultState(), jadeVariantSettings("jadeite_stairs")));
+    public static final Block JADEITE_SLAB = registerBlock("jadeite_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("jadeite_slab")));
+    public static final Block JADEITE_VERTICAL_SLAB = registerBlock("jadeite_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("jadeite_vertical_slab")));
+    public static final Block JADEITE_COLUMN = registerBlock("jadeite_column",
+            new column_init(jadeVariantSettings("jadeite_column")));
+
+    public static final Block MUTTON_FAT_JADE_BLOCK = registerBlock("mutton_fat_jade_block",
+            new Block(jadeSettings("mutton_fat_jade_block")));
+    public static final Block MUTTON_FAT_JADE_WALL = registerBlock("mutton_fat_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("mutton_fat_jade_wall")));
+    public static final Block MUTTON_FAT_JADE_STAIRS = registerBlock("mutton_fat_jade_stairs",
+            new FluidloggableStairsBlock(MUTTON_FAT_JADE_BLOCK.getDefaultState(), jadeVariantSettings("mutton_fat_jade_stairs")));
+    public static final Block MUTTON_FAT_JADE_SLAB = registerBlock("mutton_fat_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("mutton_fat_jade_slab")));
+    public static final Block MUTTON_FAT_JADE_VERTICAL_SLAB = registerBlock("mutton_fat_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("mutton_fat_jade_vertical_slab")));
+    public static final Block MUTTON_FAT_JADE_COLUMN = registerBlock("mutton_fat_jade_column",
+            new column_init(jadeVariantSettings("mutton_fat_jade_column")));
+
+    public static final Block LAVENDER_JADE_BLOCK = registerBlock("lavender_jade_block",
+            new Block(jadeSettings("lavender_jade_block")));
+    public static final Block LAVENDER_JADE_WALL = registerBlock("lavender_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("lavender_jade_wall")));
+    public static final Block LAVENDER_JADE_STAIRS = registerBlock("lavender_jade_stairs",
+            new FluidloggableStairsBlock(LAVENDER_JADE_BLOCK.getDefaultState(), jadeVariantSettings("lavender_jade_stairs")));
+    public static final Block LAVENDER_JADE_SLAB = registerBlock("lavender_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("lavender_jade_slab")));
+    public static final Block LAVENDER_JADE_VERTICAL_SLAB = registerBlock("lavender_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("lavender_jade_vertical_slab")));
+    public static final Block LAVENDER_JADE_COLUMN = registerBlock("lavender_jade_column",
+            new column_init(jadeVariantSettings("lavender_jade_column")));
+
+    public static final Block LOTUS_JADE_BLOCK = registerBlock("lotus_jade_block",
+            new Block(jadeSettings("lotus_jade_block")));
+    public static final Block LOTUS_JADE_WALL = registerBlock("lotus_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("lotus_jade_wall")));
+    public static final Block LOTUS_JADE_STAIRS = registerBlock("lotus_jade_stairs",
+            new FluidloggableStairsBlock(LOTUS_JADE_BLOCK.getDefaultState(), jadeVariantSettings("lotus_jade_stairs")));
+    public static final Block LOTUS_JADE_SLAB = registerBlock("lotus_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("lotus_jade_slab")));
+    public static final Block LOTUS_JADE_VERTICAL_SLAB = registerBlock("lotus_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("lotus_jade_vertical_slab")));
+    public static final Block LOTUS_JADE_COLUMN = registerBlock("lotus_jade_column",
+            new column_init(jadeVariantSettings("lotus_jade_column")));
+
+    public static final Block PHOENIX_BLOOD_JADE_BLOCK = registerBlock("phoenix_blood_jade_block",
+            new Block(jadeSettings("phoenix_blood_jade_block")));
+    public static final Block PHOENIX_BLOOD_JADE_WALL = registerBlock("phoenix_blood_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("phoenix_blood_jade_wall")));
+    public static final Block PHOENIX_BLOOD_JADE_STAIRS = registerBlock("phoenix_blood_jade_stairs",
+            new FluidloggableStairsBlock(PHOENIX_BLOOD_JADE_BLOCK.getDefaultState(), jadeVariantSettings("phoenix_blood_jade_stairs")));
+    public static final Block PHOENIX_BLOOD_JADE_SLAB = registerBlock("phoenix_blood_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("phoenix_blood_jade_slab")));
+    public static final Block PHOENIX_BLOOD_JADE_VERTICAL_SLAB = registerBlock("phoenix_blood_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("phoenix_blood_jade_vertical_slab")));
+    public static final Block PHOENIX_BLOOD_JADE_COLUMN = registerBlock("phoenix_blood_jade_column",
+            new column_init(jadeVariantSettings("phoenix_blood_jade_column")));
+
+    public static final Block HEAVENLY_DEW_JADE_BLOCK = registerBlock("heavenly_dew_jade_block",
+            new Block(jadeSettings("heavenly_dew_jade_block")));
+    public static final Block HEAVENLY_DEW_JADE_WALL = registerBlock("heavenly_dew_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("heavenly_dew_jade_wall")));
+    public static final Block HEAVENLY_DEW_JADE_STAIRS = registerBlock("heavenly_dew_jade_stairs",
+            new FluidloggableStairsBlock(HEAVENLY_DEW_JADE_BLOCK.getDefaultState(), jadeVariantSettings("heavenly_dew_jade_stairs")));
+    public static final Block HEAVENLY_DEW_JADE_SLAB = registerBlock("heavenly_dew_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("heavenly_dew_jade_slab")));
+    public static final Block HEAVENLY_DEW_JADE_VERTICAL_SLAB = registerBlock("heavenly_dew_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("heavenly_dew_jade_vertical_slab")));
+    public static final Block HEAVENLY_DEW_JADE_COLUMN = registerBlock("heavenly_dew_jade_column",
+            new column_init(jadeVariantSettings("heavenly_dew_jade_column")));
+
+    public static final Block GOLDEN_THREAD_JADE_BLOCK = registerBlock("golden_thread_jade_block",
+            new Block(jadeSettings("golden_thread_jade_block")));
+    public static final Block GOLDEN_THREAD_JADE_WALL = registerBlock("golden_thread_jade_wall",
+            new FluidloggableWallBlock(jadeVariantSettings("golden_thread_jade_wall")));
+    public static final Block GOLDEN_THREAD_JADE_STAIRS = registerBlock("golden_thread_jade_stairs",
+            new FluidloggableStairsBlock(GOLDEN_THREAD_JADE_BLOCK.getDefaultState(), jadeVariantSettings("golden_thread_jade_stairs")));
+    public static final Block GOLDEN_THREAD_JADE_SLAB = registerBlock("golden_thread_jade_slab",
+            new FluidloggableSlabBlock(jadeVariantSettings("golden_thread_jade_slab")));
+    public static final Block GOLDEN_THREAD_JADE_VERTICAL_SLAB = registerBlock("golden_thread_jade_vertical_slab",
+            new VerticalSlabBlock(jadeVariantSettings("golden_thread_jade_vertical_slab")));
+    public static final Block GOLDEN_THREAD_JADE_COLUMN = registerBlock("golden_thread_jade_column",
+            new column_init(jadeVariantSettings("golden_thread_jade_column")));
 
     public static final Block IMPERIAL_JADE_LANTERN = registerBlock("imperial_jade_lantern",
             new FluidloggableLanternBlock(AbstractBlock.Settings.create()
@@ -1253,6 +1375,59 @@ public class block_init {
         registerBlockItem("stripped_ginkgo_log", STRIPPED_GINKGO_LOG);
         registerBlockItem("vaults_stanchion", VAULTS_STANCHION_SAPLING);
         registerBlockItem("imperial_jade_block", IMPERIAL_JADE_BLOCK);
+        registerBlockItem("imperial_jade_wall", IMPERIAL_JADE_WALL);
+        registerBlockItem("imperial_jade_stairs", IMPERIAL_JADE_STAIRS);
+        registerBlockItem("imperial_jade_slab", IMPERIAL_JADE_SLAB);
+        registerBlockItem("imperial_jade_vertical_slab", IMPERIAL_JADE_VERTICAL_SLAB);
+        registerBlockItem("imperial_jade_column", IMPERIAL_JADE_COLUMN);
+        registerBlockItem("blood_jade_block", BLOOD_JADE_BLOCK);
+        registerBlockItem("blood_jade_wall", BLOOD_JADE_WALL);
+        registerBlockItem("blood_jade_stairs", BLOOD_JADE_STAIRS);
+        registerBlockItem("blood_jade_slab", BLOOD_JADE_SLAB);
+        registerBlockItem("blood_jade_vertical_slab", BLOOD_JADE_VERTICAL_SLAB);
+        registerBlockItem("blood_jade_column", BLOOD_JADE_COLUMN);
+        registerBlockItem("jadeite_block", JADEITE_BLOCK);
+        registerBlockItem("jadeite_wall", JADEITE_WALL);
+        registerBlockItem("jadeite_stairs", JADEITE_STAIRS);
+        registerBlockItem("jadeite_slab", JADEITE_SLAB);
+        registerBlockItem("jadeite_vertical_slab", JADEITE_VERTICAL_SLAB);
+        registerBlockItem("jadeite_column", JADEITE_COLUMN);
+        registerBlockItem("mutton_fat_jade_block", MUTTON_FAT_JADE_BLOCK);
+        registerBlockItem("mutton_fat_jade_wall", MUTTON_FAT_JADE_WALL);
+        registerBlockItem("mutton_fat_jade_stairs", MUTTON_FAT_JADE_STAIRS);
+        registerBlockItem("mutton_fat_jade_slab", MUTTON_FAT_JADE_SLAB);
+        registerBlockItem("mutton_fat_jade_vertical_slab", MUTTON_FAT_JADE_VERTICAL_SLAB);
+        registerBlockItem("mutton_fat_jade_column", MUTTON_FAT_JADE_COLUMN);
+        registerBlockItem("lavender_jade_block", LAVENDER_JADE_BLOCK);
+        registerBlockItem("lavender_jade_wall", LAVENDER_JADE_WALL);
+        registerBlockItem("lavender_jade_stairs", LAVENDER_JADE_STAIRS);
+        registerBlockItem("lavender_jade_slab", LAVENDER_JADE_SLAB);
+        registerBlockItem("lavender_jade_vertical_slab", LAVENDER_JADE_VERTICAL_SLAB);
+        registerBlockItem("lavender_jade_column", LAVENDER_JADE_COLUMN);
+        registerBlockItem("lotus_jade_block", LOTUS_JADE_BLOCK);
+        registerBlockItem("lotus_jade_wall", LOTUS_JADE_WALL);
+        registerBlockItem("lotus_jade_stairs", LOTUS_JADE_STAIRS);
+        registerBlockItem("lotus_jade_slab", LOTUS_JADE_SLAB);
+        registerBlockItem("lotus_jade_vertical_slab", LOTUS_JADE_VERTICAL_SLAB);
+        registerBlockItem("lotus_jade_column", LOTUS_JADE_COLUMN);
+        registerBlockItem("phoenix_blood_jade_block", PHOENIX_BLOOD_JADE_BLOCK);
+        registerBlockItem("phoenix_blood_jade_wall", PHOENIX_BLOOD_JADE_WALL);
+        registerBlockItem("phoenix_blood_jade_stairs", PHOENIX_BLOOD_JADE_STAIRS);
+        registerBlockItem("phoenix_blood_jade_slab", PHOENIX_BLOOD_JADE_SLAB);
+        registerBlockItem("phoenix_blood_jade_vertical_slab", PHOENIX_BLOOD_JADE_VERTICAL_SLAB);
+        registerBlockItem("phoenix_blood_jade_column", PHOENIX_BLOOD_JADE_COLUMN);
+        registerBlockItem("heavenly_dew_jade_block", HEAVENLY_DEW_JADE_BLOCK);
+        registerBlockItem("heavenly_dew_jade_wall", HEAVENLY_DEW_JADE_WALL);
+        registerBlockItem("heavenly_dew_jade_stairs", HEAVENLY_DEW_JADE_STAIRS);
+        registerBlockItem("heavenly_dew_jade_slab", HEAVENLY_DEW_JADE_SLAB);
+        registerBlockItem("heavenly_dew_jade_vertical_slab", HEAVENLY_DEW_JADE_VERTICAL_SLAB);
+        registerBlockItem("heavenly_dew_jade_column", HEAVENLY_DEW_JADE_COLUMN);
+        registerBlockItem("golden_thread_jade_block", GOLDEN_THREAD_JADE_BLOCK);
+        registerBlockItem("golden_thread_jade_wall", GOLDEN_THREAD_JADE_WALL);
+        registerBlockItem("golden_thread_jade_stairs", GOLDEN_THREAD_JADE_STAIRS);
+        registerBlockItem("golden_thread_jade_slab", GOLDEN_THREAD_JADE_SLAB);
+        registerBlockItem("golden_thread_jade_vertical_slab", GOLDEN_THREAD_JADE_VERTICAL_SLAB);
+        registerBlockItem("golden_thread_jade_column", GOLDEN_THREAD_JADE_COLUMN);
         registerBlockItem("imperial_jade_lantern", IMPERIAL_JADE_LANTERN);
         registerBlockItem("veins", VEINS);
         registerBlockItem("chanterelle", CHANTERELLE);

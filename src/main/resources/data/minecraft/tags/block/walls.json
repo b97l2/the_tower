@@ -1,6 +1,15 @@
 {
   "replace": false,
   "values": [
+    "the_tower:imperial_jade_wall",
+    "the_tower:blood_jade_wall",
+    "the_tower:jadeite_wall",
+    "the_tower:mutton_fat_jade_wall",
+    "the_tower:lavender_jade_wall",
+    "the_tower:lotus_jade_wall",
+    "the_tower:phoenix_blood_jade_wall",
+    "the_tower:heavenly_dew_jade_wall",
+    "the_tower:golden_thread_jade_wall",
     "the_tower:gold_wall",
     "the_tower:emerald_wall",
     "the_tower:silver_wall",

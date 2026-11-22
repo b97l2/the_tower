@@ -1,0 +1,8 @@
+{
+  "parent": "the_tower:block/template_vertical_slab_top",
+  "textures": {
+    "bottom": "the_tower:block/jadeite_block",
+    "top": "the_tower:block/jadeite_block",
+    "side": "the_tower:block/jadeite_block"
+  }
+}
