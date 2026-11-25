@@ -1,0 +1,8 @@
+{
+  "parent": "the_tower:block/template_vertical_slab",
+  "textures": {
+    "bottom": "the_tower:block/cube_of_flesh1",
+    "top": "the_tower:block/cube_of_flesh1",
+    "side": "the_tower:block/cube_of_flesh1"
+  }
+}

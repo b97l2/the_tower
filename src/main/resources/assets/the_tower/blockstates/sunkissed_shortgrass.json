@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [
+      { "model": "the_tower:block/sunkissed_shortgrass1" },
+      { "model": "the_tower:block/sunkissed_shortgrass2" }
+    ]
+  }
+}

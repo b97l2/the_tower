@@ -35,6 +35,18 @@ public class CustomParticles {
     public static final SimpleParticleType GOLD_ORB =
             registerParticle("gold_orb_particle", FabricParticleTypes.simple());
 
+    public static final SimpleParticleType AZURE_SPARK =
+            registerParticle("azure_spark_particle", FabricParticleTypes.simple());
+
+    public static final SimpleParticleType DRIPPING_ICHOR =
+            registerParticle("dripping_ichor_particle", FabricParticleTypes.simple());
+
+    public static final SimpleParticleType FALLING_ICHOR =
+            registerParticle("falling_ichor_particle", FabricParticleTypes.simple());
+
+    public static final SimpleParticleType LANDING_ICHOR =
+            registerParticle("landing_ichor_particle", FabricParticleTypes.simple());
+
     private static SimpleParticleType registerParticle(String name, SimpleParticleType particleType) {
         return Registry.register(Registries.PARTICLE_TYPE, Identifier.of("the_tower", name), particleType);
     }

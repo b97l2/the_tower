@@ -56,6 +56,10 @@ public class GoldenWeald {
                 GenerationStep.Feature.UNDERGROUND_ORES,
                 placedLookup.getOrThrow(ModPlacedFeatures.KAOLIN_SHEET_ORE_PLACED_KEY)
         );
+        biomeBuilder.feature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                placedLookup.getOrThrow(ModPlacedFeatures.JADE_ORE_PLACED_KEY)
+        );
 
         //globalOverworldGeneration(biomeBuilder); //this is for if you want it to spawn in the overworld
         //DefaultBiomeFeatures.addMossyRocks(biomeBuilder);
@@ -63,8 +67,9 @@ public class GoldenWeald {
         //DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
 
         //vegetation
-        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.CERULEAN_GRASS_PATCH_PLACED_KEY);
+        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.SUNKISSED_SHORTGRASS_PATCH_PLACED_KEY);
         biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.GINKGO_PLACED_KEY);
+        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.DEAD_GINKGO_PLACED_KEY);
 
         return new Biome.Builder()
                 .precipitation(false)

@@ -20,8 +20,8 @@
     ],
     "width": {
       "type": "minecraft:uniform",
-      "max_inclusive": 40,
-      "min_inclusive": 30
+      "max_inclusive": 32,
+      "min_inclusive": 25
     }
   }
 }

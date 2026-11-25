@@ -1,0 +1,8 @@
+{
+  "parent": "the_tower:item/template_vertical_slab_inventory",
+  "textures": {
+    "bottom": "minecraft:block/cube_of_flesh",
+    "top": "minecraft:block/cube_of_flesh",
+    "side": "minecraft:block/cube_of_flesh"
+  }
+}

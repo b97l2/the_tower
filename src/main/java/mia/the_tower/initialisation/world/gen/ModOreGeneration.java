@@ -26,6 +26,8 @@ public class ModOreGeneration {
                 ModPlacedFeatures.SLATE_SHEET_ORE_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(GoldenWeald.GOLDEN_WEALD), GenerationStep.Feature.UNDERGROUND_ORES,
                 ModPlacedFeatures.KAOLIN_SHEET_ORE_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(GoldenWeald.GOLDEN_WEALD), GenerationStep.Feature.UNDERGROUND_ORES,
+                ModPlacedFeatures.JADE_ORE_PLACED_KEY);
 
         //then last of all, go to the biome class and include the ore there
     }

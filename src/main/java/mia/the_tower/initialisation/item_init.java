@@ -103,6 +103,9 @@ public class item_init { //this is the class that initialises items in the mod
     public static Item FULL_BREAKFAST;
     public static Item SAUSAGE;
     public static Item INTESTINE;
+    public static Item TOMATO;
+    public static Item AZURE_WAND;
+    public static Item MYSTERY_JADE;
 
     public static void load() {
         GLOOP = register("gloop", new Item(new Item.Settings()
@@ -170,6 +173,13 @@ public class item_init { //this is the class that initialises items in the mod
         STAVE = register("stave", new StaveItem(new Item.Settings()
                 .maxCount(1)
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("stave")))));
+
+        AZURE_WAND = register("azure_wand", new AzureWandItem(CustomParticles.AZURE_SPARK, new Item.Settings()
+                .maxCount(1)
+                .useCooldown(1)
+                .maxDamage(10)
+                .enchantable(1)
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("azure_wand")))));
 
         PILLAR_OF_SALT = register("pillar_of_salt", new PillarOfSaltItem(new Item.Settings()
                 .maxCount(1)
@@ -459,6 +469,14 @@ public class item_init { //this is the class that initialises items in the mod
                                 .build())
                 .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("chocolate_bar")))));
 
+        TOMATO = register("tomato", new Item(new Item.Settings()
+                .food(
+                        new FoodComponent.Builder()
+                                .nutrition(1)
+                                .saturationModifier(0.1F)
+                                .build())
+                .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("tomato")))));
+
         TOAST = register("toast", new Item(new Item.Settings()
                 .food(
                         new FoodComponent.Builder()
@@ -514,6 +532,11 @@ public class item_init { //this is the class that initialises items in the mod
         FATIGUE = register("fatigue", new Item(
                 new Item.Settings()
                         .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("fatigue")))));
+
+        MYSTERY_JADE = register("mystery_jade", new MysteryJadeItem(
+                new Item.Settings()
+                        .maxCount(1)
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, The_Tower.id("mystery_jade")))));
 
     }
 

@@ -1,0 +1,23 @@
+{
+  "type": "the_tower:sheet_ore",
+  "config": {
+    "density": 1.0,
+    "height": 4,
+    "targets": [
+      {
+        "state": {
+          "Name": "the_tower:uncut_jadeite_stone"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "the_tower:golden_weald_replaceable"
+        }
+      }
+    ],
+    "width": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 24,
+      "min_inclusive": 17
+    }
+  }
+}

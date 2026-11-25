@@ -1,0 +1,6 @@
+{
+  "parent": "the_tower:block/full_crop",
+  "textures": {
+    "full_crop": "the_tower:block/sunkissed_shortgrass2"
+  }
+}

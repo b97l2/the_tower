@@ -21,13 +21,15 @@
       "the_tower:dragons_eye_ore_placed",
       "the_tower:silver_vein_placed",
       "the_tower:silver_ore_placed",
-      "the_tower:kaolin_sheet_ore_placed"
+      "the_tower:kaolin_sheet_ore_placed",
+      "the_tower:jade_ore_placed"
     ],
     [],
     [],
     [
-      "the_tower:cerulean_grass_patch_placed",
-      "the_tower:ginkgo_placed"
+      "the_tower:sunkissed_shortgrass_patch_placed",
+      "the_tower:ginkgo_placed",
+      "the_tower:dead_ginkgo_placed"
     ]
   ],
   "has_precipitation": false,

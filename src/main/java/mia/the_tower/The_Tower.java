@@ -17,6 +17,7 @@ import mia.the_tower.initialisation.entity.custom.VoidMothEntity;
 import mia.the_tower.initialisation.fluid.GunkFluidBlock;
 import mia.the_tower.initialisation.fluid.fluid_init;
 import mia.the_tower.initialisation.items.util.CofferToKey;
+import mia.the_tower.initialisation.items.AzureWandItem;
 import mia.the_tower.initialisation.misc.ModDeaths;
 import mia.the_tower.initialisation.particle.CustomParticles;
 import mia.the_tower.initialisation.screen.screen_init;
@@ -33,6 +34,7 @@ import mia.the_tower.initialisation.world.ore.SheetOreFeature;
 import mia.the_tower.initialisation.world.structure.ModStructures;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
 import mia.the_tower.initialisation.world.tree.GiantTrunkPlacer;
+import mia.the_tower.initialisation.world.tree.DeadGinkgoFeature;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
 import mia.the_tower.initialisation.world.vegetation.SurfaceDecorativeBlockFeature;
 import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
@@ -74,6 +76,7 @@ public class The_Tower implements ModInitializer {
 	 //this loads all items inside the file item_init into minecraft
 		fluid_init.load();
 		item_init.load();
+		AzureWandItem.init();
 		block_init.load();
 		blockentity_init.load();
 		crop_init.load();
@@ -102,6 +105,7 @@ public class The_Tower implements ModInitializer {
 		GiantTrunkPlacer.init();
 		MediumTrunkPlacer.init();
 		GiantFoliagePlacer.init();
+		DeadGinkgoFeature.init();
 		ModStructures.init();
 		GoldenWeald.load();
 		SurfaceDecorativeBlockFeature.init();

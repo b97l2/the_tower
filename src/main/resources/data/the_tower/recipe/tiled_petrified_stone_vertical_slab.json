@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "the_tower:tiled_petrified_stone"
+  },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 6,
+    "id": "the_tower:tiled_petrified_stone_vertical_slab"
+  },
+  "show_notification": true
+}

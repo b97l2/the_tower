@@ -69,7 +69,48 @@ public class block_init {
             new Block(AbstractBlock.Settings.create()
                     .strength(0.8F, 6.0F)
                     .mapColor(MapColor.RED)
+                    .sounds(BlockSoundGroup.SLIME)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh")))));
+
+    public static final Block CUBE_OF_FLESH_WALL = registerBlock("cube_of_flesh_wall",
+            new FluidloggableWallBlock(AbstractBlock.Settings.create()
+                    .strength(0.8F, 6.0F)
+                    .mapColor(MapColor.RED)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.SLIME)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh_wall")))));
+
+    public static final Block CUBE_OF_FLESH_STAIRS = registerBlock("cube_of_flesh_stairs",
+            new FluidloggableStairsBlock(CUBE_OF_FLESH.getDefaultState(), AbstractBlock.Settings.create()
+                    .strength(0.8F, 6.0F)
+                    .mapColor(MapColor.RED)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.SLIME)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh_stairs")))));
+
+    public static final Block CUBE_OF_FLESH_SLAB = registerBlock("cube_of_flesh_slab",
+            new FluidloggableSlabBlock(AbstractBlock.Settings.create()
+                    .strength(0.8F, 6.0F)
+                    .mapColor(MapColor.RED)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.SLIME)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh_slab")))));
+
+    public static final Block CUBE_OF_FLESH_VERTICAL_SLAB = registerBlock("cube_of_flesh_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .strength(0.8F, 6.0F)
+                    .mapColor(MapColor.RED)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.SLIME)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh_vertical_slab")))));
+
+    public static final Block CUBE_OF_FLESH_COLUMN = registerBlock("cube_of_flesh_column",
+            new column_init(AbstractBlock.Settings.create()
+                    .strength(0.8F, 6.0F)
+                    .mapColor(MapColor.RED)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.SLIME)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cube_of_flesh_column")))));
 
     public static final Block VEINS = registerBlock("veins",
             new FluidloggableGlowLichenBlock(AbstractBlock.Settings.create()
@@ -274,7 +315,7 @@ public class block_init {
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "blue_foxglove")))));
 
-    public static final Block CERULEAN_WILDGRASS = registerBlock("cerulean_wildgrass", //!*texture
+    public static final Block CERULEAN_WILDGRASS = registerBlock("cerulean_wildgrass",
             new TallPlantBlock(AbstractBlock.Settings.create()
         			.mapColor(MapColor.CYAN)
                     .noCollision()
@@ -286,6 +327,18 @@ public class block_init {
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cerulean_wildgrass")))));
 
+    public static final Block SUNKISSED_SHORTGRASS = registerBlock("sunkissed_shortgrass", //!*texture
+            new ShortPlantBlock(AbstractBlock.Settings.create()
+                    .mapColor(MapColor.GOLD)
+                    .noCollision()
+                    .breakInstantly()
+                    .sounds(BlockSoundGroup.GRASS)
+                    .offset(AbstractBlock.OffsetType.XZ)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .replaceable()
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "sunkissed_shortgrass")))));
+
     public static final Block CERULEAN_SHORTGRASS = registerBlock("cerulean_shortgrass", //!*texture
             new ShortPlantBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.CYAN)
@@ -295,6 +348,7 @@ public class block_init {
                     .offset(AbstractBlock.OffsetType.XZ)
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .replaceable()
+                    .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "cerulean_shortgrass")))));
 
     public static final Block STARLIGHT_LICHEN = registerBlock("starlight_lichen", //!*texture
@@ -437,6 +491,12 @@ public class block_init {
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone_slab")))));
 
+    public static final Block PETRIFIED_STONE_VERTICAL_SLAB = registerBlock("petrified_stone_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "petrified_stone_vertical_slab")))));
+
     public static final Block EMBOSSED_PETRIFIED_STONE_STAIRS = registerBlock("embossed_petrified_stone_stairs",
             new FluidloggableStairsBlock(EMBOSSED_PETRIFIED_STONE.getDefaultState(), AbstractBlock.Settings.create()
                     .strength(3.3F, 20.0F)
@@ -460,6 +520,12 @@ public class block_init {
                     .strength(3.3F, 20.0F)
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone_slab")))));
+
+    public static final Block EMBOSSED_PETRIFIED_STONE_VERTICAL_SLAB = registerBlock("embossed_petrified_stone_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "embossed_petrified_stone_vertical_slab")))));
 
     public static final Block TILED_PETRIFIED_STONE_STAIRS = registerBlock("tiled_petrified_stone_stairs",
             new FluidloggableStairsBlock(TILED_PETRIFIED_STONE.getDefaultState(), AbstractBlock.Settings.create()
@@ -485,6 +551,12 @@ public class block_init {
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone_slab")))));
 
+    public static final Block TILED_PETRIFIED_STONE_VERTICAL_SLAB = registerBlock("tiled_petrified_stone_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "tiled_petrified_stone_vertical_slab")))));
+
     public static final Block ADORNED_PETRIFIED_STONE_STAIRS = registerBlock("adorned_petrified_stone_stairs",
             new FluidloggableStairsBlock(ADORNED_PETRIFIED_STONE.getDefaultState(), AbstractBlock.Settings.create()
                     .strength(3.3F, 20.0F)
@@ -508,6 +580,12 @@ public class block_init {
                     .strength(3.3F, 20.0F)
                     .nonOpaque()
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone_slab")))));
+
+    public static final Block ADORNED_PETRIFIED_STONE_VERTICAL_SLAB = registerBlock("adorned_petrified_stone_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .strength(3.3F, 20.0F)
+                    .nonOpaque()
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "adorned_petrified_stone_vertical_slab")))));
 
     public static final Block GROTESQUE = registerBlock("grotesque",
             new CustomHorisontalFacingBlock(AbstractBlock.Settings.create()
@@ -624,6 +702,15 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_slab")))));
 
+    public static final Block GOLD_VERTICAL_SLAB = registerBlock("gold_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "gold_vertical_slab")))));
+
     public static final Block GOLD_COLUMN = registerBlock("gold_column",
             new column_init(AbstractBlock.Settings.create()
                     .nonOpaque()
@@ -712,6 +799,15 @@ public class block_init {
                     .strength(3.0F, 6.0F)
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_slab")))));
+
+    public static final Block GINKGO_VERTICAL_SLAB = registerBlock("ginkgo_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.GOLD)
+                    .strength(3.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "ginkgo_vertical_slab")))));
 
     public static final Block GINKGO_TRAPDOOR = registerBlock("ginkgo_trapdoor",
             new FluidloggableTrapdoorBlock(BlockSetType.OAK, AbstractBlock.Settings.create() //set to copper because this is mainly just a decorative block and not supposed to have any unique redstone functionality
@@ -1002,6 +1098,15 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_slab")))));
 
+    public static final Block SILVER_VERTICAL_SLAB = registerBlock("silver_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.LIGHT_GRAY)
+                    .strength(2.8F, 4.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "silver_vertical_slab")))));
+
     public static final Block SILVER_COLUMN = registerBlock("silver_column",
             new column_init(AbstractBlock.Settings.create()
                     .nonOpaque()
@@ -1084,6 +1189,15 @@ public class block_init {
                     .sounds(BlockSoundGroup.METAL)
                     .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_slab")))));
 
+    public static final Block EMERALD_VERTICAL_SLAB = registerBlock("emerald_vertical_slab",
+            new VerticalSlabBlock(AbstractBlock.Settings.create()
+                    .nonOpaque()
+                    .requiresTool()
+                    .mapColor(MapColor.EMERALD_GREEN)
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("the_tower", "emerald_vertical_slab")))));
+
     public static final Block EMERALD_COLUMN = registerBlock("emerald_column",
             new column_init(AbstractBlock.Settings.create()
                     .nonOpaque()
@@ -1111,8 +1225,16 @@ public class block_init {
         return jadeSettings(name).nonOpaque();
     }
 
+    private static AbstractBlock.Settings emissiveJadeSettings(String name) {
+        return jadeSettings(name).emissiveLighting(Blocks::always);
+    }
+
+    private static AbstractBlock.Settings emissiveJadeVariantSettings(String name) {
+        return emissiveJadeSettings(name).nonOpaque();
+    }
+
     public static final Block IMPERIAL_JADE_BLOCK = registerBlock("imperial_jade_block",
-            new Block(jadeSettings("imperial_jade_block")));
+            new Block(jadeVariantSettings("imperial_jade_block")));
     public static final Block IMPERIAL_JADE_WALL = registerBlock("imperial_jade_wall",
             new FluidloggableWallBlock(jadeVariantSettings("imperial_jade_wall")));
     public static final Block IMPERIAL_JADE_STAIRS = registerBlock("imperial_jade_stairs",
@@ -1139,6 +1261,8 @@ public class block_init {
 
     public static final Block JADEITE_BLOCK = registerBlock("jadeite_block",
             new Block(jadeSettings("jadeite_block")));
+    public static final Block UNCUT_JADEITE_STONE = registerBlock("uncut_jadeite_stone",
+            new Block(jadeSettings("uncut_jadeite_stone")));
     public static final Block JADEITE_WALL = registerBlock("jadeite_wall",
             new FluidloggableWallBlock(jadeVariantSettings("jadeite_wall")));
     public static final Block JADEITE_STAIRS = registerBlock("jadeite_stairs",
@@ -1177,33 +1301,33 @@ public class block_init {
             new column_init(jadeVariantSettings("lavender_jade_column")));
 
     public static final Block LOTUS_JADE_BLOCK = registerBlock("lotus_jade_block",
-            new Block(jadeSettings("lotus_jade_block")));
+            new Block(emissiveJadeVariantSettings("lotus_jade_block")));
     public static final Block LOTUS_JADE_WALL = registerBlock("lotus_jade_wall",
-            new FluidloggableWallBlock(jadeVariantSettings("lotus_jade_wall")));
+            new FluidloggableWallBlock(emissiveJadeVariantSettings("lotus_jade_wall")));
     public static final Block LOTUS_JADE_STAIRS = registerBlock("lotus_jade_stairs",
-            new FluidloggableStairsBlock(LOTUS_JADE_BLOCK.getDefaultState(), jadeVariantSettings("lotus_jade_stairs")));
+            new FluidloggableStairsBlock(LOTUS_JADE_BLOCK.getDefaultState(), emissiveJadeVariantSettings("lotus_jade_stairs")));
     public static final Block LOTUS_JADE_SLAB = registerBlock("lotus_jade_slab",
-            new FluidloggableSlabBlock(jadeVariantSettings("lotus_jade_slab")));
+            new FluidloggableSlabBlock(emissiveJadeVariantSettings("lotus_jade_slab")));
     public static final Block LOTUS_JADE_VERTICAL_SLAB = registerBlock("lotus_jade_vertical_slab",
-            new VerticalSlabBlock(jadeVariantSettings("lotus_jade_vertical_slab")));
+            new VerticalSlabBlock(emissiveJadeVariantSettings("lotus_jade_vertical_slab")));
     public static final Block LOTUS_JADE_COLUMN = registerBlock("lotus_jade_column",
-            new column_init(jadeVariantSettings("lotus_jade_column")));
+            new column_init(emissiveJadeVariantSettings("lotus_jade_column")));
 
     public static final Block PHOENIX_BLOOD_JADE_BLOCK = registerBlock("phoenix_blood_jade_block",
-            new Block(jadeSettings("phoenix_blood_jade_block")));
+            new Block(emissiveJadeSettings("phoenix_blood_jade_block")));
     public static final Block PHOENIX_BLOOD_JADE_WALL = registerBlock("phoenix_blood_jade_wall",
-            new FluidloggableWallBlock(jadeVariantSettings("phoenix_blood_jade_wall")));
+            new FluidloggableWallBlock(emissiveJadeVariantSettings("phoenix_blood_jade_wall")));
     public static final Block PHOENIX_BLOOD_JADE_STAIRS = registerBlock("phoenix_blood_jade_stairs",
-            new FluidloggableStairsBlock(PHOENIX_BLOOD_JADE_BLOCK.getDefaultState(), jadeVariantSettings("phoenix_blood_jade_stairs")));
+            new FluidloggableStairsBlock(PHOENIX_BLOOD_JADE_BLOCK.getDefaultState(), emissiveJadeVariantSettings("phoenix_blood_jade_stairs")));
     public static final Block PHOENIX_BLOOD_JADE_SLAB = registerBlock("phoenix_blood_jade_slab",
-            new FluidloggableSlabBlock(jadeVariantSettings("phoenix_blood_jade_slab")));
+            new FluidloggableSlabBlock(emissiveJadeVariantSettings("phoenix_blood_jade_slab")));
     public static final Block PHOENIX_BLOOD_JADE_VERTICAL_SLAB = registerBlock("phoenix_blood_jade_vertical_slab",
-            new VerticalSlabBlock(jadeVariantSettings("phoenix_blood_jade_vertical_slab")));
+            new VerticalSlabBlock(emissiveJadeVariantSettings("phoenix_blood_jade_vertical_slab")));
     public static final Block PHOENIX_BLOOD_JADE_COLUMN = registerBlock("phoenix_blood_jade_column",
-            new column_init(jadeVariantSettings("phoenix_blood_jade_column")));
+            new column_init(emissiveJadeVariantSettings("phoenix_blood_jade_column")));
 
     public static final Block HEAVENLY_DEW_JADE_BLOCK = registerBlock("heavenly_dew_jade_block",
-            new Block(jadeSettings("heavenly_dew_jade_block")));
+            new Block(jadeVariantSettings("heavenly_dew_jade_block")));
     public static final Block HEAVENLY_DEW_JADE_WALL = registerBlock("heavenly_dew_jade_wall",
             new FluidloggableWallBlock(jadeVariantSettings("heavenly_dew_jade_wall")));
     public static final Block HEAVENLY_DEW_JADE_STAIRS = registerBlock("heavenly_dew_jade_stairs",
@@ -1254,6 +1378,11 @@ public class block_init {
         registerBlockItem("darkness",DARKNESS);
         registerBlockItem("oxidised_darkness",OXIDISED_DARKNESS);
         registerBlockItem("cube_of_flesh",CUBE_OF_FLESH);
+        registerBlockItem("cube_of_flesh_stairs", CUBE_OF_FLESH_STAIRS);
+        registerBlockItem("cube_of_flesh_slab", CUBE_OF_FLESH_SLAB);
+        registerBlockItem("cube_of_flesh_vertical_slab", CUBE_OF_FLESH_VERTICAL_SLAB);
+        registerBlockItem("cube_of_flesh_wall", CUBE_OF_FLESH_WALL);
+        registerBlockItem("cube_of_flesh_column", CUBE_OF_FLESH_COLUMN);
         registerBlockItem("cube_of_perceiving", CUBE_OF_PERCEIVING); //*add texture
         registerBlockItem("pulled_teeth", PULLED_TEETH);
         registerBlockItem("skin", SKIN);
@@ -1291,18 +1420,22 @@ public class block_init {
         registerBlockItem("petrified_stone_wall", PETRIFIED_STONE_WALL);
         registerBlockItem("petrified_stone_column", PETRIFIED_STONE_COLUMN);
         registerBlockItem("petrified_stone_slab", PETRIFIED_STONE_SLAB);
+        registerBlockItem("petrified_stone_vertical_slab", PETRIFIED_STONE_VERTICAL_SLAB);
         registerBlockItem("embossed_petrified_stone_stairs", EMBOSSED_PETRIFIED_STONE_STAIRS);
         registerBlockItem("embossed_petrified_stone_wall", EMBOSSED_PETRIFIED_STONE_WALL);
         registerBlockItem("embossed_petrified_stone_column", EMBOSSED_PETRIFIED_STONE_COLUMN);
         registerBlockItem("embossed_petrified_stone_slab", EMBOSSED_PETRIFIED_STONE_SLAB);
+        registerBlockItem("embossed_petrified_stone_vertical_slab", EMBOSSED_PETRIFIED_STONE_VERTICAL_SLAB);
         registerBlockItem("tiled_petrified_stone_stairs", TILED_PETRIFIED_STONE_STAIRS);
         registerBlockItem("tiled_petrified_stone_wall", TILED_PETRIFIED_STONE_WALL);
         registerBlockItem("tiled_petrified_stone_column", TILED_PETRIFIED_STONE_COLUMN);
         registerBlockItem("tiled_petrified_stone_slab", TILED_PETRIFIED_STONE_SLAB);
+        registerBlockItem("tiled_petrified_stone_vertical_slab", TILED_PETRIFIED_STONE_VERTICAL_SLAB);
         registerBlockItem("adorned_petrified_stone_stairs", ADORNED_PETRIFIED_STONE_STAIRS);
         registerBlockItem("adorned_petrified_stone_wall", ADORNED_PETRIFIED_STONE_WALL);
         registerBlockItem("adorned_petrified_stone_column", ADORNED_PETRIFIED_STONE_COLUMN);
         registerBlockItem("adorned_petrified_stone_slab", ADORNED_PETRIFIED_STONE_SLAB);
+        registerBlockItem("adorned_petrified_stone_vertical_slab", ADORNED_PETRIFIED_STONE_VERTICAL_SLAB);
         registerBlockItem("cerulean_shortgrass", CERULEAN_SHORTGRASS);
         registerBlockItem("rod_of_luminescence", ROD_OF_LUMINESCENCE);
         registerBlockItem("can_of_retardation", CAN_OF_RETARDATION);
@@ -1317,6 +1450,7 @@ public class block_init {
         registerBlockItem("gold_wall", GOLD_WALL);
         registerBlockItem("gold_stairs", GOLD_STAIRS);
         registerBlockItem("gold_slab", GOLD_SLAB);
+        registerBlockItem("gold_vertical_slab", GOLD_VERTICAL_SLAB);
         registerBlockItem("gold_column", GOLD_COLUMN);
         registerBlockItem("afhd", AFHD);
         registerBlockItem("slate", SLATE);
@@ -1361,15 +1495,18 @@ public class block_init {
         registerBlockItem("emerald_wall", EMERALD_WALL);
         registerBlockItem("emerald_column", EMERALD_COLUMN);
         registerBlockItem("emerald_slab", EMERALD_SLAB);
+        registerBlockItem("emerald_vertical_slab", EMERALD_VERTICAL_SLAB);
         registerBlockItem("emerald_stairs", EMERALD_STAIRS);
         registerBlockItem("kaolin", KAOLIN);
         registerBlockItem("silver_wall", SILVER_WALL);
         registerBlockItem("silver_column", SILVER_COLUMN);
         registerBlockItem("silver_slab", SILVER_SLAB);
+        registerBlockItem("silver_vertical_slab", SILVER_VERTICAL_SLAB);
         registerBlockItem("silver_stairs", SILVER_STAIRS);
         registerBlockItem("ginkgo_planks", GINKGO_PLANKS);
         registerBlockItem("ginkgo_stairs", GINKGO_STAIRS);
         registerBlockItem("ginkgo_slab", GINKGO_SLAB);
+        registerBlockItem("ginkgo_vertical_slab", GINKGO_VERTICAL_SLAB);
         registerBlockItem("ginkgo_trapdoor", GINKGO_TRAPDOOR);
         registerBlockItem("ginkgo_button", GINKGO_BUTTON);
         registerBlockItem("stripped_ginkgo_log", STRIPPED_GINKGO_LOG);
@@ -1386,6 +1523,7 @@ public class block_init {
         registerBlockItem("blood_jade_slab", BLOOD_JADE_SLAB);
         registerBlockItem("blood_jade_vertical_slab", BLOOD_JADE_VERTICAL_SLAB);
         registerBlockItem("blood_jade_column", BLOOD_JADE_COLUMN);
+        registerBlockItem("uncut_jadeite_stone", UNCUT_JADEITE_STONE);
         registerBlockItem("jadeite_block", JADEITE_BLOCK);
         registerBlockItem("jadeite_wall", JADEITE_WALL);
         registerBlockItem("jadeite_stairs", JADEITE_STAIRS);
@@ -1434,6 +1572,7 @@ public class block_init {
         registerBlockItem("redstone_lantern", REDSTONE_LANTERN);
         registerBlockItem("redstone_chain", REDSTONE_CHAIN);
         registerBlockItem("pile_of_meat", PILE_OF_MEAT);
+        registerBlockItem("sunkissed_shortgrass", SUNKISSED_SHORTGRASS);
     } //to load into game
 
 }

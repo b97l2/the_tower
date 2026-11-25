@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "the_tower:block/cube_of_flesh_slab"
+    },
+    "type=double": {
+      "model": "the_tower:block/cube_of_flesh1"
+    },
+    "type=top": {
+      "model": "the_tower:block/cube_of_flesh_slab_top"
+    }
+  }
+}

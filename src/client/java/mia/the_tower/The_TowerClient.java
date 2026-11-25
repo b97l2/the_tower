@@ -108,6 +108,27 @@ public class The_TowerClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.IMPERIAL_JADE_LANTERN, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.SILVER_LANTERN, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(block_init.PILE_OF_MEAT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+				block_init.IMPERIAL_JADE_BLOCK,
+				block_init.IMPERIAL_JADE_WALL,
+				block_init.IMPERIAL_JADE_STAIRS,
+				block_init.IMPERIAL_JADE_SLAB,
+				block_init.IMPERIAL_JADE_VERTICAL_SLAB,
+				block_init.IMPERIAL_JADE_COLUMN,
+				block_init.HEAVENLY_DEW_JADE_BLOCK,
+				block_init.HEAVENLY_DEW_JADE_WALL,
+				block_init.HEAVENLY_DEW_JADE_STAIRS,
+				block_init.HEAVENLY_DEW_JADE_SLAB,
+				block_init.HEAVENLY_DEW_JADE_VERTICAL_SLAB,
+				block_init.HEAVENLY_DEW_JADE_COLUMN,
+				block_init.LOTUS_JADE_BLOCK,
+				block_init.LOTUS_JADE_WALL,
+				block_init.LOTUS_JADE_STAIRS,
+				block_init.LOTUS_JADE_SLAB,
+				block_init.LOTUS_JADE_VERTICAL_SLAB,
+				block_init.LOTUS_JADE_COLUMN
+		);
+
 
 		//this is for rendering fluids
 		FluidRenderHandlerRegistry.INSTANCE.register(
@@ -139,7 +160,10 @@ public class The_TowerClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.STAVE_PARTICLE, StaveParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.WHITE_INCENSE, WhiteIncense.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(CustomParticles.GOLD_ORB, GoldOrbParticle.Factory::new);
-
+		ParticleFactoryRegistry.getInstance().register(CustomParticles.AZURE_SPARK, AzureSparkParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(CustomParticles.DRIPPING_ICHOR, DrippingIchor.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(CustomParticles.FALLING_ICHOR, DrippingIchor.FallingFactory::new);
+		ParticleFactoryRegistry.getInstance().register(CustomParticles.LANDING_ICHOR, DrippingIchor.LandingFactory::new);
 
 		//this is for entities
 		EntityModelLayerRegistry.registerModelLayer(VoidMothModel.VOID_MOTH, VoidMothModel::getTexturedModelData);

@@ -22,6 +22,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> AFHD_PLACED_KEY = registerKey("afhd_placed");
     public static final RegistryKey<PlacedFeature> DRAGONS_EYE_ORE_PLACED_KEY = registerKey("dragons_eye_ore_placed");
     public static final RegistryKey<PlacedFeature> ITORE_PLACED_KEY = registerKey("itore_placed");
+    public static final RegistryKey<PlacedFeature> JADE_ORE_PLACED_KEY = registerKey("jade_ore_placed");
     public static final RegistryKey<PlacedFeature> KAOLIN_SHEET_ORE_PLACED_KEY = registerKey("kaolin_sheet_ore_placed");
     public static final RegistryKey<PlacedFeature> SILVER_ORE_PLACED_KEY = registerKey("silver_ore_placed");
     public static final RegistryKey<PlacedFeature> SLATE_SHEET_ORE_PLACED_KEY = registerKey("slate_sheet_ore_placed");
@@ -29,11 +30,13 @@ public class ModPlacedFeatures {
 
     //vegetation
     public static final RegistryKey<PlacedFeature> CERULEAN_GRASS_PATCH_PLACED_KEY = registerKey("cerulean_grass_patch_placed");
+    public static final RegistryKey<PlacedFeature> SUNKISSED_SHORTGRASS_PATCH_PLACED_KEY = registerKey("sunkissed_shortgrass_patch_placed");
     public static final RegistryKey<PlacedFeature> CERULEAN_COAST_FLOWERS_PATCH_PLACED_KEY = registerKey("cerulean_coast_flowers_patch_placed");
     public static final RegistryKey<PlacedFeature> PILE_OF_MEAT_PLACED_KEY = registerKey("pile_of_meat_placed");
 
     //tree
     public static final RegistryKey<PlacedFeature> GINKGO_PLACED_KEY = registerKey("ginkgo_placed");
+    public static final RegistryKey<PlacedFeature> DEAD_GINKGO_PLACED_KEY = registerKey("dead_ginkgo_placed");
 
     //other
     public static final RegistryKey<PlacedFeature> DECORATED_PIT_PLACED_KEY = registerKey("decorated_pit_placed");
@@ -55,6 +58,9 @@ public class ModPlacedFeatures {
         register(context, ITORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ITORE_KEY),
                 ModOrePlacement.modifiersWithCount(5,
                         HeightRangePlacementModifier.trapezoid(YOffset.fixed(-140), YOffset.fixed(60))));
+        register(context, JADE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.JADE_ORE_KEY),
+                ModOrePlacement.modifiersWithRarity(6,
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(88), YOffset.fixed(146))));
         register(context, KAOLIN_SHEET_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.KAOLIN_SHEET_ORE_KEY),
                 RarityFilterPlacementModifier.of(4),
                 SquarePlacementModifier.of(),
@@ -95,6 +101,15 @@ public class ModPlacedFeatures {
         );
         PlacedFeatures.register(
                 context,
+                SUNKISSED_SHORTGRASS_PATCH_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.SUNKISSED_SHORTGRASS_PATCH_KEY),
+                RarityFilterPlacementModifier.of(2),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of()
+        );
+        PlacedFeatures.register(
+                context,
                 PILE_OF_MEAT_PLACED_KEY,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.PILE_OF_MEAT_KEY),
                 RarityFilterPlacementModifier.of(5),
@@ -108,6 +123,11 @@ public class ModPlacedFeatures {
                 VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
                         RarityFilterPlacementModifier.of(6), // ~1 attempt per 6 chunks
                         block_init.GINKGO_SAPLING));
+        register(context, DEAD_GINKGO_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEAD_GINKGO_KEY),
+                RarityFilterPlacementModifier.of(10),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_NO_LEAVES_HEIGHTMAP,
+                BiomePlacementModifier.of());
 
         //other
         register(

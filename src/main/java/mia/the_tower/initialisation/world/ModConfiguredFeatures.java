@@ -5,6 +5,7 @@ import mia.the_tower.initialisation.util.CustomTags;
 import mia.the_tower.initialisation.world.misc.DecoratedPitPlacer;
 import mia.the_tower.initialisation.world.ore.SheetOreFeature;
 import mia.the_tower.initialisation.world.tree.GiantFoliagePlacer;
+import mia.the_tower.initialisation.world.tree.DeadGinkgoFeature;
 import mia.the_tower.initialisation.world.tree.MediumTrunkPlacer;
 import mia.the_tower.initialisation.world.vegetation.SurfaceDecorativeBlockFeature;
 import mia.the_tower.initialisation.world.vegetation.TripleAwareSimpleBlockFeature;
@@ -41,6 +42,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> AFHD_KEY = registerKey("afhd");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DRAGONS_EYE_ORE_KEY = registerKey("dragons_eye_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ITORE_KEY = registerKey("itore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> JADE_ORE_KEY = registerKey("jade_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> KAOLIN_SHEET_ORE_KEY = registerKey("kaolin_sheet_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SILVER_ORE_KEY = registerKey("silver_ore");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SLATE_SHEET_ORE_KEY = registerKey("slate_sheet_ore");
@@ -48,10 +50,12 @@ public class ModConfiguredFeatures {
 
     //tree
     public static final RegistryKey<ConfiguredFeature<?, ?>> GINKGO_KEY = registerKey("ginkgo");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEAD_GINKGO_KEY = registerKey("dead_ginkgo");
     public static final RegistryKey<ConfiguredFeature<?, ?>> VAULTS_STANCHION_KEY = registerKey("vaults_stanchion");
 
     //vegetation
     public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_GRASS_PATCH_KEY = registerKey("cerulean_grass_patch");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SUNKISSED_SHORTGRASS_PATCH_KEY = registerKey("sunkissed_shortgrass_patch");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CERULEAN_COAST_FLOWERS_PATCH_KEY = registerKey("cerulean_coast_flowers_patch_key");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PILE_OF_MEAT_KEY = registerKey("pile_of_meat");
 
@@ -83,18 +87,23 @@ public class ModConfiguredFeatures {
                 List.of(OreFeatureConfig.createTarget(ceruleanCoastReplaceables, block_init.SILVER_VEIN.getDefaultState()));
         List<OreFeatureConfig.Target> frageItoreOres =
                 List.of(OreFeatureConfig.createTarget(shadowlandsReplaceables, block_init.ITORE.getDefaultState()));
+        List<OreFeatureConfig.Target> frageJadeOres =
+                List.of(OreFeatureConfig.createTarget(goldenWealdReplaceables, block_init.UNCUT_JADEITE_STONE.getDefaultState()));
         List<OreFeatureConfig.Target> frageKaolinSheetOres =
                 List.of(OreFeatureConfig.createTarget(goldenWealdReplaceables, block_init.KAOLIN.getDefaultState()));
         //this defines how big the vein is with the size parameter
         register(context, AFHD_KEY, Feature.ORE, new OreFeatureConfig(frageAfhdOres, 40));
         register(context, DRAGONS_EYE_ORE_KEY, Feature.ORE, new OreFeatureConfig(frageDragonsEyeOres, 9));
         register(context, ITORE_KEY, Feature.ORE, new OreFeatureConfig(frageItoreOres, 3));
+        register(context, JADE_ORE_KEY, SheetOreFeature.SHEET_ORE,
+                new SheetOreFeature.Config(frageJadeOres, UniformIntProvider.create(17, 24),
+                        ConstantIntProvider.create(4), 1.0F, 0.0F));
         register(context, KAOLIN_SHEET_ORE_KEY, SheetOreFeature.SHEET_ORE,
-                new SheetOreFeature.Config(frageKaolinSheetOres, UniformIntProvider.create(30, 40),
+                new SheetOreFeature.Config(frageKaolinSheetOres, UniformIntProvider.create(25, 32),
                         UniformIntProvider.create(2, 5), 1.0F, 0.0F));
         register(context, SILVER_ORE_KEY, Feature.ORE, new OreFeatureConfig(frageSilverOres, 25));
         register(context, SLATE_SHEET_ORE_KEY, SheetOreFeature.SHEET_ORE,
-                new SheetOreFeature.Config(frageSlateSheetOres, UniformIntProvider.create(20, 32),
+                new SheetOreFeature.Config(frageSlateSheetOres, UniformIntProvider.create(10, 25),
                         UniformIntProvider.create(1, 3), 0.9F, 0.0F));
         register(context, SILVER_VEIN_KEY, Feature.ORE, new OreFeatureConfig(frageSilverVeinOres, 9));
 
@@ -130,6 +139,8 @@ public class ModConfiguredFeatures {
                         2                                 // layer_fuzz (+/-)
                 ),
                 new TwoLayersFeatureSize(3, 0, 4)).build());
+
+        register(context, DEAD_GINKGO_KEY, DeadGinkgoFeature.DEAD_GINKGO, DefaultFeatureConfig.INSTANCE);
 
         register(context, VAULTS_STANCHION_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(block_init.GINKGO_LOG),
@@ -187,6 +198,24 @@ public class ModConfiguredFeatures {
                                 BlockPredicate.allOf(
                                         BlockPredicate.IS_AIR,
                                         BlockPredicate.wouldSurvive(block_init.CERULEAN_WILDGRASS.getDefaultState(), BlockPos.ORIGIN)
+                                )
+                        )
+                )
+        );
+        ConfiguredFeatures.register(
+                context,
+                SUNKISSED_SHORTGRASS_PATCH_KEY,
+                Feature.RANDOM_PATCH,
+                new RandomPatchFeatureConfig(
+                        512,
+                        16,
+                        4,
+                        PlacedFeatures.createEntry(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockFeatureConfig(BlockStateProvider.of(block_init.SUNKISSED_SHORTGRASS)),
+                                BlockPredicate.allOf(
+                                        BlockPredicate.IS_AIR,
+                                        BlockPredicate.wouldSurvive(block_init.SUNKISSED_SHORTGRASS.getDefaultState(), BlockPos.ORIGIN)
                                 )
                         )
                 )

@@ -1,0 +1,8 @@
+{
+  "parent": "the_tower:item/template_vertical_slab_inventory",
+  "textures": {
+    "bottom": "the_tower:block/silver_block",
+    "top": "the_tower:block/silver_block",
+    "side": "the_tower:block/silver_block"
+  }
+}
